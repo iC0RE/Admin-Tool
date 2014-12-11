@@ -7,7 +7,7 @@ package admin.tool;
 
 /**
  *
- * @author Paul
+ * @author Markus
  */
 public class DataBaseConnection {
     
