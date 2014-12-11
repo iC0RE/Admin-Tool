@@ -38,9 +38,23 @@ public class GraphicalUserInterface extends JFrame {
         pnl_content = new javax.swing.JPanel();
         pnl_start = new javax.swing.JPanel();
         pnl_categoryList = new javax.swing.JPanel();
-        lbl_categoryHeadline = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList();
+        padding_top = new javax.swing.JPanel();
+        padding_left = new javax.swing.JPanel();
+        padding_right = new javax.swing.JPanel();
         pnl_questionList = new javax.swing.JPanel();
-        lbl_questionHeadline = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        lst_questions = new javax.swing.JList();
+        padding_top1 = new javax.swing.JPanel();
+        padding_right1 = new javax.swing.JPanel();
+        lbl_aAnswer = new javax.swing.JLabel();
+        lbl_bAnswer = new javax.swing.JLabel();
+        lbl_cAnswer = new javax.swing.JLabel();
+        lbl_dAnswer = new javax.swing.JLabel();
+        btn_editAnswer = new javax.swing.JButton();
+        btn_deleteAnswer = new javax.swing.JButton();
+        btn_readyAnswer = new javax.swing.JButton();
         pnl_options = new javax.swing.JPanel();
         lbl_optionHeadline = new javax.swing.JLabel();
         lbl_navigation = new javax.swing.JLabel();
@@ -117,6 +131,8 @@ public class GraphicalUserInterface extends JFrame {
 
         pnl_content.setLayout(new java.awt.CardLayout());
 
+        pnl_start.setBackground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout pnl_startLayout = new javax.swing.GroupLayout(pnl_start);
         pnl_start.setLayout(pnl_startLayout);
         pnl_startLayout.setHorizontalGroup(
@@ -125,59 +141,200 @@ public class GraphicalUserInterface extends JFrame {
         );
         pnl_startLayout.setVerticalGroup(
             pnl_startLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 408, Short.MAX_VALUE)
+            .addGap(0, 429, Short.MAX_VALUE)
         );
 
         pnl_content.add(pnl_start, "card2");
 
-        lbl_categoryHeadline.setFont(new java.awt.Font("Calibri Light", 0, 26)); // NOI18N
-        lbl_categoryHeadline.setText("Kategorien");
+        pnl_categoryList.setBackground(new java.awt.Color(255, 255, 255));
+
+        jList1.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
+
+        padding_top.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout padding_topLayout = new javax.swing.GroupLayout(padding_top);
+        padding_top.setLayout(padding_topLayout);
+        padding_topLayout.setHorizontalGroup(
+            padding_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        padding_topLayout.setVerticalGroup(
+            padding_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 80, Short.MAX_VALUE)
+        );
+
+        padding_left.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout padding_leftLayout = new javax.swing.GroupLayout(padding_left);
+        padding_left.setLayout(padding_leftLayout);
+        padding_leftLayout.setHorizontalGroup(
+            padding_leftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 260, Short.MAX_VALUE)
+        );
+        padding_leftLayout.setVerticalGroup(
+            padding_leftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        padding_right.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout padding_rightLayout = new javax.swing.GroupLayout(padding_right);
+        padding_right.setLayout(padding_rightLayout);
+        padding_rightLayout.setHorizontalGroup(
+            padding_rightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 240, Short.MAX_VALUE)
+        );
+        padding_rightLayout.setVerticalGroup(
+            padding_rightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout pnl_categoryListLayout = new javax.swing.GroupLayout(pnl_categoryList);
         pnl_categoryList.setLayout(pnl_categoryListLayout);
         pnl_categoryListLayout.setHorizontalGroup(
             pnl_categoryListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 897, Short.MAX_VALUE)
-            .addGroup(pnl_categoryListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnl_categoryListLayout.createSequentialGroup()
-                    .addGap(391, 391, 391)
-                    .addComponent(lbl_categoryHeadline)
-                    .addContainerGap(391, Short.MAX_VALUE)))
+            .addGroup(pnl_categoryListLayout.createSequentialGroup()
+                .addGroup(pnl_categoryListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnl_categoryListLayout.createSequentialGroup()
+                        .addComponent(padding_left, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(padding_right, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(padding_top, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         pnl_categoryListLayout.setVerticalGroup(
             pnl_categoryListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 408, Short.MAX_VALUE)
-            .addGroup(pnl_categoryListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnl_categoryListLayout.createSequentialGroup()
-                    .addGap(187, 187, 187)
-                    .addComponent(lbl_categoryHeadline)
-                    .addContainerGap(188, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_categoryListLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(padding_top, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnl_categoryListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
+                    .addComponent(padding_left, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(padding_right, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pnl_content.add(pnl_categoryList, "card3");
 
-        lbl_questionHeadline.setFont(new java.awt.Font("Calibri Light", 0, 26)); // NOI18N
-        lbl_questionHeadline.setText("Fragen");
+        pnl_questionList.setBackground(new java.awt.Color(255, 255, 255));
+
+        lst_questions.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        lst_questions.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(lst_questions);
+
+        padding_top1.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout padding_top1Layout = new javax.swing.GroupLayout(padding_top1);
+        padding_top1.setLayout(padding_top1Layout);
+        padding_top1Layout.setHorizontalGroup(
+            padding_top1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 887, Short.MAX_VALUE)
+        );
+        padding_top1Layout.setVerticalGroup(
+            padding_top1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 72, Short.MAX_VALUE)
+        );
+
+        padding_right1.setBackground(new java.awt.Color(255, 255, 255));
+
+        lbl_aAnswer.setBackground(new java.awt.Color(102, 255, 102));
+        lbl_aAnswer.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+
+        lbl_bAnswer.setBackground(new java.awt.Color(255, 51, 51));
+        lbl_bAnswer.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+
+        lbl_cAnswer.setBackground(new java.awt.Color(255, 51, 51));
+        lbl_cAnswer.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+
+        lbl_dAnswer.setBackground(new java.awt.Color(255, 51, 51));
+        lbl_dAnswer.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+
+        btn_editAnswer.setBackground(new java.awt.Color(255, 255, 255));
+        btn_editAnswer.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        btn_editAnswer.setText("Bearbeiten");
+        btn_editAnswer.setFocusable(false);
+
+        btn_deleteAnswer.setBackground(new java.awt.Color(255, 255, 255));
+        btn_deleteAnswer.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        btn_deleteAnswer.setText("Löschen");
+        btn_deleteAnswer.setFocusable(false);
+
+        btn_readyAnswer.setBackground(new java.awt.Color(255, 255, 255));
+        btn_readyAnswer.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        btn_readyAnswer.setText("Fertig");
+        btn_readyAnswer.setFocusable(false);
+        btn_readyAnswer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_readyAnswerActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout padding_right1Layout = new javax.swing.GroupLayout(padding_right1);
+        padding_right1.setLayout(padding_right1Layout);
+        padding_right1Layout.setHorizontalGroup(
+            padding_right1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lbl_aAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lbl_bAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lbl_cAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lbl_dAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(padding_right1Layout.createSequentialGroup()
+                .addComponent(btn_editAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_deleteAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_readyAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        padding_right1Layout.setVerticalGroup(
+            padding_right1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(padding_right1Layout.createSequentialGroup()
+                .addComponent(lbl_aAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbl_bAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbl_cAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbl_dAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGroup(padding_right1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_editAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(btn_readyAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_deleteAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
 
         javax.swing.GroupLayout pnl_questionListLayout = new javax.swing.GroupLayout(pnl_questionList);
         pnl_questionList.setLayout(pnl_questionListLayout);
         pnl_questionListLayout.setHorizontalGroup(
             pnl_questionListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 897, Short.MAX_VALUE)
-            .addGroup(pnl_questionListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnl_questionListLayout.createSequentialGroup()
-                    .addGap(412, 412, 412)
-                    .addComponent(lbl_questionHeadline)
-                    .addContainerGap(413, Short.MAX_VALUE)))
+            .addGroup(pnl_questionListLayout.createSequentialGroup()
+                .addComponent(padding_top1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(pnl_questionListLayout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(padding_right1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnl_questionListLayout.setVerticalGroup(
             pnl_questionListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 408, Short.MAX_VALUE)
-            .addGroup(pnl_questionListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnl_questionListLayout.createSequentialGroup()
-                    .addGap(187, 187, 187)
-                    .addComponent(lbl_questionHeadline)
-                    .addContainerGap(188, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_questionListLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(padding_top1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnl_questionListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(padding_right1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
+                .addContainerGap())
         );
 
         pnl_content.add(pnl_questionList, "card4");
@@ -199,7 +356,7 @@ public class GraphicalUserInterface extends JFrame {
             .addGroup(pnl_optionsLayout.createSequentialGroup()
                 .addGap(170, 170, 170)
                 .addComponent(lbl_optionHeadline)
-                .addContainerGap(205, Short.MAX_VALUE))
+                .addContainerGap(226, Short.MAX_VALUE))
         );
 
         pnl_content.add(pnl_options, "card5");
@@ -315,17 +472,35 @@ public class GraphicalUserInterface extends JFrame {
         setActive(btn_start);
     }//GEN-LAST:event_btn_startActionPerformed
 
+    private void btn_readyAnswerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_readyAnswerActionPerformed
+
+    }//GEN-LAST:event_btn_readyAnswerActionPerformed
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_categories;
+    private javax.swing.JButton btn_deleteAnswer;
+    private javax.swing.JButton btn_editAnswer;
     private javax.swing.JButton btn_options;
     private javax.swing.JButton btn_questions;
     private javax.swing.JButton btn_quit;
+    private javax.swing.JButton btn_readyAnswer;
     private javax.swing.JButton btn_start;
-    private javax.swing.JLabel lbl_categoryHeadline;
+    private javax.swing.JList jList1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lbl_aAnswer;
+    private javax.swing.JLabel lbl_bAnswer;
+    private javax.swing.JLabel lbl_cAnswer;
+    private javax.swing.JLabel lbl_dAnswer;
     private javax.swing.JLabel lbl_navigation;
     private javax.swing.JLabel lbl_optionHeadline;
-    private javax.swing.JLabel lbl_questionHeadline;
+    private javax.swing.JList lst_questions;
+    private javax.swing.JPanel padding_left;
+    private javax.swing.JPanel padding_right;
+    private javax.swing.JPanel padding_right1;
+    private javax.swing.JPanel padding_top;
+    private javax.swing.JPanel padding_top1;
     private javax.swing.JPanel pnl_categoryList;
     private javax.swing.JPanel pnl_content;
     private javax.swing.JPanel pnl_options;
