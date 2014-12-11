@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package admin.tool;
+import java.awt.CardLayout;
 import javax.swing.*;
 
 /**
@@ -38,19 +39,29 @@ public class GraphicalUserInterface extends JFrame {
         pnl_start = new javax.swing.JPanel();
         pnl_categoryList = new javax.swing.JPanel();
         lbl_categoryHeadline = new javax.swing.JLabel();
+        pnl_questionList = new javax.swing.JPanel();
+        lbl_questionHeadline = new javax.swing.JLabel();
+        pnl_options = new javax.swing.JPanel();
+        lbl_optionHeadline = new javax.swing.JLabel();
+        lbl_navigation = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("qTool");
 
         pnl_template.setBackground(new java.awt.Color(255, 255, 255));
 
-        btn_start.setBackground(new java.awt.Color(255, 255, 255));
+        btn_start.setBackground(new java.awt.Color(102, 204, 255));
         btn_start.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
         btn_start.setText("Start");
         btn_start.setFocusable(false);
         btn_start.setMaximumSize(new java.awt.Dimension(120, 35));
         btn_start.setMinimumSize(new java.awt.Dimension(120, 35));
         btn_start.setPreferredSize(new java.awt.Dimension(120, 35));
+        btn_start.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_startActionPerformed(evt);
+            }
+        });
 
         btn_categories.setBackground(new java.awt.Color(255, 255, 255));
         btn_categories.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
@@ -105,29 +116,97 @@ public class GraphicalUserInterface extends JFrame {
         });
 
         pnl_content.setLayout(new java.awt.CardLayout());
+
+        javax.swing.GroupLayout pnl_startLayout = new javax.swing.GroupLayout(pnl_start);
+        pnl_start.setLayout(pnl_startLayout);
+        pnl_startLayout.setHorizontalGroup(
+            pnl_startLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 897, Short.MAX_VALUE)
+        );
+        pnl_startLayout.setVerticalGroup(
+            pnl_startLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 408, Short.MAX_VALUE)
+        );
+
         pnl_content.add(pnl_start, "card2");
 
-        lbl_categoryHeadline.setFont(new java.awt.Font("Calibri Light", 0, 36)); // NOI18N
+        lbl_categoryHeadline.setFont(new java.awt.Font("Calibri Light", 0, 26)); // NOI18N
         lbl_categoryHeadline.setText("Kategorien");
 
         javax.swing.GroupLayout pnl_categoryListLayout = new javax.swing.GroupLayout(pnl_categoryList);
         pnl_categoryList.setLayout(pnl_categoryListLayout);
         pnl_categoryListLayout.setHorizontalGroup(
             pnl_categoryListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_categoryListLayout.createSequentialGroup()
-                .addGap(353, 353, 353)
-                .addComponent(lbl_categoryHeadline)
-                .addContainerGap(386, Short.MAX_VALUE))
+            .addGap(0, 897, Short.MAX_VALUE)
+            .addGroup(pnl_categoryListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnl_categoryListLayout.createSequentialGroup()
+                    .addGap(391, 391, 391)
+                    .addComponent(lbl_categoryHeadline)
+                    .addContainerGap(391, Short.MAX_VALUE)))
         );
         pnl_categoryListLayout.setVerticalGroup(
             pnl_categoryListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_categoryListLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbl_categoryHeadline)
-                .addContainerGap(353, Short.MAX_VALUE))
+            .addGap(0, 408, Short.MAX_VALUE)
+            .addGroup(pnl_categoryListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnl_categoryListLayout.createSequentialGroup()
+                    .addGap(187, 187, 187)
+                    .addComponent(lbl_categoryHeadline)
+                    .addContainerGap(188, Short.MAX_VALUE)))
         );
 
         pnl_content.add(pnl_categoryList, "card3");
+
+        lbl_questionHeadline.setFont(new java.awt.Font("Calibri Light", 0, 26)); // NOI18N
+        lbl_questionHeadline.setText("Fragen");
+
+        javax.swing.GroupLayout pnl_questionListLayout = new javax.swing.GroupLayout(pnl_questionList);
+        pnl_questionList.setLayout(pnl_questionListLayout);
+        pnl_questionListLayout.setHorizontalGroup(
+            pnl_questionListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 897, Short.MAX_VALUE)
+            .addGroup(pnl_questionListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnl_questionListLayout.createSequentialGroup()
+                    .addGap(412, 412, 412)
+                    .addComponent(lbl_questionHeadline)
+                    .addContainerGap(413, Short.MAX_VALUE)))
+        );
+        pnl_questionListLayout.setVerticalGroup(
+            pnl_questionListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 408, Short.MAX_VALUE)
+            .addGroup(pnl_questionListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnl_questionListLayout.createSequentialGroup()
+                    .addGap(187, 187, 187)
+                    .addComponent(lbl_questionHeadline)
+                    .addContainerGap(188, Short.MAX_VALUE)))
+        );
+
+        pnl_content.add(pnl_questionList, "card4");
+
+        lbl_optionHeadline.setFont(new java.awt.Font("Calibri Light", 0, 26)); // NOI18N
+        lbl_optionHeadline.setText("Optionen");
+
+        javax.swing.GroupLayout pnl_optionsLayout = new javax.swing.GroupLayout(pnl_options);
+        pnl_options.setLayout(pnl_optionsLayout);
+        pnl_optionsLayout.setHorizontalGroup(
+            pnl_optionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_optionsLayout.createSequentialGroup()
+                .addGap(380, 380, 380)
+                .addComponent(lbl_optionHeadline)
+                .addContainerGap(416, Short.MAX_VALUE))
+        );
+        pnl_optionsLayout.setVerticalGroup(
+            pnl_optionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_optionsLayout.createSequentialGroup()
+                .addGap(170, 170, 170)
+                .addComponent(lbl_optionHeadline)
+                .addContainerGap(205, Short.MAX_VALUE))
+        );
+
+        pnl_content.add(pnl_options, "card5");
+
+        lbl_navigation.setFont(new java.awt.Font("Calibri Light", 0, 26)); // NOI18N
+        lbl_navigation.setForeground(new java.awt.Color(51, 153, 255));
+        lbl_navigation.setText("Übersicht");
 
         javax.swing.GroupLayout pnl_templateLayout = new javax.swing.GroupLayout(pnl_template);
         pnl_template.setLayout(pnl_templateLayout);
@@ -143,6 +222,8 @@ public class GraphicalUserInterface extends JFrame {
                         .addComponent(btn_categories, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_questions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lbl_navigation)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_options, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -153,12 +234,14 @@ public class GraphicalUserInterface extends JFrame {
             pnl_templateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_templateLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnl_templateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_start, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_categories, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_questions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_quit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_options, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnl_templateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnl_templateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btn_start, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_categories, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_questions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_quit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_options, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbl_navigation, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnl_content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -178,12 +261,35 @@ public class GraphicalUserInterface extends JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void setActive(javax.swing.JButton btn){
+        btn.setBackground(new java.awt.Color(102,204,255));
+    }
+    
+    public void setInActiveAllButtons(){
+        btn_start.setBackground(new java.awt.Color(255,255,255));
+        btn_categories.setBackground(new java.awt.Color(255,255,255));
+        btn_questions.setBackground(new java.awt.Color(255,255,255));
+        btn_options.setBackground(new java.awt.Color(255,255,255));
+        btn_quit.setBackground(new java.awt.Color(255,255,255));
+    }
+    
     private void btn_categoriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_categoriesActionPerformed
-        
+        CardLayout cl = (CardLayout) (pnl_content.getLayout());
+        cl.first(pnl_content);
+        cl.next(pnl_content);
+        lbl_navigation.setText("Kategorien");
+        setInActiveAllButtons();
+        setActive(btn_categories);
     }//GEN-LAST:event_btn_categoriesActionPerformed
 
     private void btn_questionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_questionsActionPerformed
-        // TODO add your handling code here:
+        CardLayout cl = (CardLayout) (pnl_content.getLayout());
+        cl.first(pnl_content);
+        cl.next(pnl_content);
+        cl.next(pnl_content);
+        lbl_navigation.setText("Fragen");
+        setInActiveAllButtons();
+        setActive(btn_questions);
     }//GEN-LAST:event_btn_questionsActionPerformed
 
     private void btn_quitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_quitActionPerformed
@@ -191,8 +297,23 @@ public class GraphicalUserInterface extends JFrame {
     }//GEN-LAST:event_btn_quitActionPerformed
 
     private void btn_optionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_optionsActionPerformed
-        // TODO add your handling code here:
+        CardLayout cl = (CardLayout) (pnl_content.getLayout());
+        cl.first(pnl_content);
+        cl.next(pnl_content);
+        cl.next(pnl_content);
+        cl.next(pnl_content);
+        lbl_navigation.setText("Einstellungen");
+        setInActiveAllButtons();
+        setActive(btn_options);
     }//GEN-LAST:event_btn_optionsActionPerformed
+
+    private void btn_startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_startActionPerformed
+        CardLayout cl = (CardLayout) (pnl_content.getLayout());
+        cl.first(pnl_content);
+        lbl_navigation.setText("Übersicht");
+        setInActiveAllButtons();
+        setActive(btn_start);
+    }//GEN-LAST:event_btn_startActionPerformed
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -202,8 +323,13 @@ public class GraphicalUserInterface extends JFrame {
     private javax.swing.JButton btn_quit;
     private javax.swing.JButton btn_start;
     private javax.swing.JLabel lbl_categoryHeadline;
+    private javax.swing.JLabel lbl_navigation;
+    private javax.swing.JLabel lbl_optionHeadline;
+    private javax.swing.JLabel lbl_questionHeadline;
     private javax.swing.JPanel pnl_categoryList;
     private javax.swing.JPanel pnl_content;
+    private javax.swing.JPanel pnl_options;
+    private javax.swing.JPanel pnl_questionList;
     private javax.swing.JPanel pnl_start;
     private javax.swing.JPanel pnl_template;
     // End of variables declaration//GEN-END:variables
