@@ -30,9 +30,10 @@ public class GraphicalUserInterface extends JFrame {
 
         pnl_template = new javax.swing.JPanel();
         btn_start = new javax.swing.JButton();
-        btn_category = new javax.swing.JButton();
-        btn_question = new javax.swing.JButton();
+        btn_categories = new javax.swing.JButton();
+        btn_questions = new javax.swing.JButton();
         btn_quit = new javax.swing.JButton();
+        btn_options = new javax.swing.JButton();
         pnl_content = new javax.swing.JPanel();
         pnl_start = new javax.swing.JPanel();
         pnl_categoryList = new javax.swing.JPanel();
@@ -51,29 +52,29 @@ public class GraphicalUserInterface extends JFrame {
         btn_start.setMinimumSize(new java.awt.Dimension(120, 35));
         btn_start.setPreferredSize(new java.awt.Dimension(120, 35));
 
-        btn_category.setBackground(new java.awt.Color(255, 255, 255));
-        btn_category.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
-        btn_category.setText("Kategorien");
-        btn_category.setFocusable(false);
-        btn_category.setMaximumSize(new java.awt.Dimension(100, 35));
-        btn_category.setMinimumSize(new java.awt.Dimension(100, 35));
-        btn_category.setPreferredSize(new java.awt.Dimension(120, 35));
-        btn_category.addActionListener(new java.awt.event.ActionListener() {
+        btn_categories.setBackground(new java.awt.Color(255, 255, 255));
+        btn_categories.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        btn_categories.setText("Kategorien");
+        btn_categories.setFocusable(false);
+        btn_categories.setMaximumSize(new java.awt.Dimension(100, 35));
+        btn_categories.setMinimumSize(new java.awt.Dimension(100, 35));
+        btn_categories.setPreferredSize(new java.awt.Dimension(120, 35));
+        btn_categories.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_categoryActionPerformed(evt);
+                btn_categoriesActionPerformed(evt);
             }
         });
 
-        btn_question.setBackground(new java.awt.Color(255, 255, 255));
-        btn_question.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
-        btn_question.setText("Fragen");
-        btn_question.setFocusable(false);
-        btn_question.setMaximumSize(new java.awt.Dimension(100, 35));
-        btn_question.setMinimumSize(new java.awt.Dimension(100, 35));
-        btn_question.setPreferredSize(new java.awt.Dimension(120, 35));
-        btn_question.addActionListener(new java.awt.event.ActionListener() {
+        btn_questions.setBackground(new java.awt.Color(255, 255, 255));
+        btn_questions.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        btn_questions.setText("Fragen");
+        btn_questions.setFocusable(false);
+        btn_questions.setMaximumSize(new java.awt.Dimension(100, 35));
+        btn_questions.setMinimumSize(new java.awt.Dimension(100, 35));
+        btn_questions.setPreferredSize(new java.awt.Dimension(120, 35));
+        btn_questions.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_questionActionPerformed(evt);
+                btn_questionsActionPerformed(evt);
             }
         });
 
@@ -87,6 +88,19 @@ public class GraphicalUserInterface extends JFrame {
         btn_quit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_quitActionPerformed(evt);
+            }
+        });
+
+        btn_options.setBackground(new java.awt.Color(255, 255, 255));
+        btn_options.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        btn_options.setText("Fragen");
+        btn_options.setFocusable(false);
+        btn_options.setMaximumSize(new java.awt.Dimension(100, 35));
+        btn_options.setMinimumSize(new java.awt.Dimension(100, 35));
+        btn_options.setPreferredSize(new java.awt.Dimension(120, 35));
+        btn_options.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_optionsActionPerformed(evt);
             }
         });
 
@@ -126,9 +140,11 @@ public class GraphicalUserInterface extends JFrame {
                     .addGroup(pnl_templateLayout.createSequentialGroup()
                         .addComponent(btn_start, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_category, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_categories, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_question, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_questions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_options, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_quit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -139,9 +155,10 @@ public class GraphicalUserInterface extends JFrame {
                 .addContainerGap()
                 .addGroup(pnl_templateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_start, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_category, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_question, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_quit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_categories, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_questions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_quit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_options, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnl_content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -161,22 +178,27 @@ public class GraphicalUserInterface extends JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_categoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_categoryActionPerformed
+    private void btn_categoriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_categoriesActionPerformed
         
-    }//GEN-LAST:event_btn_categoryActionPerformed
+    }//GEN-LAST:event_btn_categoriesActionPerformed
 
-    private void btn_questionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_questionActionPerformed
+    private void btn_questionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_questionsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btn_questionActionPerformed
+    }//GEN-LAST:event_btn_questionsActionPerformed
 
     private void btn_quitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_quitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btn_quitActionPerformed
 
+    private void btn_optionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_optionsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_optionsActionPerformed
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_category;
-    private javax.swing.JButton btn_question;
+    private javax.swing.JButton btn_categories;
+    private javax.swing.JButton btn_options;
+    private javax.swing.JButton btn_questions;
     private javax.swing.JButton btn_quit;
     private javax.swing.JButton btn_start;
     private javax.swing.JLabel lbl_categoryHeadline;
