@@ -82,9 +82,9 @@ public class GraphicalUserInterface extends JFrame {
         btn_quit.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
         btn_quit.setText("Beenden");
         btn_quit.setFocusable(false);
-        btn_quit.setMaximumSize(new java.awt.Dimension(100, 35));
-        btn_quit.setMinimumSize(new java.awt.Dimension(100, 35));
-        btn_quit.setPreferredSize(new java.awt.Dimension(120, 35));
+        btn_quit.setMaximumSize(new java.awt.Dimension(120, 35));
+        btn_quit.setMinimumSize(new java.awt.Dimension(120, 35));
+        btn_quit.setPreferredSize(new java.awt.Dimension(130, 35));
         btn_quit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_quitActionPerformed(evt);
@@ -93,11 +93,11 @@ public class GraphicalUserInterface extends JFrame {
 
         btn_options.setBackground(new java.awt.Color(255, 255, 255));
         btn_options.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
-        btn_options.setText("Fragen");
+        btn_options.setText("Einstellungen");
         btn_options.setFocusable(false);
-        btn_options.setMaximumSize(new java.awt.Dimension(100, 35));
-        btn_options.setMinimumSize(new java.awt.Dimension(100, 35));
-        btn_options.setPreferredSize(new java.awt.Dimension(120, 35));
+        btn_options.setMaximumSize(new java.awt.Dimension(120, 35));
+        btn_options.setMinimumSize(new java.awt.Dimension(120, 35));
+        btn_options.setPreferredSize(new java.awt.Dimension(130, 35));
         btn_options.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_optionsActionPerformed(evt);
@@ -143,9 +143,9 @@ public class GraphicalUserInterface extends JFrame {
                         .addComponent(btn_categories, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_questions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_options, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_options, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_quit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
