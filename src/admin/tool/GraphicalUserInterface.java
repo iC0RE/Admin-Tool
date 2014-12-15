@@ -5,6 +5,7 @@
  */
 package admin.tool;
 import java.awt.CardLayout;
+import java.awt.Color;
 import javax.swing.*;
 
 /**
@@ -56,7 +57,15 @@ public class GraphicalUserInterface extends JFrame {
         btn_deleteAnswer = new javax.swing.JButton();
         btn_readyAnswer = new javax.swing.JButton();
         pnl_options = new javax.swing.JPanel();
-        lbl_optionHeadline = new javax.swing.JLabel();
+        txt_dbHost = new javax.swing.JTextField();
+        txt_dbPort = new javax.swing.JTextField();
+        txt_dbName = new javax.swing.JTextField();
+        txt_dbUser = new javax.swing.JTextField();
+        btn_readyOptions = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        padding_left1 = new javax.swing.JPanel();
+        padding_right2 = new javax.swing.JPanel();
+        pwd_dbPassword = new javax.swing.JPasswordField();
         lbl_navigation = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -141,7 +150,7 @@ public class GraphicalUserInterface extends JFrame {
         );
         pnl_startLayout.setVerticalGroup(
             pnl_startLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 429, Short.MAX_VALUE)
+            .addGap(0, 475, Short.MAX_VALUE)
         );
 
         pnl_content.add(pnl_start, "card2");
@@ -216,7 +225,7 @@ public class GraphicalUserInterface extends JFrame {
                 .addComponent(padding_top, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnl_categoryListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
                     .addComponent(padding_left, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(padding_right, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -306,7 +315,7 @@ public class GraphicalUserInterface extends JFrame {
                 .addComponent(lbl_cAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbl_dAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addGroup(padding_right1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btn_editAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
                     .addComponent(btn_readyAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -339,24 +348,148 @@ public class GraphicalUserInterface extends JFrame {
 
         pnl_content.add(pnl_questionList, "card4");
 
-        lbl_optionHeadline.setFont(new java.awt.Font("Calibri Light", 0, 26)); // NOI18N
-        lbl_optionHeadline.setText("Optionen");
+        pnl_options.setBackground(new java.awt.Color(255, 255, 255));
+
+        txt_dbHost.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        txt_dbHost.setForeground(new java.awt.Color(204, 204, 204));
+        txt_dbHost.setText("Host");
+        txt_dbHost.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txt_dbHostFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_dbHostFocusLost(evt);
+            }
+        });
+
+        txt_dbPort.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        txt_dbPort.setForeground(new java.awt.Color(204, 204, 204));
+        txt_dbPort.setText("Port");
+        txt_dbPort.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txt_dbPortFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_dbPortFocusLost(evt);
+            }
+        });
+
+        txt_dbName.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        txt_dbName.setForeground(new java.awt.Color(204, 204, 204));
+        txt_dbName.setText("Name der Datenbank");
+        txt_dbName.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txt_dbNameFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_dbNameFocusLost(evt);
+            }
+        });
+
+        txt_dbUser.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        txt_dbUser.setForeground(new java.awt.Color(204, 204, 204));
+        txt_dbUser.setText("Benutzer");
+        txt_dbUser.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txt_dbUserFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_dbUserFocusLost(evt);
+            }
+        });
+
+        btn_readyOptions.setBackground(new java.awt.Color(255, 255, 255));
+        btn_readyOptions.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        btn_readyOptions.setText("Fertig");
+        btn_readyOptions.setFocusable(false);
+        btn_readyOptions.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_readyOptionsActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
+        jLabel1.setText("Datenbank-Verbindung");
+
+        padding_left1.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout padding_left1Layout = new javax.swing.GroupLayout(padding_left1);
+        padding_left1.setLayout(padding_left1Layout);
+        padding_left1Layout.setHorizontalGroup(
+            padding_left1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 260, Short.MAX_VALUE)
+        );
+        padding_left1Layout.setVerticalGroup(
+            padding_left1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        padding_right2.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout padding_right2Layout = new javax.swing.GroupLayout(padding_right2);
+        padding_right2.setLayout(padding_right2Layout);
+        padding_right2Layout.setHorizontalGroup(
+            padding_right2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 260, Short.MAX_VALUE)
+        );
+        padding_right2Layout.setVerticalGroup(
+            padding_right2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        pwd_dbPassword.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        pwd_dbPassword.setForeground(new java.awt.Color(204, 204, 204));
+        pwd_dbPassword.setText("Passwort");
+        pwd_dbPassword.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                pwd_dbPasswordFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                pwd_dbPasswordFocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnl_optionsLayout = new javax.swing.GroupLayout(pnl_options);
         pnl_options.setLayout(pnl_optionsLayout);
         pnl_optionsLayout.setHorizontalGroup(
             pnl_optionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_optionsLayout.createSequentialGroup()
-                .addGap(380, 380, 380)
-                .addComponent(lbl_optionHeadline)
-                .addContainerGap(416, Short.MAX_VALUE))
+                .addComponent(padding_left1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnl_optionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1)
+                    .addComponent(txt_dbHost)
+                    .addComponent(txt_dbPort)
+                    .addComponent(txt_dbName, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+                    .addComponent(txt_dbUser)
+                    .addComponent(btn_readyOptions, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pwd_dbPassword))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(padding_right2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnl_optionsLayout.setVerticalGroup(
             pnl_optionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_optionsLayout.createSequentialGroup()
-                .addGap(170, 170, 170)
-                .addComponent(lbl_optionHeadline)
-                .addContainerGap(226, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(pnl_optionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnl_optionsLayout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(jLabel1)
+                        .addGap(36, 36, 36)
+                        .addComponent(txt_dbHost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txt_dbPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txt_dbName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txt_dbUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(pwd_dbPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_readyOptions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(123, 123, 123))
+                    .addComponent(padding_left1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(padding_right2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pnl_content.add(pnl_options, "card5");
@@ -476,6 +609,75 @@ public class GraphicalUserInterface extends JFrame {
 
     }//GEN-LAST:event_btn_readyAnswerActionPerformed
 
+    private void txt_dbHostFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_dbHostFocusGained
+        if (txt_dbHost.getText().equals("Host")){
+            txt_dbHost.setText(null);
+            txt_dbHost.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_txt_dbHostFocusGained
+
+    private void txt_dbPortFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_dbPortFocusGained
+        if (txt_dbPort.getText().equals("Port")){
+            txt_dbPort.setText(null);
+            txt_dbPort.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_txt_dbPortFocusGained
+
+    private void txt_dbHostFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_dbHostFocusLost
+        if(txt_dbHost.getText().equals("")){
+            txt_dbHost.setForeground(new java.awt.Color(204,204,204));
+            txt_dbHost.setText("Host");
+        }
+    }//GEN-LAST:event_txt_dbHostFocusLost
+
+    private void txt_dbPortFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_dbPortFocusLost
+        if(txt_dbPort.getText().equals("")){
+            txt_dbPort.setForeground(new java.awt.Color(204,204,204));
+            txt_dbPort.setText("Port");
+        }
+    }//GEN-LAST:event_txt_dbPortFocusLost
+
+    private void txt_dbNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_dbNameFocusGained
+        if (txt_dbName.getText().equals("Name der Datenbank")){
+            txt_dbName.setText(null);
+            txt_dbName.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_txt_dbNameFocusGained
+
+    private void txt_dbNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_dbNameFocusLost
+        if(txt_dbName.getText().equals("")){
+            txt_dbName.setForeground(new java.awt.Color(204,204,204));
+            txt_dbName.setText("Name der Datenbank");
+        }
+    }//GEN-LAST:event_txt_dbNameFocusLost
+
+    private void txt_dbUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_dbUserFocusGained
+        if (txt_dbUser.getText().equals("Benutzer")){
+            txt_dbUser.setText(null);
+            txt_dbUser.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_txt_dbUserFocusGained
+
+    private void txt_dbUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_dbUserFocusLost
+        if(txt_dbUser.getText().equals("")){
+            txt_dbUser.setForeground(new java.awt.Color(204,204,204));
+            txt_dbUser.setText("Benutzer");
+        }
+    }//GEN-LAST:event_txt_dbUserFocusLost
+
+    private void btn_readyOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_readyOptionsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_readyOptionsActionPerformed
+
+    private void pwd_dbPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pwd_dbPasswordFocusGained
+        pwd_dbPassword.setText(null);
+        pwd_dbPassword.setForeground(Color.black);
+    }//GEN-LAST:event_pwd_dbPasswordFocusGained
+
+    private void pwd_dbPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pwd_dbPasswordFocusLost
+
+    }//GEN-LAST:event_pwd_dbPasswordFocusLost
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_categories;
@@ -485,7 +687,9 @@ public class GraphicalUserInterface extends JFrame {
     private javax.swing.JButton btn_questions;
     private javax.swing.JButton btn_quit;
     private javax.swing.JButton btn_readyAnswer;
+    private javax.swing.JButton btn_readyOptions;
     private javax.swing.JButton btn_start;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -494,11 +698,12 @@ public class GraphicalUserInterface extends JFrame {
     private javax.swing.JLabel lbl_cAnswer;
     private javax.swing.JLabel lbl_dAnswer;
     private javax.swing.JLabel lbl_navigation;
-    private javax.swing.JLabel lbl_optionHeadline;
     private javax.swing.JList lst_questions;
     private javax.swing.JPanel padding_left;
+    private javax.swing.JPanel padding_left1;
     private javax.swing.JPanel padding_right;
     private javax.swing.JPanel padding_right1;
+    private javax.swing.JPanel padding_right2;
     private javax.swing.JPanel padding_top;
     private javax.swing.JPanel padding_top1;
     private javax.swing.JPanel pnl_categoryList;
@@ -507,5 +712,10 @@ public class GraphicalUserInterface extends JFrame {
     private javax.swing.JPanel pnl_questionList;
     private javax.swing.JPanel pnl_start;
     private javax.swing.JPanel pnl_template;
+    private javax.swing.JPasswordField pwd_dbPassword;
+    private javax.swing.JTextField txt_dbHost;
+    private javax.swing.JTextField txt_dbName;
+    private javax.swing.JTextField txt_dbPort;
+    private javax.swing.JTextField txt_dbUser;
     // End of variables declaration//GEN-END:variables
 }
