@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package admin.tool;
-
+import java.sql.*;
 /**
  *
  * @author Paul
@@ -17,6 +17,22 @@ public class AdminTool {
     public static void main(String[] args) {
         GraphicalUserInterface gui = new GraphicalUserInterface();
 	gui.setVisible(true);
+        
+//        try{
+//            // 1. Get a connection
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/qtool", "root", "");
+//            // 2. Create a statement
+//            Statement stm = con.createStatement();
+//            // 3. Execute SQL query
+//            ResultSet rs = stm.executeQuery("select * from frage");
+//            // 4. Process the result set
+//            while (rs.next()) {
+//                
+//            }
+//            
+//        }
+//        catch (Exception exc) {
+//            exc.printStackTrace();
+//        }
     }
-    
 }

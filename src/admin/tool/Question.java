@@ -16,17 +16,19 @@ public class Question {
     private String bAnswer;
     private String cAnswer;
     private String dAnswer;
-    
+    private int category_id;
+   
     public Question() {
     }
     
-    public Question(int id, String content, String aAnswer, String bAnswer, String cAnswer, String dAnswer) {
+    public Question(int id, String content, String aAnswer, String bAnswer, String cAnswer, String dAnswer, int category_id) {
         this.id = id;
         this.content = content;
         this.aAnswer = aAnswer;
         this.bAnswer = bAnswer;
         this.cAnswer = cAnswer;
         this.dAnswer = dAnswer;
+        this.category_id = category_id;
     }
 
     public int getId() {
@@ -77,4 +79,11 @@ public class Question {
         this.dAnswer = dAnswer;
     }
     
+    public int getCategory_id() {
+        return category_id;
+    }
+
+    public void setCategory_id(int category_id) {
+        this.category_id = category_id;
+    }
 }

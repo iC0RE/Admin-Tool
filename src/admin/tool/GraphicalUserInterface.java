@@ -42,7 +42,8 @@ public class GraphicalUserInterface extends JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
         padding_top = new javax.swing.JPanel();
-        padding_left = new javax.swing.JPanel();
+        padding_topLeft1 = new javax.swing.JPanel();
+        lbl_headlineQuestions1 = new javax.swing.JLabel();
         padding_right = new javax.swing.JPanel();
         pnl_questionList = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -66,6 +67,7 @@ public class GraphicalUserInterface extends JFrame {
         btn_deleteAnswer = new javax.swing.JButton();
         btn_readyAnswer = new javax.swing.JButton();
         btn_editAnswer1 = new javax.swing.JButton();
+        pnl_questionEdit = new javax.swing.JPanel();
         pnl_options = new javax.swing.JPanel();
         txt_dbHost = new javax.swing.JTextField();
         txt_dbPort = new javax.swing.JTextField();
@@ -176,28 +178,40 @@ public class GraphicalUserInterface extends JFrame {
 
         padding_top.setBackground(new java.awt.Color(255, 255, 255));
 
+        padding_topLeft1.setBackground(new java.awt.Color(255, 255, 255));
+
+        lbl_headlineQuestions1.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
+        lbl_headlineQuestions1.setText("Kategorien");
+
+        javax.swing.GroupLayout padding_topLeft1Layout = new javax.swing.GroupLayout(padding_topLeft1);
+        padding_topLeft1.setLayout(padding_topLeft1Layout);
+        padding_topLeft1Layout.setHorizontalGroup(
+            padding_topLeft1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(padding_topLeft1Layout.createSequentialGroup()
+                .addGap(131, 131, 131)
+                .addComponent(lbl_headlineQuestions1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        padding_topLeft1Layout.setVerticalGroup(
+            padding_topLeft1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, padding_topLeft1Layout.createSequentialGroup()
+                .addContainerGap(32, Short.MAX_VALUE)
+                .addComponent(lbl_headlineQuestions1)
+                .addGap(27, 27, 27))
+        );
+
         javax.swing.GroupLayout padding_topLayout = new javax.swing.GroupLayout(padding_top);
         padding_top.setLayout(padding_topLayout);
         padding_topLayout.setHorizontalGroup(
             padding_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(padding_topLeft1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         padding_topLayout.setVerticalGroup(
             padding_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 80, Short.MAX_VALUE)
-        );
-
-        padding_left.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout padding_leftLayout = new javax.swing.GroupLayout(padding_left);
-        padding_left.setLayout(padding_leftLayout);
-        padding_leftLayout.setHorizontalGroup(
-            padding_leftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 260, Short.MAX_VALUE)
-        );
-        padding_leftLayout.setVerticalGroup(
-            padding_leftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, padding_topLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(padding_topLeft1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         padding_right.setBackground(new java.awt.Color(255, 255, 255));
@@ -206,11 +220,11 @@ public class GraphicalUserInterface extends JFrame {
         padding_right.setLayout(padding_rightLayout);
         padding_rightLayout.setHorizontalGroup(
             padding_rightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 240, Short.MAX_VALUE)
+            .addGap(0, 545, Short.MAX_VALUE)
         );
         padding_rightLayout.setVerticalGroup(
             padding_rightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 359, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout pnl_categoryListLayout = new javax.swing.GroupLayout(pnl_categoryList);
@@ -220,11 +234,9 @@ public class GraphicalUserInterface extends JFrame {
             .addGroup(pnl_categoryListLayout.createSequentialGroup()
                 .addGroup(pnl_categoryListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnl_categoryListLayout.createSequentialGroup()
-                        .addComponent(padding_left, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(padding_right, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(padding_right, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(padding_top, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -235,9 +247,8 @@ public class GraphicalUserInterface extends JFrame {
                 .addComponent(padding_top, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnl_categoryListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
-                    .addComponent(padding_left, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(padding_right, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(padding_right, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
 
@@ -515,6 +526,19 @@ public class GraphicalUserInterface extends JFrame {
         );
 
         pnl_content.add(pnl_questionList, "card4");
+
+        javax.swing.GroupLayout pnl_questionEditLayout = new javax.swing.GroupLayout(pnl_questionEdit);
+        pnl_questionEdit.setLayout(pnl_questionEditLayout);
+        pnl_questionEditLayout.setHorizontalGroup(
+            pnl_questionEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 931, Short.MAX_VALUE)
+        );
+        pnl_questionEditLayout.setVerticalGroup(
+            pnl_questionEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 498, Short.MAX_VALUE)
+        );
+
+        pnl_content.add(pnl_questionEdit, "card7");
 
         pnl_options.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -872,9 +896,9 @@ public class GraphicalUserInterface extends JFrame {
     private javax.swing.JLabel lbl_headlineAnswers;
     private javax.swing.JLabel lbl_headlineDatabaseConnecation;
     private javax.swing.JLabel lbl_headlineQuestions;
+    private javax.swing.JLabel lbl_headlineQuestions1;
     private javax.swing.JLabel lbl_navigation;
     private javax.swing.JList lst_questions;
-    private javax.swing.JPanel padding_left;
     private javax.swing.JPanel padding_left1;
     private javax.swing.JPanel padding_right;
     private javax.swing.JPanel padding_right1;
@@ -882,6 +906,7 @@ public class GraphicalUserInterface extends JFrame {
     private javax.swing.JPanel padding_top;
     private javax.swing.JPanel padding_top1;
     private javax.swing.JPanel padding_topLeft;
+    private javax.swing.JPanel padding_topLeft1;
     private javax.swing.JPanel padding_topRight;
     private javax.swing.JPanel pnl_aAnswer;
     private javax.swing.JPanel pnl_answerList;
@@ -891,6 +916,7 @@ public class GraphicalUserInterface extends JFrame {
     private javax.swing.JPanel pnl_content;
     private javax.swing.JPanel pnl_dAnswer;
     private javax.swing.JPanel pnl_options;
+    private javax.swing.JPanel pnl_questionEdit;
     private javax.swing.JPanel pnl_questionList;
     private javax.swing.JPanel pnl_start;
     private javax.swing.JPanel pnl_template;
