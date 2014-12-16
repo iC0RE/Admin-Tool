@@ -38,17 +38,25 @@ public class GraphicalUserInterface extends JFrame {
         btn_options = new javax.swing.JButton();
         pnl_content = new javax.swing.JPanel();
         pnl_start = new javax.swing.JPanel();
+        lbl_Copyright = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         pnl_categoryList = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        lst_categories = new javax.swing.JList();
         padding_top = new javax.swing.JPanel();
-        padding_topLeft1 = new javax.swing.JPanel();
+        padding_topLeftCategory = new javax.swing.JPanel();
         lbl_headlineQuestions1 = new javax.swing.JLabel();
         padding_right = new javax.swing.JPanel();
+        btn_newCategory = new javax.swing.JButton();
+        btn_editCategory = new javax.swing.JButton();
+        btn_readyCategory = new javax.swing.JButton();
+        btn_deleteCategory = new javax.swing.JButton();
+        txt_category = new javax.swing.JTextField();
+        btn_addCategory = new javax.swing.JButton();
         pnl_questionList = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         lst_questions = new javax.swing.JList();
-        padding_top1 = new javax.swing.JPanel();
+        padding_topQuestions = new javax.swing.JPanel();
         padding_topLeft = new javax.swing.JPanel();
         lbl_headlineQuestions = new javax.swing.JLabel();
         padding_topRight = new javax.swing.JPanel();
@@ -66,8 +74,20 @@ public class GraphicalUserInterface extends JFrame {
         btn_editAnswer = new javax.swing.JButton();
         btn_deleteAnswer = new javax.swing.JButton();
         btn_readyAnswer = new javax.swing.JButton();
-        btn_editAnswer1 = new javax.swing.JButton();
+        btn_newAnswer = new javax.swing.JButton();
         pnl_questionEdit = new javax.swing.JPanel();
+        pnl_leftQuestionEdit = new javax.swing.JPanel();
+        cbo_category = new javax.swing.JComboBox();
+        txt_content = new javax.swing.JTextField();
+        txt_aAnswer = new javax.swing.JTextField();
+        txt_bAnswer = new javax.swing.JTextField();
+        txt_cAnswer = new javax.swing.JTextField();
+        txt_dAnswer = new javax.swing.JTextField();
+        btn_readyQuestion = new javax.swing.JButton();
+        pnl_rightQuestionEdit = new javax.swing.JPanel();
+        padding_topQuestionEdit = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         pnl_options = new javax.swing.JPanel();
         txt_dbHost = new javax.swing.JTextField();
         txt_dbPort = new javax.swing.JTextField();
@@ -154,77 +174,188 @@ public class GraphicalUserInterface extends JFrame {
 
         pnl_start.setBackground(new java.awt.Color(255, 255, 255));
 
+        lbl_Copyright.setFont(new java.awt.Font("Calibri Light", 0, 11)); // NOI18N
+        lbl_Copyright.setForeground(new java.awt.Color(153, 153, 153));
+        lbl_Copyright.setText("© DataBase/Connection: Markus Wochnick | Design: Paul Lange | Logic: Alex Klopfer & Marcel Kastner");
+
+        jLabel1.setFont(new java.awt.Font("Calibri Light", 0, 11)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel1.setText("v1.0");
+
         javax.swing.GroupLayout pnl_startLayout = new javax.swing.GroupLayout(pnl_start);
         pnl_start.setLayout(pnl_startLayout);
         pnl_startLayout.setHorizontalGroup(
             pnl_startLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 931, Short.MAX_VALUE)
+            .addGroup(pnl_startLayout.createSequentialGroup()
+                .addComponent(lbl_Copyright)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 472, Short.MAX_VALUE)
+                .addComponent(jLabel1))
         );
         pnl_startLayout.setVerticalGroup(
             pnl_startLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 498, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_startLayout.createSequentialGroup()
+                .addGap(0, 484, Short.MAX_VALUE)
+                .addGroup(pnl_startLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_Copyright)
+                    .addComponent(jLabel1)))
         );
 
         pnl_content.add(pnl_start, "card2");
 
         pnl_categoryList.setBackground(new java.awt.Color(255, 255, 255));
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
+        lst_categories.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        lst_categories.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(lst_categories);
 
         padding_top.setBackground(new java.awt.Color(255, 255, 255));
 
-        padding_topLeft1.setBackground(new java.awt.Color(255, 255, 255));
+        padding_topLeftCategory.setBackground(new java.awt.Color(255, 255, 255));
 
         lbl_headlineQuestions1.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
-        lbl_headlineQuestions1.setText("Kategorien");
+        lbl_headlineQuestions1.setText("Übersicht Kategorien");
 
-        javax.swing.GroupLayout padding_topLeft1Layout = new javax.swing.GroupLayout(padding_topLeft1);
-        padding_topLeft1.setLayout(padding_topLeft1Layout);
-        padding_topLeft1Layout.setHorizontalGroup(
-            padding_topLeft1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(padding_topLeft1Layout.createSequentialGroup()
-                .addGap(131, 131, 131)
+        javax.swing.GroupLayout padding_topLeftCategoryLayout = new javax.swing.GroupLayout(padding_topLeftCategory);
+        padding_topLeftCategory.setLayout(padding_topLeftCategoryLayout);
+        padding_topLeftCategoryLayout.setHorizontalGroup(
+            padding_topLeftCategoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(padding_topLeftCategoryLayout.createSequentialGroup()
+                .addGap(112, 112, 112)
                 .addComponent(lbl_headlineQuestions1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(136, Short.MAX_VALUE))
         );
-        padding_topLeft1Layout.setVerticalGroup(
-            padding_topLeft1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, padding_topLeft1Layout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
+        padding_topLeftCategoryLayout.setVerticalGroup(
+            padding_topLeftCategoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(padding_topLeftCategoryLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(lbl_headlineQuestions1)
-                .addGap(27, 27, 27))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout padding_topLayout = new javax.swing.GroupLayout(padding_top);
         padding_top.setLayout(padding_topLayout);
         padding_topLayout.setHorizontalGroup(
             padding_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(padding_topLeft1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(padding_topLayout.createSequentialGroup()
+                .addComponent(padding_topLeftCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         padding_topLayout.setVerticalGroup(
             padding_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, padding_topLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(padding_topLeft1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(padding_topLayout.createSequentialGroup()
+                .addComponent(padding_topLeftCategory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         padding_right.setBackground(new java.awt.Color(255, 255, 255));
 
+        btn_newCategory.setBackground(new java.awt.Color(255, 255, 255));
+        btn_newCategory.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        btn_newCategory.setText("Neu");
+        btn_newCategory.setFocusable(false);
+        btn_newCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_newCategoryActionPerformed(evt);
+            }
+        });
+
+        btn_editCategory.setBackground(new java.awt.Color(255, 255, 255));
+        btn_editCategory.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        btn_editCategory.setText("Bearbeiten");
+        btn_editCategory.setFocusable(false);
+        btn_editCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_editCategoryActionPerformed(evt);
+            }
+        });
+
+        btn_readyCategory.setBackground(new java.awt.Color(255, 255, 255));
+        btn_readyCategory.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        btn_readyCategory.setText("Fertig");
+        btn_readyCategory.setFocusable(false);
+        btn_readyCategory.setPreferredSize(new java.awt.Dimension(73, 39));
+        btn_readyCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_readyCategoryActionPerformed(evt);
+            }
+        });
+
+        btn_deleteCategory.setBackground(new java.awt.Color(255, 255, 255));
+        btn_deleteCategory.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        btn_deleteCategory.setText("Löschen");
+        btn_deleteCategory.setFocusable(false);
+        btn_deleteCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_deleteCategoryActionPerformed(evt);
+            }
+        });
+
+        txt_category.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        txt_category.setForeground(new java.awt.Color(204, 204, 204));
+        txt_category.setText("Kategorie");
+        txt_category.setVisible(false);
+        txt_category.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txt_categoryFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_categoryFocusLost(evt);
+            }
+        });
+        txt_category.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_categoryActionPerformed(evt);
+            }
+        });
+
+        btn_addCategory.setBackground(new java.awt.Color(255, 255, 255));
+        btn_addCategory.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        btn_addCategory.setText("Hinzufügen");
+        btn_addCategory.setFocusable(false);
+        btn_addCategory.setVisible(false);
+        btn_addCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_addCategoryActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout padding_rightLayout = new javax.swing.GroupLayout(padding_right);
         padding_right.setLayout(padding_rightLayout);
         padding_rightLayout.setHorizontalGroup(
             padding_rightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 545, Short.MAX_VALUE)
+            .addGroup(padding_rightLayout.createSequentialGroup()
+                .addComponent(btn_newCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_editCategory)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_deleteCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
+                .addComponent(btn_readyCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(padding_rightLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(padding_rightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txt_category)
+                    .addGroup(padding_rightLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btn_addCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         padding_rightLayout.setVerticalGroup(
             padding_rightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 359, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, padding_rightLayout.createSequentialGroup()
+                .addComponent(txt_category, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_addCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(padding_rightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_readyCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_deleteCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_editCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_newCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout pnl_categoryListLayout = new javax.swing.GroupLayout(pnl_categoryList);
@@ -232,13 +363,10 @@ public class GraphicalUserInterface extends JFrame {
         pnl_categoryListLayout.setHorizontalGroup(
             pnl_categoryListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_categoryListLayout.createSequentialGroup()
-                .addGroup(pnl_categoryListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnl_categoryListLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(padding_right, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(padding_top, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(padding_right, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(padding_top, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnl_categoryListLayout.setVerticalGroup(
             pnl_categoryListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,7 +376,7 @@ public class GraphicalUserInterface extends JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnl_categoryListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(padding_right, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -256,7 +384,7 @@ public class GraphicalUserInterface extends JFrame {
 
         pnl_questionList.setBackground(new java.awt.Color(255, 255, 255));
 
-        lst_questions.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        lst_questions.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
         lst_questions.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
@@ -265,8 +393,8 @@ public class GraphicalUserInterface extends JFrame {
         lst_questions.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(lst_questions);
 
-        padding_top1.setBackground(new java.awt.Color(255, 255, 255));
-        padding_top1.setPreferredSize(new java.awt.Dimension(100, 100));
+        padding_topQuestions.setBackground(new java.awt.Color(255, 255, 255));
+        padding_topQuestions.setPreferredSize(new java.awt.Dimension(100, 100));
 
         padding_topLeft.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -278,16 +406,16 @@ public class GraphicalUserInterface extends JFrame {
         padding_topLeftLayout.setHorizontalGroup(
             padding_topLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(padding_topLeftLayout.createSequentialGroup()
-                .addGap(183, 183, 183)
+                .addGap(187, 187, 187)
                 .addComponent(lbl_headlineQuestions)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(198, Short.MAX_VALUE))
         );
         padding_topLeftLayout.setVerticalGroup(
             padding_topLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, padding_topLeftLayout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
+            .addGroup(padding_topLeftLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(lbl_headlineQuestions)
-                .addGap(29, 29, 29))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         padding_topRight.setBackground(new java.awt.Color(255, 255, 255));
@@ -299,34 +427,35 @@ public class GraphicalUserInterface extends JFrame {
         padding_topRight.setLayout(padding_topRightLayout);
         padding_topRightLayout.setHorizontalGroup(
             padding_topRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(padding_topRightLayout.createSequentialGroup()
-                .addGap(179, 179, 179)
-                .addComponent(lbl_headlineAnswers)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        padding_topRightLayout.setVerticalGroup(
-            padding_topRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, padding_topRightLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lbl_headlineAnswers)
-                .addGap(28, 28, 28))
+                .addGap(182, 182, 182))
+        );
+        padding_topRightLayout.setVerticalGroup(
+            padding_topRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(padding_topRightLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbl_headlineAnswers)
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout padding_top1Layout = new javax.swing.GroupLayout(padding_top1);
-        padding_top1.setLayout(padding_top1Layout);
-        padding_top1Layout.setHorizontalGroup(
-            padding_top1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(padding_top1Layout.createSequentialGroup()
-                .addComponent(padding_topLeft, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        javax.swing.GroupLayout padding_topQuestionsLayout = new javax.swing.GroupLayout(padding_topQuestions);
+        padding_topQuestions.setLayout(padding_topQuestionsLayout);
+        padding_topQuestionsLayout.setHorizontalGroup(
+            padding_topQuestionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(padding_topQuestionsLayout.createSequentialGroup()
+                .addComponent(padding_topLeft, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(padding_topRight, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(padding_topRight, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
-        padding_top1Layout.setVerticalGroup(
-            padding_top1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(padding_top1Layout.createSequentialGroup()
-                .addGroup(padding_top1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(padding_topLeft, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(padding_topRight, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        padding_topQuestionsLayout.setVerticalGroup(
+            padding_topQuestionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(padding_topQuestionsLayout.createSequentialGroup()
+                .addGroup(padding_topQuestionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(padding_topRight, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(padding_topLeft, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -426,10 +555,10 @@ public class GraphicalUserInterface extends JFrame {
         pnl_answerList.setLayout(pnl_answerListLayout);
         pnl_answerListLayout.setHorizontalGroup(
             pnl_answerListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnl_aAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
-            .addComponent(pnl_bAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
-            .addComponent(pnl_cAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
-            .addComponent(pnl_dAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
+            .addComponent(pnl_aAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
+            .addComponent(pnl_bAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
+            .addComponent(pnl_cAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
+            .addComponent(pnl_dAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
         );
         pnl_answerListLayout.setVerticalGroup(
             pnl_answerListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -448,6 +577,11 @@ public class GraphicalUserInterface extends JFrame {
         btn_editAnswer.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
         btn_editAnswer.setText("Bearbeiten");
         btn_editAnswer.setFocusable(false);
+        btn_editAnswer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_editAnswerActionPerformed(evt);
+            }
+        });
 
         btn_deleteAnswer.setBackground(new java.awt.Color(255, 255, 255));
         btn_deleteAnswer.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
@@ -470,22 +604,27 @@ public class GraphicalUserInterface extends JFrame {
             }
         });
 
-        btn_editAnswer1.setBackground(new java.awt.Color(255, 255, 255));
-        btn_editAnswer1.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
-        btn_editAnswer1.setText("Neu");
-        btn_editAnswer1.setFocusable(false);
+        btn_newAnswer.setBackground(new java.awt.Color(255, 255, 255));
+        btn_newAnswer.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        btn_newAnswer.setText("Neu");
+        btn_newAnswer.setFocusable(false);
+        btn_newAnswer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_newAnswerActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout padding_right1Layout = new javax.swing.GroupLayout(padding_right1);
         padding_right1.setLayout(padding_right1Layout);
         padding_right1Layout.setHorizontalGroup(
             padding_right1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(padding_right1Layout.createSequentialGroup()
-                .addComponent(btn_editAnswer1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_newAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_editAnswer)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_deleteAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
                 .addComponent(btn_readyAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(pnl_answerList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -498,7 +637,7 @@ public class GraphicalUserInterface extends JFrame {
                     .addComponent(btn_readyAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_deleteAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_editAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_editAnswer1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btn_newAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout pnl_questionListLayout = new javax.swing.GroupLayout(pnl_questionList);
@@ -506,18 +645,16 @@ public class GraphicalUserInterface extends JFrame {
         pnl_questionListLayout.setHorizontalGroup(
             pnl_questionListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_questionListLayout.createSequentialGroup()
-                .addComponent(padding_top1, javax.swing.GroupLayout.DEFAULT_SIZE, 921, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(pnl_questionListLayout.createSequentialGroup()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(padding_right1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(padding_topQuestions, javax.swing.GroupLayout.DEFAULT_SIZE, 941, Short.MAX_VALUE)
         );
         pnl_questionListLayout.setVerticalGroup(
             pnl_questionListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_questionListLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(padding_top1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(padding_topQuestions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnl_questionListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(padding_right1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -527,15 +664,225 @@ public class GraphicalUserInterface extends JFrame {
 
         pnl_content.add(pnl_questionList, "card4");
 
+        pnl_questionEdit.setBackground(new java.awt.Color(255, 255, 255));
+
+        pnl_leftQuestionEdit.setBackground(new java.awt.Color(255, 255, 255));
+
+        cbo_category.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        cbo_category.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbo_category.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbo_categoryActionPerformed(evt);
+            }
+        });
+
+        txt_content.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        txt_content.setForeground(new java.awt.Color(204, 204, 204));
+        txt_content.setText("Frage");
+        txt_content.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txt_contentFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_contentFocusLost(evt);
+            }
+        });
+        txt_content.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_contentActionPerformed(evt);
+            }
+        });
+
+        txt_aAnswer.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        txt_aAnswer.setForeground(new java.awt.Color(204, 204, 204));
+        txt_aAnswer.setText("Antwort a (Richtige Antwort!)");
+        txt_aAnswer.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txt_aAnswerFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_aAnswerFocusLost(evt);
+            }
+        });
+
+        txt_bAnswer.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        txt_bAnswer.setForeground(new java.awt.Color(204, 204, 204));
+        txt_bAnswer.setText("Antwort b (Falsche Antwort!)");
+        txt_bAnswer.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txt_bAnswerFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_bAnswerFocusLost(evt);
+            }
+        });
+        txt_bAnswer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_bAnswerActionPerformed(evt);
+            }
+        });
+
+        txt_cAnswer.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        txt_cAnswer.setForeground(new java.awt.Color(204, 204, 204));
+        txt_cAnswer.setText("Antwort c (Falsche Antwort!)");
+        txt_cAnswer.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txt_cAnswerFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_cAnswerFocusLost(evt);
+            }
+        });
+        txt_cAnswer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_cAnswerActionPerformed(evt);
+            }
+        });
+
+        txt_dAnswer.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        txt_dAnswer.setForeground(new java.awt.Color(204, 204, 204));
+        txt_dAnswer.setText("Antwort d (Falsche Antwort!)");
+        txt_dAnswer.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txt_dAnswerFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_dAnswerFocusLost(evt);
+            }
+        });
+        txt_dAnswer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_dAnswerActionPerformed(evt);
+            }
+        });
+
+        btn_readyQuestion.setBackground(new java.awt.Color(255, 255, 255));
+        btn_readyQuestion.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        btn_readyQuestion.setText("Fertig");
+        btn_readyQuestion.setFocusable(false);
+        btn_readyQuestion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_readyQuestionActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnl_leftQuestionEditLayout = new javax.swing.GroupLayout(pnl_leftQuestionEdit);
+        pnl_leftQuestionEdit.setLayout(pnl_leftQuestionEditLayout);
+        pnl_leftQuestionEditLayout.setHorizontalGroup(
+            pnl_leftQuestionEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_leftQuestionEditLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnl_leftQuestionEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txt_content)
+                    .addGroup(pnl_leftQuestionEditLayout.createSequentialGroup()
+                        .addComponent(cbo_category, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 295, Short.MAX_VALUE))
+                    .addComponent(txt_aAnswer)
+                    .addComponent(txt_bAnswer)
+                    .addComponent(txt_cAnswer)
+                    .addComponent(txt_dAnswer)
+                    .addGroup(pnl_leftQuestionEditLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btn_readyQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
+        pnl_leftQuestionEditLayout.setVerticalGroup(
+            pnl_leftQuestionEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_leftQuestionEditLayout.createSequentialGroup()
+                .addComponent(cbo_category, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txt_content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txt_aAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txt_bAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txt_cAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txt_dAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_readyQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(49, Short.MAX_VALUE))
+        );
+
+        pnl_rightQuestionEdit.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout pnl_rightQuestionEditLayout = new javax.swing.GroupLayout(pnl_rightQuestionEdit);
+        pnl_rightQuestionEdit.setLayout(pnl_rightQuestionEditLayout);
+        pnl_rightQuestionEditLayout.setHorizontalGroup(
+            pnl_rightQuestionEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 350, Short.MAX_VALUE)
+        );
+        pnl_rightQuestionEditLayout.setVerticalGroup(
+            pnl_rightQuestionEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 370, Short.MAX_VALUE)
+        );
+
+        padding_topQuestionEdit.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 89, Short.MAX_VALUE)
+        );
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 575, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout padding_topQuestionEditLayout = new javax.swing.GroupLayout(padding_topQuestionEdit);
+        padding_topQuestionEdit.setLayout(padding_topQuestionEditLayout);
+        padding_topQuestionEditLayout.setHorizontalGroup(
+            padding_topQuestionEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, padding_topQuestionEditLayout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        padding_topQuestionEditLayout.setVerticalGroup(
+            padding_topQuestionEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, padding_topQuestionEditLayout.createSequentialGroup()
+                .addGroup(padding_topQuestionEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout pnl_questionEditLayout = new javax.swing.GroupLayout(pnl_questionEdit);
         pnl_questionEdit.setLayout(pnl_questionEditLayout);
         pnl_questionEditLayout.setHorizontalGroup(
             pnl_questionEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 931, Short.MAX_VALUE)
+            .addGroup(pnl_questionEditLayout.createSequentialGroup()
+                .addComponent(pnl_leftQuestionEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnl_rightQuestionEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(padding_topQuestionEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnl_questionEditLayout.setVerticalGroup(
             pnl_questionEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 498, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_questionEditLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(padding_topQuestionEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnl_questionEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnl_leftQuestionEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnl_rightQuestionEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pnl_content.add(pnl_questionEdit, "card7");
@@ -784,6 +1131,7 @@ public class GraphicalUserInterface extends JFrame {
         cl.next(pnl_content);
         cl.next(pnl_content);
         cl.next(pnl_content);
+        cl.next(pnl_content);
         lbl_navigation.setText("Einstellungen");
         setInActiveAllButtons();
         setActive(btn_options);
@@ -874,21 +1222,190 @@ public class GraphicalUserInterface extends JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_deleteAnswerActionPerformed
 
+    private void btn_newAnswerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_newAnswerActionPerformed
+        CardLayout cl = (CardLayout) (pnl_content.getLayout());
+        cl.first(pnl_content);
+        cl.next(pnl_content);
+        cl.next(pnl_content);
+        cl.next(pnl_content);
+        lbl_navigation.setText("Neue Frage");
+        setInActiveAllButtons();
+        setActive(btn_questions);
+    }//GEN-LAST:event_btn_newAnswerActionPerformed
+
+    private void txt_contentFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_contentFocusGained
+        if (txt_content.getText().equals("Frage")){
+            txt_content.setText(null);
+            txt_content.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_txt_contentFocusGained
+
+    private void txt_contentFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_contentFocusLost
+        if(txt_content.getText().equals("")){
+            txt_content.setForeground(new java.awt.Color(204,204,204));
+            txt_content.setText("Frage");
+        }
+    }//GEN-LAST:event_txt_contentFocusLost
+
+    private void txt_aAnswerFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_aAnswerFocusGained
+        if (txt_aAnswer.getText().equals("Antwort a (Richtige Antwort!)")){
+            txt_aAnswer.setText(null);
+            txt_aAnswer.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_txt_aAnswerFocusGained
+
+    private void txt_aAnswerFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_aAnswerFocusLost
+        if(txt_aAnswer.getText().equals("")){
+            txt_aAnswer.setForeground(new java.awt.Color(204,204,204));
+            txt_aAnswer.setText("Antwort a (Richtige Antwort!)");
+        }
+    }//GEN-LAST:event_txt_aAnswerFocusLost
+
+    private void txt_bAnswerFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_bAnswerFocusGained
+        if (txt_bAnswer.getText().equals("Antwort b (Falsche Antwort!)")){
+            txt_bAnswer.setText(null);
+            txt_bAnswer.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_txt_bAnswerFocusGained
+
+    private void txt_bAnswerFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_bAnswerFocusLost
+        if(txt_bAnswer.getText().equals("")){
+            txt_bAnswer.setForeground(new java.awt.Color(204,204,204));
+            txt_bAnswer.setText("Antwort b (Falsche Antwort!)");
+        }
+    }//GEN-LAST:event_txt_bAnswerFocusLost
+
+    private void txt_bAnswerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_bAnswerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_bAnswerActionPerformed
+
+    private void txt_cAnswerFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cAnswerFocusGained
+        if (txt_cAnswer.getText().equals("Antwort c (Falsche Antwort!)")){
+            txt_cAnswer.setText(null);
+            txt_cAnswer.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_txt_cAnswerFocusGained
+
+    private void txt_cAnswerFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cAnswerFocusLost
+        if(txt_cAnswer.getText().equals("")){
+            txt_cAnswer.setForeground(new java.awt.Color(204,204,204));
+            txt_cAnswer.setText("Antwort c (Falsche Antwort!)");
+        }
+    }//GEN-LAST:event_txt_cAnswerFocusLost
+
+    private void txt_cAnswerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_cAnswerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_cAnswerActionPerformed
+
+    private void txt_dAnswerFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_dAnswerFocusGained
+        if (txt_dAnswer.getText().equals("Antwort d (Falsche Antwort!)")){
+            txt_dAnswer.setText(null);
+            txt_dAnswer.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_txt_dAnswerFocusGained
+
+    private void txt_dAnswerFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_dAnswerFocusLost
+        if(txt_dAnswer.getText().equals("")){
+            txt_dAnswer.setForeground(new java.awt.Color(204,204,204));
+            txt_dAnswer.setText("Antwort d (Falsche Antwort!)");
+        }
+    }//GEN-LAST:event_txt_dAnswerFocusLost
+
+    private void txt_dAnswerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_dAnswerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_dAnswerActionPerformed
+
+    private void btn_readyQuestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_readyQuestionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_readyQuestionActionPerformed
+
+    private void txt_contentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_contentActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_contentActionPerformed
+
+    private void cbo_categoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_categoryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbo_categoryActionPerformed
+
+    private void btn_newCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_newCategoryActionPerformed
+        txt_category.setVisible(true);
+        btn_addCategory.setVisible(true);
+    }//GEN-LAST:event_btn_newCategoryActionPerformed
+
+    private void btn_readyCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_readyCategoryActionPerformed
+        txt_category.setVisible(false);
+        btn_addCategory.setVisible(false);
+    }//GEN-LAST:event_btn_readyCategoryActionPerformed
+
+    private void btn_deleteCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteCategoryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_deleteCategoryActionPerformed
+
+    private void txt_categoryFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_categoryFocusGained
+        if (txt_category.getText().equals("Kategorie")){
+            txt_category.setText(null);
+            txt_category.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_txt_categoryFocusGained
+
+    private void txt_categoryFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_categoryFocusLost
+        if(txt_category.getText().equals("")){
+            txt_category.setForeground(new java.awt.Color(204,204,204));
+            txt_category.setText("Kategorie");
+        }
+    }//GEN-LAST:event_txt_categoryFocusLost
+
+    private void txt_categoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_categoryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_categoryActionPerformed
+
+    private void btn_addCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addCategoryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_addCategoryActionPerformed
+
+    private void btn_editCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editCategoryActionPerformed
+        //ToDo Load Kategorie in txt_category
+        txt_category.setVisible(true);
+        btn_addCategory.setVisible(true);
+    }//GEN-LAST:event_btn_editCategoryActionPerformed
+
+    private void btn_editAnswerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editAnswerActionPerformed
+        //ToDo Load Frage in entsprechende Felder
+        CardLayout cl = (CardLayout) (pnl_content.getLayout());
+        cl.first(pnl_content);
+        cl.next(pnl_content);
+        cl.next(pnl_content);
+        cl.next(pnl_content);
+        lbl_navigation.setText("Frage bearbeiten");
+        setInActiveAllButtons();
+        setActive(btn_questions);
+    }//GEN-LAST:event_btn_editAnswerActionPerformed
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_addCategory;
     private javax.swing.JButton btn_categories;
     private javax.swing.JButton btn_deleteAnswer;
+    private javax.swing.JButton btn_deleteCategory;
     private javax.swing.JButton btn_editAnswer;
-    private javax.swing.JButton btn_editAnswer1;
+    private javax.swing.JButton btn_editCategory;
+    private javax.swing.JButton btn_newAnswer;
+    private javax.swing.JButton btn_newCategory;
     private javax.swing.JButton btn_options;
     private javax.swing.JButton btn_questions;
     private javax.swing.JButton btn_quit;
     private javax.swing.JButton btn_readyAnswer;
+    private javax.swing.JButton btn_readyCategory;
     private javax.swing.JButton btn_readyOptions;
+    private javax.swing.JButton btn_readyQuestion;
     private javax.swing.JButton btn_start;
-    private javax.swing.JList jList1;
+    private javax.swing.JComboBox cbo_category;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lbl_Copyright;
     private javax.swing.JLabel lbl_aAnswer;
     private javax.swing.JLabel lbl_bAnswer;
     private javax.swing.JLabel lbl_cAnswer;
@@ -898,15 +1415,17 @@ public class GraphicalUserInterface extends JFrame {
     private javax.swing.JLabel lbl_headlineQuestions;
     private javax.swing.JLabel lbl_headlineQuestions1;
     private javax.swing.JLabel lbl_navigation;
+    private javax.swing.JList lst_categories;
     private javax.swing.JList lst_questions;
     private javax.swing.JPanel padding_left1;
     private javax.swing.JPanel padding_right;
     private javax.swing.JPanel padding_right1;
     private javax.swing.JPanel padding_right2;
     private javax.swing.JPanel padding_top;
-    private javax.swing.JPanel padding_top1;
     private javax.swing.JPanel padding_topLeft;
-    private javax.swing.JPanel padding_topLeft1;
+    private javax.swing.JPanel padding_topLeftCategory;
+    private javax.swing.JPanel padding_topQuestionEdit;
+    private javax.swing.JPanel padding_topQuestions;
     private javax.swing.JPanel padding_topRight;
     private javax.swing.JPanel pnl_aAnswer;
     private javax.swing.JPanel pnl_answerList;
@@ -915,12 +1434,20 @@ public class GraphicalUserInterface extends JFrame {
     private javax.swing.JPanel pnl_categoryList;
     private javax.swing.JPanel pnl_content;
     private javax.swing.JPanel pnl_dAnswer;
+    private javax.swing.JPanel pnl_leftQuestionEdit;
     private javax.swing.JPanel pnl_options;
     private javax.swing.JPanel pnl_questionEdit;
     private javax.swing.JPanel pnl_questionList;
+    private javax.swing.JPanel pnl_rightQuestionEdit;
     private javax.swing.JPanel pnl_start;
     private javax.swing.JPanel pnl_template;
     private javax.swing.JPasswordField pwd_dbPassword;
+    private javax.swing.JTextField txt_aAnswer;
+    private javax.swing.JTextField txt_bAnswer;
+    private javax.swing.JTextField txt_cAnswer;
+    private javax.swing.JTextField txt_category;
+    private javax.swing.JTextField txt_content;
+    private javax.swing.JTextField txt_dAnswer;
     private javax.swing.JTextField txt_dbHost;
     private javax.swing.JTextField txt_dbName;
     private javax.swing.JTextField txt_dbPort;

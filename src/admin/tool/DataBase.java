@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package admin.tool;
-import com.sun.istack.internal.logging.Logger;
 import java.sql.*;
 import java.util.*;
 /**
