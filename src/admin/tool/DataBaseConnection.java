@@ -11,4 +11,27 @@ package admin.tool;
  */
 public class DataBaseConnection {
     
+//    public void createCategory(Category category){
+//        
+//    }
+//    
+//    public void editCategory(Category category){
+//        
+//    }
+//    
+//    public void deleteCategory(Category category){
+//        
+//    }
+//    
+//    public List<Category> loadAllCategories(){
+//        return categoryList;
+//    }
+//    
+//    public Category loadCategory (int id){
+//        return category;
+//    }
+//    
+//    public List<Category> createCategoryList(Resultset rs){
+//        return categoryList;
+//    }
 }
