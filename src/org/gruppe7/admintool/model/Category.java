@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package admin.tool;
+package org.gruppe7.admintool.model;
 
 /**
  *
  * @author Paul
  */
 public class Category {
-    private int id;
-    private String title;
+    private Integer id = null;
+    private String title = null;
 
     public Category() {
     }
@@ -21,7 +21,7 @@ public class Category {
         this.title = title;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

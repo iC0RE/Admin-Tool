@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package admin.tool;
+package org.gruppe7.admintool.view;
 import java.awt.CardLayout;
 import java.awt.Color;
 import javax.swing.*;

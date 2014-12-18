@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package admin.tool;
+import org.gruppe7.admintool.model.Question;
 import java.sql.*;
 import java.util.*;
 /**

@@ -3,23 +3,33 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package admin.tool;
+package org.gruppe7.admintool.model;
 
 /**
  *
  * @author Paul
  */
 public class Question {
-    private int id;
+    private Integer id;
     private String content;
     private String aAnswer;
     private String bAnswer;
     private String cAnswer;
     private String dAnswer;
-    private int category_id;
+    private Integer category_id;
    
     public Question() {
+    id = null;
+    content = null;
+    aAnswer = null;
+    bAnswer = null;
+    cAnswer = null;
+    dAnswer = null;
+    category_id = null;
     }
+
+    
+    
     
     public Question(int id, String content, String aAnswer, String bAnswer, String cAnswer, String dAnswer, int category_id) {
         this.id = id;
@@ -31,7 +41,7 @@ public class Question {
         this.category_id = category_id;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -79,7 +89,7 @@ public class Question {
         this.dAnswer = dAnswer;
     }
     
-    public int getCategory_id() {
+    public Integer getCategory_id() {
         return category_id;
     }
 
