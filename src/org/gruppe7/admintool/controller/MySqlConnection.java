@@ -5,6 +5,7 @@
  */
 package org.gruppe7.admintool.controller;
 
+import config.Configuration;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -23,12 +24,13 @@ import org.gruppe7.admintool.model.Question;
  * @author Paul
  */
 public class MySqlConnection implements DefaultConnection {
-    
+
     private static final Logger log = Logger.getLogger(MySqlConnection.class.getCanonicalName());
     private final Connection connection;
     private final PreparedStatement createCategoryQuery;
     private final PreparedStatement findCategoryById;
     private final PreparedStatement findCategoryByDescription;
+    private final PreparedStatement findAllCategories;
     private final PreparedStatement updateCategory;
     private final PreparedStatement deleteCategory;
     private final PreparedStatement createQuestion;
@@ -36,7 +38,7 @@ public class MySqlConnection implements DefaultConnection {
     private final PreparedStatement updateQuestion;
     private final PreparedStatement deleteQuestion;
     private final PreparedStatement getQuestionsByCategoryId;
-    
+
     static {
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -44,28 +46,27 @@ public class MySqlConnection implements DefaultConnection {
             log.severe(ex.getMessage());
         }
     }
-    
-    public MySqlConnection(String url, String username, String password) throws SQLException {
-        if (url == null || username == null || password == null) {
-            throw new IllegalArgumentException("Für Datenbankverbindung muss URL und Nutzername angegeben werden.");
-        } else if (url.isEmpty() || username.isEmpty()) {
-            throw new IllegalArgumentException("URL oder Nutzername ist ungültig");
-        }
-        connection = DriverManager.getConnection(url, username, password);
-        
+
+    public MySqlConnection() throws SQLException {
+        final String databaseUrl = getDatabaseUrl();
+        final String user = Configuration.getValue(Configuration.Field.User);
+        final String password = Configuration.getValue(Configuration.Field.Password);
+        connection = DriverManager.getConnection(databaseUrl, user, password);
+
         createCategoryQuery = connection.prepareStatement("INSERT INTO kategorie (bezeichnung) VALUES (?);", new String[]{"id"});
         findCategoryById = connection.prepareStatement("SELECT * FROM kategorie WHERE id=?");
         findCategoryByDescription = connection.prepareStatement("SELECT * FROM kategorie WHERE bezeichnung=?");
+        findAllCategories = connection.prepareStatement("SELECT * FROM kategorie");
         updateCategory = connection.prepareStatement("UPDATE kategorie SET bezeichnung=? WHERE id=?");
         deleteCategory = connection.prepareStatement("DELETE FROM kategorie WHERE id=?");
-        
+
         createQuestion = connection.prepareStatement("INSERT INTO frage (frage,aAntwort,bAntwort,cAntwort,dAntwort,kategorie_id) VALUES (?,?,?,?,?,?);", new String[]{"id"});
         findQuestionById = connection.prepareStatement("SELECT * FROM frage WHERE id=?");
         updateQuestion = connection.prepareStatement("UPDATE frage SET frage=?,aAntwort=?,bAntwort=?,cAntwort=?,dAntwort=?,kategorie_id=? WHERE id=?");
         deleteQuestion = connection.prepareStatement("DELETE FROM frage WHERE id=?");
         getQuestionsByCategoryId = connection.prepareStatement("SELECT * FROM frage WHERE kategorie_id=?");
     }
-    
+
     @Override
     public Category createCategory(Category category) {
         // Zur Vermeidung von NullPointer-Exceptions
@@ -88,7 +89,7 @@ public class MySqlConnection implements DefaultConnection {
         }
         return category;
     }
-    
+
     @Override
     public Category findCategoryById(int id) {
         Category category = null;
@@ -104,10 +105,10 @@ public class MySqlConnection implements DefaultConnection {
         } catch (SQLException ex) {
             log.warning(ex.getMessage());
         }
-        
+
         return category;
     }
-    
+
     @Override
     public Category findCategoryByDescription(String description) {
         Category category = null;
@@ -125,7 +126,7 @@ public class MySqlConnection implements DefaultConnection {
         }
         return category;
     }
-    
+
     @Override
     public void updateCategory(Category category) {
         try {
@@ -136,7 +137,7 @@ public class MySqlConnection implements DefaultConnection {
             log.warning(ex.getMessage());
         }
     }
-    
+
     @Override
     public void deleteCategory(Category category) {
         try {
@@ -146,7 +147,7 @@ public class MySqlConnection implements DefaultConnection {
             log.warning(ex.getMessage());
         }
     }
-    
+
     @Override
     public Question createQuestion(Question question) {
         if (question != null) {
@@ -170,7 +171,7 @@ public class MySqlConnection implements DefaultConnection {
         }
         return question;
     }
-    
+
     @Override
     public Question findQuestionById(int id) {
         Question question = null;
@@ -193,7 +194,7 @@ public class MySqlConnection implements DefaultConnection {
         }
         return question;
     }
-    
+
     @Override
     public void updateQuestion(Question question) {
         try {
@@ -208,7 +209,7 @@ public class MySqlConnection implements DefaultConnection {
             log.warning(ex.getMessage());
         }
     }
-    
+
     @Override
     public void deleteQuestion(Question question) {
         try {
@@ -218,16 +219,16 @@ public class MySqlConnection implements DefaultConnection {
             log.warning(ex.getMessage());
         }
     }
-    
+
     @Override
     public List<Question> getQuestionsByCategory(Category category) {
         if (category == null) {
             throw new IllegalArgumentException("Keine Kategorie angegeben.");
         }
-        
+
         return getQuestionsByCategoryId(category.getId());
     }
-    
+
     @Override
     public List<Question> getQuestionsByCategoryId(int categoryId) {
         List<Question> questionList = new ArrayList<>();
@@ -252,11 +253,41 @@ public class MySqlConnection implements DefaultConnection {
         }
         return questionList;
     }
-    
+
     @Override
     public void close() throws Exception {
         if (connection != null) {
             connection.close();
         }
+    }
+
+    @Override
+    public String getDatabaseUrl() {
+        final String UrlPrefix = Configuration.getValue(Configuration.Field.UrlPrefix);
+        final String Host = Configuration.getValue(Configuration.Field.Host);
+        final String Port = Configuration.getValue(Configuration.Field.Port);
+        final String Name = Configuration.getValue(Configuration.Field.Name);
+        final String databaseUrl = String.format("%s%s:%s/%s", UrlPrefix, Host, Port, Name);
+
+        return databaseUrl;
+    }
+
+    @Override
+    public List<Category> getCategories() {
+        List<Category> categoryList = new ArrayList<>();
+        Category category = null;
+
+        try (ResultSet result = findAllCategories.executeQuery()) {
+            while (result.next()) {
+                category = new Category();
+                category.setId(result.getInt("id"));
+                category.setTitle(result.getString("bezeichnung"));
+                categoryList.add(category);
+            }
+        } catch (SQLException ex) {
+            log.warning(ex.getMessage());
+        }
+
+        return categoryList;
     }
 }

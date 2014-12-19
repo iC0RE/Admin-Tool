@@ -6,18 +6,32 @@
 package org.gruppe7.admintool.view;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
+import org.gruppe7.admintool.controller.DefaultConnection;
+import org.gruppe7.admintool.controller.MySqlConnection;
+import org.gruppe7.admintool.model.Category;
 
 /**
  *
  * @author Paul
  */
-public class GraphicalUserInterface extends JFrame {
-
+public class View extends JFrame {
+    
+    private static final Logger log = Logger.getLogger(View.class.getCanonicalName());
+    private DefaultConnection connection = null;
     /**
      * Creates new form GraphicalUserInterface
      */
-    public GraphicalUserInterface() {
+    public View() {
+        try {
+            connection = new MySqlConnection();
+        } catch (SQLException ex) {
+            log.severe(String.format("Keine Datenbankverbindung: %s", ex.getMessage())); 
+        }
         initComponents();
     }
 
@@ -209,6 +223,11 @@ public class GraphicalUserInterface extends JFrame {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
+        });
+        lst_categories.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lst_categoriesMouseClicked(evt);
+            }
         });
         jScrollPane1.setViewportView(lst_categories);
 
@@ -1109,7 +1128,19 @@ public class GraphicalUserInterface extends JFrame {
         lbl_navigation.setText("Kategorien");
         setInActiveAllButtons();
         setActive(btn_categories);
+        
+        updateCategoryModel();
+        
     }//GEN-LAST:event_btn_categoriesActionPerformed
+
+    private void updateCategoryModel() {
+        List<Category> categories = connection.getCategories();
+        DefaultListModel model = new DefaultListModel();
+        for(Category category: categories){
+            model.addElement(category);
+        }
+        lst_categories.setModel(model);
+    }
 
     private void btn_questionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_questionsActionPerformed
         CardLayout cl = (CardLayout) (pnl_content.getLayout());
@@ -1338,7 +1369,12 @@ public class GraphicalUserInterface extends JFrame {
     }//GEN-LAST:event_btn_readyCategoryActionPerformed
 
     private void btn_deleteCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteCategoryActionPerformed
-        // TODO add your handling code here:
+        Object value = lst_categories.getSelectedValue();
+        if(value != null){
+            Category category = (Category)value;
+            connection.deleteCategory(category);
+            updateCategoryModel();
+        }
     }//GEN-LAST:event_btn_deleteCategoryActionPerformed
 
     private void txt_categoryFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_categoryFocusGained
@@ -1360,7 +1396,12 @@ public class GraphicalUserInterface extends JFrame {
     }//GEN-LAST:event_txt_categoryActionPerformed
 
     private void btn_addCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addCategoryActionPerformed
-        // TODO add your handling code here:
+        Category category = new Category();
+        category.setTitle(txt_category.getText());
+        connection.createCategory(category);
+        txt_category.setVisible(false);
+        btn_addCategory.setVisible(false);
+        updateCategoryModel();
     }//GEN-LAST:event_btn_addCategoryActionPerformed
 
     private void btn_editCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editCategoryActionPerformed
@@ -1380,6 +1421,10 @@ public class GraphicalUserInterface extends JFrame {
         setInActiveAllButtons();
         setActive(btn_questions);
     }//GEN-LAST:event_btn_editAnswerActionPerformed
+
+    private void lst_categoriesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lst_categoriesMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lst_categoriesMouseClicked
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

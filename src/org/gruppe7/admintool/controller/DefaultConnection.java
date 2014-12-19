@@ -25,6 +25,8 @@ public interface DefaultConnection extends AutoCloseable{
     
     public void deleteCategory(Category category);
     
+    public List<Category> getCategories();
+    
     public Question createQuestion (Question question);
     
     public Question findQuestionById(int id);
@@ -36,4 +38,6 @@ public interface DefaultConnection extends AutoCloseable{
     public List<Question> getQuestionsByCategory (Category category);
     
     public List<Question> getQuestionsByCategoryId (int categoryId);
+    
+    public String getDatabaseUrl();
 }

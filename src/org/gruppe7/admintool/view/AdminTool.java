@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package org.gruppe7.admintool.view;
-import org.gruppe7.admintool.view.GraphicalUserInterface;
-import java.sql.*;
 /**
  *
  * @author Paul
@@ -13,10 +11,11 @@ import java.sql.*;
 public class AdminTool {
 
     /**
-     * @param args the command line arguments
+     * 
+     * @param args 
      */
     public static void main(String[] args) {
-        GraphicalUserInterface gui = new GraphicalUserInterface();
+        View gui = new View();
 	gui.setVisible(true);
         
     }

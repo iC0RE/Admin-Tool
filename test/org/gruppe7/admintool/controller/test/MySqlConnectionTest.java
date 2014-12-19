@@ -5,7 +5,9 @@ package org.gruppe7.admintool.controller.test;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import config.Configuration;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Logger;
 import org.gruppe7.admintool.controller.DefaultConnection;
 import org.gruppe7.admintool.controller.MySqlConnection;
@@ -30,7 +32,7 @@ public class MySqlConnectionTest {
     @Before
     public void init() {
         try {
-            connection = new MySqlConnection("jdbc:mysql://127.0.0.1:3306/qtool", "root", "");
+            connection = new MySqlConnection();
         } catch (SQLException e) {
             log.severe(e.getMessage());
         }
@@ -69,7 +71,11 @@ public class MySqlConnectionTest {
     public void readCategoryTest() {
         Category category = connection.findCategoryById(categoryId);
         Assert.assertNotNull(category);
-        log.info(String.format("Auslesen der Kategorie druchgeführt. Primärschlüssel ist %d.", category.getId()));
+        log.info(String.format("Auslesen der Kategorie durchgeführt. Primärschlüssel ist %d.", category.getId()));
+        
+        List<Category> categories = connection.getCategories();
+        Assert.assertFalse(categories.isEmpty());
+        log.info("Holen aller Kategorien durchgeführt");
     }
 
     public void updateCategoryTest() {
