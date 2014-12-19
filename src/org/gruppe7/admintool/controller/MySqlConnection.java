@@ -59,8 +59,8 @@ public class MySqlConnection implements DefaultConnection {
         updateCategory = connection.prepareStatement("UPDATE kategorie SET bezeichnung=? WHERE id=?");
         deleteCategory = connection.prepareStatement("DELETE FROM kategorie WHERE id=?");
         
-        createQuestion = connection.prepareStatement("INSERT INTO frage (content,aAnswer,bAnswer,cAnswer,dAnswer,category_id) VALUES (?,?,?,?,?,?);", new String[]{"id"});
-        findQuestionById = connection.prepareStatement("SELECT * FROM frage WHERE if=?");
+        createQuestion = connection.prepareStatement("INSERT INTO frage (frage,aAntwort,bAntwort,cAntwort,dAntwort,kategorie_id) VALUES (?,?,?,?,?,?);", new String[]{"id"});
+        findQuestionById = connection.prepareStatement("SELECT * FROM frage WHERE id=?");
         updateQuestion = connection.prepareStatement("UPDATE frage SET frage=?,aAntwort=?,bAntwort=?,cAntwort=?,dAntwort=?,kategorie_id=? WHERE id=?");
         deleteQuestion = connection.prepareStatement("DELETE FROM frage WHERE id=?");
         getQuestionsByCategoryId = connection.prepareStatement("SELECT * FROM frage WHERE kategorie_id=?");

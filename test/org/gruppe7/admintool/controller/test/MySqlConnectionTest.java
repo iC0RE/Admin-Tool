@@ -98,6 +98,7 @@ public class MySqlConnectionTest {
         question.setbAnswer("default-bAnswer");
         question.setcAnswer("default-cAnswer");
         question.setdAnswer("default-dAnswer");
+        category = connection.createCategory(category);
         question.setCategory_id(category.getId());
         question = connection.createQuestion(question);
         Assert.assertNotNull(category.getId());
@@ -137,8 +138,10 @@ public class MySqlConnectionTest {
         Question question = connection.findQuestionById(questionId);
         Category category = connection.findCategoryById(categoryId);
         connection.deleteQuestion(question);
-        connection.deleteCategory(category);
+        connection.deleteCategory(category);       
+        question = connection.findQuestionById(questionId);
         Assert.assertNull(question);
+        category = connection.findCategoryById(categoryId);
         Assert.assertNull(category);
         log.info(String.format("Löschen der Frage druchgeführt. Referenz ist %s.", question));
     }
