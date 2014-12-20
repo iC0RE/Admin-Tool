@@ -48,11 +48,13 @@ public class MySqlConnection implements DefaultConnection {
     }
 
     public MySqlConnection() throws SQLException {
+        // Variabeln zur Herstellung der Datenbank-Verbindung, dessen Werte aus der Konfiguration geholt werden
         final String databaseUrl = getDatabaseUrl();
         final String user = Configuration.getValue(Configuration.Field.User);
         final String password = Configuration.getValue(Configuration.Field.Password);
         connection = DriverManager.getConnection(databaseUrl, user, password);
 
+        // Vorbereitete Abfragen für Kategorieren
         createCategoryQuery = connection.prepareStatement("INSERT INTO kategorie (bezeichnung) VALUES (?);", new String[]{"id"});
         findCategoryById = connection.prepareStatement("SELECT * FROM kategorie WHERE id=?");
         findCategoryByDescription = connection.prepareStatement("SELECT * FROM kategorie WHERE bezeichnung=?");
@@ -60,6 +62,7 @@ public class MySqlConnection implements DefaultConnection {
         updateCategory = connection.prepareStatement("UPDATE kategorie SET bezeichnung=? WHERE id=?");
         deleteCategory = connection.prepareStatement("DELETE FROM kategorie WHERE id=?");
 
+        // Vorbereitete Abfragen für Fragen
         createQuestion = connection.prepareStatement("INSERT INTO frage (frage,aAntwort,bAntwort,cAntwort,dAntwort,kategorie_id) VALUES (?,?,?,?,?,?);", new String[]{"id"});
         findQuestionById = connection.prepareStatement("SELECT * FROM frage WHERE id=?");
         updateQuestion = connection.prepareStatement("UPDATE frage SET frage=?,aAntwort=?,bAntwort=?,cAntwort=?,dAntwort=?,kategorie_id=? WHERE id=?");
