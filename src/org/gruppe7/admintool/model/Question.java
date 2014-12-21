@@ -96,4 +96,9 @@ public class Question {
     public void setCategory_id(int category_id) {
         this.category_id = category_id;
     }
+
+    @Override
+    public String toString() {
+        return getContent();
+    }
 }

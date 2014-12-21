@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package org.gruppe7.admintool.view;
+
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.sql.SQLException;
@@ -14,23 +15,26 @@ import javax.swing.*;
 import org.gruppe7.admintool.controller.DefaultConnection;
 import org.gruppe7.admintool.controller.MySqlConnection;
 import org.gruppe7.admintool.model.Category;
+import org.gruppe7.admintool.model.Question;
 
 /**
  *
  * @author Paul
  */
 public class View extends JFrame {
-    
+
+    private Category globalCategory = new Category();
     private static final Logger log = Logger.getLogger(View.class.getCanonicalName());
     private DefaultConnection connection = null;
+
     /**
-     * Creates new form GraphicalUserInterface
+     * Creates new form View
      */
     public View() {
         try {
             connection = new MySqlConnection();
         } catch (SQLException ex) {
-            log.severe(String.format("Keine Datenbankverbindung: %s", ex.getMessage())); 
+            log.severe(String.format("Keine Datenbankverbindung: %s", ex.getMessage()));
         }
         initComponents();
     }
@@ -48,7 +52,6 @@ public class View extends JFrame {
         btn_start = new javax.swing.JButton();
         btn_categories = new javax.swing.JButton();
         btn_questions = new javax.swing.JButton();
-        btn_quit = new javax.swing.JButton();
         btn_options = new javax.swing.JButton();
         pnl_content = new javax.swing.JPanel();
         pnl_start = new javax.swing.JPanel();
@@ -63,11 +66,16 @@ public class View extends JFrame {
         padding_right = new javax.swing.JPanel();
         btn_newCategory = new javax.swing.JButton();
         btn_editCategory = new javax.swing.JButton();
-        btn_readyCategory = new javax.swing.JButton();
+        btn_cancelCategory = new javax.swing.JButton();
         btn_deleteCategory = new javax.swing.JButton();
         txt_category = new javax.swing.JTextField();
+        pnl_buttonChooser = new javax.swing.JPanel();
+        pnl_createCategory = new javax.swing.JPanel();
         btn_addCategory = new javax.swing.JButton();
+        pnl_editCategory = new javax.swing.JPanel();
+        btn_editSelectedCategory = new javax.swing.JButton();
         pnl_questionList = new javax.swing.JPanel();
+        cbo_category2showQuestions = new javax.swing.JComboBox();
         jScrollPane2 = new javax.swing.JScrollPane();
         lst_questions = new javax.swing.JList();
         padding_topQuestions = new javax.swing.JPanel();
@@ -152,22 +160,14 @@ public class View extends JFrame {
         btn_questions.setMaximumSize(new java.awt.Dimension(100, 35));
         btn_questions.setMinimumSize(new java.awt.Dimension(100, 35));
         btn_questions.setPreferredSize(new java.awt.Dimension(120, 35));
+        btn_questions.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                btn_questionsItemStateChanged(evt);
+            }
+        });
         btn_questions.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_questionsActionPerformed(evt);
-            }
-        });
-
-        btn_quit.setBackground(new java.awt.Color(255, 255, 255));
-        btn_quit.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
-        btn_quit.setText("Beenden");
-        btn_quit.setFocusable(false);
-        btn_quit.setMaximumSize(new java.awt.Dimension(120, 35));
-        btn_quit.setMinimumSize(new java.awt.Dimension(120, 35));
-        btn_quit.setPreferredSize(new java.awt.Dimension(130, 35));
-        btn_quit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_quitActionPerformed(evt);
             }
         });
 
@@ -208,7 +208,7 @@ public class View extends JFrame {
         pnl_startLayout.setVerticalGroup(
             pnl_startLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_startLayout.createSequentialGroup()
-                .addGap(0, 484, Short.MAX_VALUE)
+                .addGap(0, 493, Short.MAX_VALUE)
                 .addGroup(pnl_startLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_Copyright)
                     .addComponent(jLabel1)))
@@ -224,9 +224,9 @@ public class View extends JFrame {
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        lst_categories.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lst_categoriesMouseClicked(evt);
+        lst_categories.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lst_categoriesValueChanged(evt);
             }
         });
         jScrollPane1.setViewportView(lst_categories);
@@ -285,6 +285,7 @@ public class View extends JFrame {
         btn_editCategory.setBackground(new java.awt.Color(255, 255, 255));
         btn_editCategory.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
         btn_editCategory.setText("Bearbeiten");
+        btn_editCategory.setEnabled(false);
         btn_editCategory.setFocusable(false);
         btn_editCategory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -292,20 +293,21 @@ public class View extends JFrame {
             }
         });
 
-        btn_readyCategory.setBackground(new java.awt.Color(255, 255, 255));
-        btn_readyCategory.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
-        btn_readyCategory.setText("Fertig");
-        btn_readyCategory.setFocusable(false);
-        btn_readyCategory.setPreferredSize(new java.awt.Dimension(73, 39));
-        btn_readyCategory.addActionListener(new java.awt.event.ActionListener() {
+        btn_cancelCategory.setBackground(new java.awt.Color(255, 255, 255));
+        btn_cancelCategory.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        btn_cancelCategory.setText("Abbrechen");
+        btn_cancelCategory.setFocusable(false);
+        btn_cancelCategory.setPreferredSize(new java.awt.Dimension(73, 39));
+        btn_cancelCategory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_readyCategoryActionPerformed(evt);
+                btn_cancelCategoryActionPerformed(evt);
             }
         });
 
         btn_deleteCategory.setBackground(new java.awt.Color(255, 255, 255));
         btn_deleteCategory.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
         btn_deleteCategory.setText("Löschen");
+        btn_deleteCategory.setEnabled(false);
         btn_deleteCategory.setFocusable(false);
         btn_deleteCategory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -331,16 +333,67 @@ public class View extends JFrame {
             }
         });
 
+        pnl_buttonChooser.setBackground(new java.awt.Color(255, 255, 255));
+        pnl_buttonChooser.setLayout(new java.awt.CardLayout());
+
+        pnl_createCategory.setBackground(new java.awt.Color(255, 255, 255));
+
         btn_addCategory.setBackground(new java.awt.Color(255, 255, 255));
         btn_addCategory.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
         btn_addCategory.setText("Hinzufügen");
         btn_addCategory.setFocusable(false);
-        btn_addCategory.setVisible(false);
         btn_addCategory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_addCategoryActionPerformed(evt);
             }
         });
+
+        javax.swing.GroupLayout pnl_createCategoryLayout = new javax.swing.GroupLayout(pnl_createCategory);
+        pnl_createCategory.setLayout(pnl_createCategoryLayout);
+        pnl_createCategoryLayout.setHorizontalGroup(
+            pnl_createCategoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_createCategoryLayout.createSequentialGroup()
+                .addGap(0, 364, Short.MAX_VALUE)
+                .addComponent(btn_addCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        pnl_createCategoryLayout.setVerticalGroup(
+            pnl_createCategoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_createCategoryLayout.createSequentialGroup()
+                .addComponent(btn_addCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 61, Short.MAX_VALUE))
+        );
+
+        pnl_buttonChooser.add(pnl_createCategory, "card2");
+
+        pnl_editCategory.setBackground(new java.awt.Color(255, 255, 255));
+
+        btn_editSelectedCategory.setBackground(new java.awt.Color(255, 255, 255));
+        btn_editSelectedCategory.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        btn_editSelectedCategory.setText("Ändern");
+        btn_editSelectedCategory.setFocusable(false);
+        btn_editSelectedCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_editSelectedCategoryActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnl_editCategoryLayout = new javax.swing.GroupLayout(pnl_editCategory);
+        pnl_editCategory.setLayout(pnl_editCategoryLayout);
+        pnl_editCategoryLayout.setHorizontalGroup(
+            pnl_editCategoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_editCategoryLayout.createSequentialGroup()
+                .addGap(0, 364, Short.MAX_VALUE)
+                .addComponent(btn_editSelectedCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        pnl_editCategoryLayout.setVerticalGroup(
+            pnl_editCategoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_editCategoryLayout.createSequentialGroup()
+                .addComponent(btn_editSelectedCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 61, Short.MAX_VALUE))
+        );
+
+        pnl_buttonChooser.add(pnl_editCategory, "card3");
+        pnl_buttonChooser.setVisible(false);
 
         javax.swing.GroupLayout padding_rightLayout = new javax.swing.GroupLayout(padding_right);
         padding_right.setLayout(padding_rightLayout);
@@ -352,26 +405,20 @@ public class View extends JFrame {
                 .addComponent(btn_editCategory)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_deleteCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
-                .addComponent(btn_readyCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(padding_rightLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(padding_rightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_category)
-                    .addGroup(padding_rightLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btn_addCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_cancelCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(txt_category)
+            .addComponent(pnl_buttonChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         padding_rightLayout.setVerticalGroup(
             padding_rightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, padding_rightLayout.createSequentialGroup()
                 .addComponent(txt_category, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_addCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnl_buttonChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(padding_rightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_readyCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_cancelCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_deleteCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_editCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_newCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -395,13 +442,21 @@ public class View extends JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnl_categoryListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(padding_right, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         pnl_content.add(pnl_categoryList, "card3");
 
         pnl_questionList.setBackground(new java.awt.Color(255, 255, 255));
+
+        cbo_category2showQuestions.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        cbo_category2showQuestions.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbo_category2showQuestions.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbo_category2showQuestionsActionPerformed(evt);
+            }
+        });
 
         lst_questions.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
         lst_questions.setModel(new javax.swing.AbstractListModel() {
@@ -456,7 +511,7 @@ public class View extends JFrame {
             .addGroup(padding_topRightLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lbl_headlineAnswers)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout padding_topQuestionsLayout = new javax.swing.GroupLayout(padding_topQuestions);
@@ -471,11 +526,8 @@ public class View extends JFrame {
         );
         padding_topQuestionsLayout.setVerticalGroup(
             padding_topQuestionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(padding_topQuestionsLayout.createSequentialGroup()
-                .addGroup(padding_topQuestionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(padding_topRight, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(padding_topLeft, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addComponent(padding_topRight, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(padding_topLeft, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         padding_right1.setBackground(new java.awt.Color(255, 255, 255));
@@ -500,7 +552,7 @@ public class View extends JFrame {
             pnl_aAnswerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_aAnswerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbl_aAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
+                .addComponent(lbl_aAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -544,7 +596,7 @@ public class View extends JFrame {
             pnl_cAnswerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_cAnswerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbl_cAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+                .addComponent(lbl_cAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -566,7 +618,7 @@ public class View extends JFrame {
             pnl_dAnswerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_dAnswerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbl_dAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
+                .addComponent(lbl_dAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -582,13 +634,13 @@ public class View extends JFrame {
         pnl_answerListLayout.setVerticalGroup(
             pnl_answerListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_answerListLayout.createSequentialGroup()
-                .addComponent(pnl_aAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+                .addComponent(pnl_aAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnl_bAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+                .addComponent(pnl_bAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnl_cAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                .addComponent(pnl_cAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnl_dAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+                .addComponent(pnl_dAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -663,18 +715,22 @@ public class View extends JFrame {
         pnl_questionList.setLayout(pnl_questionListLayout);
         pnl_questionListLayout.setHorizontalGroup(
             pnl_questionListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(padding_topQuestions, javax.swing.GroupLayout.DEFAULT_SIZE, 941, Short.MAX_VALUE)
             .addGroup(pnl_questionListLayout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnl_questionListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(cbo_category2showQuestions, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(padding_right1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(padding_topQuestions, javax.swing.GroupLayout.DEFAULT_SIZE, 941, Short.MAX_VALUE)
         );
         pnl_questionListLayout.setVerticalGroup(
             pnl_questionListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_questionListLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(padding_topQuestions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(padding_topQuestions, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
+                .addComponent(cbo_category2showQuestions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnl_questionListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(padding_right1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE))
@@ -793,16 +849,14 @@ public class View extends JFrame {
                 .addContainerGap()
                 .addGroup(pnl_leftQuestionEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txt_content)
-                    .addGroup(pnl_leftQuestionEditLayout.createSequentialGroup()
-                        .addComponent(cbo_category, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 295, Short.MAX_VALUE))
-                    .addComponent(txt_aAnswer)
+                    .addComponent(txt_aAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
                     .addComponent(txt_bAnswer)
                     .addComponent(txt_cAnswer)
                     .addComponent(txt_dAnswer)
                     .addGroup(pnl_leftQuestionEditLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btn_readyQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(btn_readyQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbo_category, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         pnl_leftQuestionEditLayout.setVerticalGroup(
             pnl_leftQuestionEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1045,7 +1099,7 @@ public class View extends JFrame {
                         .addComponent(pwd_dbPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btn_readyOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(138, Short.MAX_VALUE))
+                        .addContainerGap(147, Short.MAX_VALUE))
                     .addComponent(padding_left1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(padding_right2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
@@ -1073,23 +1127,21 @@ public class View extends JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(lbl_navigation)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_options, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_quit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btn_options, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         pnl_templateLayout.setVerticalGroup(
             pnl_templateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_templateLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnl_templateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnl_templateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btn_start, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btn_categories, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btn_questions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btn_quit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btn_options, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lbl_navigation, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGroup(pnl_templateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnl_templateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnl_templateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btn_start, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_categories, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_questions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lbl_navigation, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(btn_options, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnl_content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -1109,18 +1161,50 @@ public class View extends JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void setActive(javax.swing.JButton btn){
-        btn.setBackground(new java.awt.Color(102,204,255));
+    private void enableAddingCategory() {
+        CardLayout cl = (CardLayout) (pnl_buttonChooser.getLayout());
+        cl.first(pnl_buttonChooser);
+        txt_category.setForeground(new java.awt.Color(204, 204, 204));
+        txt_category.setText("Kategorie");
+        txt_category.setVisible(true);
+        lst_categories.clearSelection();
+        pnl_buttonChooser.setVisible(true);
+        btn_editCategory.setEnabled(false);
+        btn_deleteCategory.setEnabled(false);
+        if (txt_category.getText().equals("Kategorie")) {
+            btn_addCategory.setEnabled(false);
+        }
     }
-    
-    public void setInActiveAllButtons(){
-        btn_start.setBackground(new java.awt.Color(255,255,255));
-        btn_categories.setBackground(new java.awt.Color(255,255,255));
-        btn_questions.setBackground(new java.awt.Color(255,255,255));
-        btn_options.setBackground(new java.awt.Color(255,255,255));
-        btn_quit.setBackground(new java.awt.Color(255,255,255));
+
+    private void disableAddingCategory() {
+        txt_category.setVisible(false);
+        pnl_buttonChooser.setVisible(false);
     }
-    
+
+    private void enableEditingCategory() {
+        CardLayout cl = (CardLayout) (pnl_buttonChooser.getLayout());
+        cl.first(pnl_buttonChooser);
+        cl.next(pnl_buttonChooser);
+        txt_category.setForeground(Color.black);
+        txt_category.setVisible(true);
+        pnl_buttonChooser.setVisible(true);
+        if (txt_category.getText().equals("Kategorie")) {
+            btn_editSelectedCategory.setEnabled(false);
+        }
+    }
+
+    public void setActive(javax.swing.JButton btn) {
+        btn.setBackground(new java.awt.Color(102, 204, 255));
+    }
+
+    public void setInActiveAllButtons() {
+        btn_start.setBackground(new java.awt.Color(255, 255, 255));
+        btn_categories.setBackground(new java.awt.Color(255, 255, 255));
+        btn_questions.setBackground(new java.awt.Color(255, 255, 255));
+        btn_options.setBackground(new java.awt.Color(255, 255, 255));
+    }
+
+
     private void btn_categoriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_categoriesActionPerformed
         CardLayout cl = (CardLayout) (pnl_content.getLayout());
         cl.first(pnl_content);
@@ -1128,18 +1212,44 @@ public class View extends JFrame {
         lbl_navigation.setText("Kategorien");
         setInActiveAllButtons();
         setActive(btn_categories);
-        
         updateCategoryModel();
-        
+
     }//GEN-LAST:event_btn_categoriesActionPerformed
 
     private void updateCategoryModel() {
         List<Category> categories = connection.getCategories();
         DefaultListModel model = new DefaultListModel();
-        for(Category category: categories){
+        for (Category category : categories) {
             model.addElement(category);
         }
         lst_categories.setModel(model);
+    }
+
+    private void updateQuestionModel() {
+        List<Category> categories = connection.getCategories();
+        DefaultComboBoxModel cboModel = new DefaultComboBoxModel();
+        for (Category category : categories) {
+            cboModel.addElement(category);
+        }
+        cbo_category2showQuestions.setModel(cboModel);
+        globalCategory = (Category) cbo_category2showQuestions.getSelectedItem();
+        System.out.println(globalCategory);
+        System.out.println(globalCategory.getId());
+        List<Question> questions = connection.getQuestionsByCategoryId(globalCategory.getId());
+        DefaultListModel lstModel = new DefaultListModel();
+        for (Question question : questions) {
+            lstModel.addElement(question);
+        }
+        lst_questions.setModel(lstModel);
+    }
+
+    private void updateCategoryInQuestionModel() {
+        List<Category> categories = connection.getCategories();
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        for (Category category : categories) {
+            model.addElement(category);
+        }
+        cbo_category.setModel(model);
     }
 
     private void btn_questionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_questionsActionPerformed
@@ -1150,11 +1260,8 @@ public class View extends JFrame {
         lbl_navigation.setText("Fragen");
         setInActiveAllButtons();
         setActive(btn_questions);
+        updateQuestionModel();
     }//GEN-LAST:event_btn_questionsActionPerformed
-
-    private void btn_quitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_quitActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_btn_quitActionPerformed
 
     private void btn_optionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_optionsActionPerformed
         CardLayout cl = (CardLayout) (pnl_content.getLayout());
@@ -1181,57 +1288,57 @@ public class View extends JFrame {
     }//GEN-LAST:event_btn_readyAnswerActionPerformed
 
     private void txt_dbHostFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_dbHostFocusGained
-        if (txt_dbHost.getText().equals("Host")){
+        if (txt_dbHost.getText().equals("Host")) {
             txt_dbHost.setText(null);
             txt_dbHost.setForeground(Color.black);
         }
     }//GEN-LAST:event_txt_dbHostFocusGained
 
     private void txt_dbPortFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_dbPortFocusGained
-        if (txt_dbPort.getText().equals("Port")){
+        if (txt_dbPort.getText().equals("Port")) {
             txt_dbPort.setText(null);
             txt_dbPort.setForeground(Color.black);
         }
     }//GEN-LAST:event_txt_dbPortFocusGained
 
     private void txt_dbHostFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_dbHostFocusLost
-        if(txt_dbHost.getText().equals("")){
-            txt_dbHost.setForeground(new java.awt.Color(204,204,204));
+        if (txt_dbHost.getText().equals("")) {
+            txt_dbHost.setForeground(new java.awt.Color(204, 204, 204));
             txt_dbHost.setText("Host");
         }
     }//GEN-LAST:event_txt_dbHostFocusLost
 
     private void txt_dbPortFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_dbPortFocusLost
-        if(txt_dbPort.getText().equals("")){
-            txt_dbPort.setForeground(new java.awt.Color(204,204,204));
+        if (txt_dbPort.getText().equals("")) {
+            txt_dbPort.setForeground(new java.awt.Color(204, 204, 204));
             txt_dbPort.setText("Port");
         }
     }//GEN-LAST:event_txt_dbPortFocusLost
 
     private void txt_dbNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_dbNameFocusGained
-        if (txt_dbName.getText().equals("Name der Datenbank")){
+        if (txt_dbName.getText().equals("Name der Datenbank")) {
             txt_dbName.setText(null);
             txt_dbName.setForeground(Color.black);
         }
     }//GEN-LAST:event_txt_dbNameFocusGained
 
     private void txt_dbNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_dbNameFocusLost
-        if(txt_dbName.getText().equals("")){
-            txt_dbName.setForeground(new java.awt.Color(204,204,204));
+        if (txt_dbName.getText().equals("")) {
+            txt_dbName.setForeground(new java.awt.Color(204, 204, 204));
             txt_dbName.setText("Name der Datenbank");
         }
     }//GEN-LAST:event_txt_dbNameFocusLost
 
     private void txt_dbUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_dbUserFocusGained
-        if (txt_dbUser.getText().equals("Benutzer")){
+        if (txt_dbUser.getText().equals("Benutzer")) {
             txt_dbUser.setText(null);
             txt_dbUser.setForeground(Color.black);
         }
     }//GEN-LAST:event_txt_dbUserFocusGained
 
     private void txt_dbUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_dbUserFocusLost
-        if(txt_dbUser.getText().equals("")){
-            txt_dbUser.setForeground(new java.awt.Color(204,204,204));
+        if (txt_dbUser.getText().equals("")) {
+            txt_dbUser.setForeground(new java.awt.Color(204, 204, 204));
             txt_dbUser.setText("Benutzer");
         }
     }//GEN-LAST:event_txt_dbUserFocusLost
@@ -1262,46 +1369,47 @@ public class View extends JFrame {
         lbl_navigation.setText("Neue Frage");
         setInActiveAllButtons();
         setActive(btn_questions);
+        updateCategoryInQuestionModel();
     }//GEN-LAST:event_btn_newAnswerActionPerformed
 
     private void txt_contentFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_contentFocusGained
-        if (txt_content.getText().equals("Frage")){
+        if (txt_content.getText().equals("Frage")) {
             txt_content.setText(null);
             txt_content.setForeground(Color.black);
         }
     }//GEN-LAST:event_txt_contentFocusGained
 
     private void txt_contentFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_contentFocusLost
-        if(txt_content.getText().equals("")){
-            txt_content.setForeground(new java.awt.Color(204,204,204));
+        if (txt_content.getText().equals("")) {
+            txt_content.setForeground(new java.awt.Color(204, 204, 204));
             txt_content.setText("Frage");
         }
     }//GEN-LAST:event_txt_contentFocusLost
 
     private void txt_aAnswerFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_aAnswerFocusGained
-        if (txt_aAnswer.getText().equals("Antwort a (Richtige Antwort!)")){
+        if (txt_aAnswer.getText().equals("Antwort a (Richtige Antwort!)")) {
             txt_aAnswer.setText(null);
             txt_aAnswer.setForeground(Color.black);
         }
     }//GEN-LAST:event_txt_aAnswerFocusGained
 
     private void txt_aAnswerFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_aAnswerFocusLost
-        if(txt_aAnswer.getText().equals("")){
-            txt_aAnswer.setForeground(new java.awt.Color(204,204,204));
+        if (txt_aAnswer.getText().equals("")) {
+            txt_aAnswer.setForeground(new java.awt.Color(204, 204, 204));
             txt_aAnswer.setText("Antwort a (Richtige Antwort!)");
         }
     }//GEN-LAST:event_txt_aAnswerFocusLost
 
     private void txt_bAnswerFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_bAnswerFocusGained
-        if (txt_bAnswer.getText().equals("Antwort b (Falsche Antwort!)")){
+        if (txt_bAnswer.getText().equals("Antwort b (Falsche Antwort!)")) {
             txt_bAnswer.setText(null);
             txt_bAnswer.setForeground(Color.black);
         }
     }//GEN-LAST:event_txt_bAnswerFocusGained
 
     private void txt_bAnswerFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_bAnswerFocusLost
-        if(txt_bAnswer.getText().equals("")){
-            txt_bAnswer.setForeground(new java.awt.Color(204,204,204));
+        if (txt_bAnswer.getText().equals("")) {
+            txt_bAnswer.setForeground(new java.awt.Color(204, 204, 204));
             txt_bAnswer.setText("Antwort b (Falsche Antwort!)");
         }
     }//GEN-LAST:event_txt_bAnswerFocusLost
@@ -1311,15 +1419,15 @@ public class View extends JFrame {
     }//GEN-LAST:event_txt_bAnswerActionPerformed
 
     private void txt_cAnswerFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cAnswerFocusGained
-        if (txt_cAnswer.getText().equals("Antwort c (Falsche Antwort!)")){
+        if (txt_cAnswer.getText().equals("Antwort c (Falsche Antwort!)")) {
             txt_cAnswer.setText(null);
             txt_cAnswer.setForeground(Color.black);
         }
     }//GEN-LAST:event_txt_cAnswerFocusGained
 
     private void txt_cAnswerFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cAnswerFocusLost
-        if(txt_cAnswer.getText().equals("")){
-            txt_cAnswer.setForeground(new java.awt.Color(204,204,204));
+        if (txt_cAnswer.getText().equals("")) {
+            txt_cAnswer.setForeground(new java.awt.Color(204, 204, 204));
             txt_cAnswer.setText("Antwort c (Falsche Antwort!)");
         }
     }//GEN-LAST:event_txt_cAnswerFocusLost
@@ -1329,15 +1437,15 @@ public class View extends JFrame {
     }//GEN-LAST:event_txt_cAnswerActionPerformed
 
     private void txt_dAnswerFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_dAnswerFocusGained
-        if (txt_dAnswer.getText().equals("Antwort d (Falsche Antwort!)")){
+        if (txt_dAnswer.getText().equals("Antwort d (Falsche Antwort!)")) {
             txt_dAnswer.setText(null);
             txt_dAnswer.setForeground(Color.black);
         }
     }//GEN-LAST:event_txt_dAnswerFocusGained
 
     private void txt_dAnswerFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_dAnswerFocusLost
-        if(txt_dAnswer.getText().equals("")){
-            txt_dAnswer.setForeground(new java.awt.Color(204,204,204));
+        if (txt_dAnswer.getText().equals("")) {
+            txt_dAnswer.setForeground(new java.awt.Color(204, 204, 204));
             txt_dAnswer.setText("Antwort d (Falsche Antwort!)");
         }
     }//GEN-LAST:event_txt_dAnswerFocusLost
@@ -1347,7 +1455,23 @@ public class View extends JFrame {
     }//GEN-LAST:event_txt_dAnswerActionPerformed
 
     private void btn_readyQuestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_readyQuestionActionPerformed
-        // TODO add your handling code here:
+        globalCategory = (Category) cbo_category.getSelectedItem();
+        Question question = new Question();
+        question.setContent(txt_content.getText());
+        question.setaAnswer(txt_aAnswer.getText());
+        question.setbAnswer(txt_bAnswer.getText());
+        question.setcAnswer(txt_cAnswer.getText());
+        question.setdAnswer(txt_dAnswer.getText());
+        question.setCategory_id(globalCategory.getId());
+        connection.createQuestion(question);
+        CardLayout cl = (CardLayout) (pnl_content.getLayout());
+        cl.first(pnl_content);
+        cl.next(pnl_content);
+        cl.next(pnl_content);
+        lbl_navigation.setText("Fragen");
+        setInActiveAllButtons();
+        setActive(btn_questions);
+        updateQuestionModel();
     }//GEN-LAST:event_btn_readyQuestionActionPerformed
 
     private void txt_contentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_contentActionPerformed
@@ -1355,38 +1479,41 @@ public class View extends JFrame {
     }//GEN-LAST:event_txt_contentActionPerformed
 
     private void cbo_categoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_categoryActionPerformed
-        // TODO add your handling code here:
+        Object value = cbo_category.getSelectedItem();
+        if (value != null) {
+            globalCategory = (Category) value;
+        }
     }//GEN-LAST:event_cbo_categoryActionPerformed
 
     private void btn_newCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_newCategoryActionPerformed
-        txt_category.setVisible(true);
-        btn_addCategory.setVisible(true);
+        enableAddingCategory();
     }//GEN-LAST:event_btn_newCategoryActionPerformed
 
-    private void btn_readyCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_readyCategoryActionPerformed
+    private void btn_cancelCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelCategoryActionPerformed
         txt_category.setVisible(false);
-        btn_addCategory.setVisible(false);
-    }//GEN-LAST:event_btn_readyCategoryActionPerformed
+        pnl_buttonChooser.setVisible(false);
+    }//GEN-LAST:event_btn_cancelCategoryActionPerformed
 
     private void btn_deleteCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteCategoryActionPerformed
         Object value = lst_categories.getSelectedValue();
-        if(value != null){
-            Category category = (Category)value;
+        if (value != null) {
+            Category category = (Category) value;
             connection.deleteCategory(category);
             updateCategoryModel();
         }
     }//GEN-LAST:event_btn_deleteCategoryActionPerformed
 
     private void txt_categoryFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_categoryFocusGained
-        if (txt_category.getText().equals("Kategorie")){
+        if (txt_category.getText().equals("Kategorie")) {
             txt_category.setText(null);
             txt_category.setForeground(Color.black);
+            btn_addCategory.setEnabled(true);
         }
     }//GEN-LAST:event_txt_categoryFocusGained
 
     private void txt_categoryFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_categoryFocusLost
-        if(txt_category.getText().equals("")){
-            txt_category.setForeground(new java.awt.Color(204,204,204));
+        if (txt_category.getText().equals("")) {
+            txt_category.setForeground(new java.awt.Color(204, 204, 204));
             txt_category.setText("Kategorie");
         }
     }//GEN-LAST:event_txt_categoryFocusLost
@@ -1399,15 +1526,17 @@ public class View extends JFrame {
         Category category = new Category();
         category.setTitle(txt_category.getText());
         connection.createCategory(category);
-        txt_category.setVisible(false);
-        btn_addCategory.setVisible(false);
         updateCategoryModel();
+        disableAddingCategory();
     }//GEN-LAST:event_btn_addCategoryActionPerformed
 
     private void btn_editCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editCategoryActionPerformed
-        //ToDo Load Kategorie in txt_category
-        txt_category.setVisible(true);
-        btn_addCategory.setVisible(true);
+        Object value = lst_categories.getSelectedValue();
+        if (value != null) {
+            globalCategory = (Category) value;
+            txt_category.setText(globalCategory.toString());
+            enableEditingCategory();
+        }
     }//GEN-LAST:event_btn_editCategoryActionPerformed
 
     private void btn_editAnswerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editAnswerActionPerformed
@@ -1422,29 +1551,49 @@ public class View extends JFrame {
         setActive(btn_questions);
     }//GEN-LAST:event_btn_editAnswerActionPerformed
 
-    private void lst_categoriesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lst_categoriesMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lst_categoriesMouseClicked
+    private void lst_categoriesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lst_categoriesValueChanged
+        btn_editCategory.setEnabled(true);
+        btn_deleteCategory.setEnabled(true);
+    }//GEN-LAST:event_lst_categoriesValueChanged
 
-    
+    private void btn_editSelectedCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editSelectedCategoryActionPerformed
+        globalCategory.setTitle(txt_category.getText());
+        connection.updateCategory(globalCategory);
+        txt_category.setVisible(false);
+        txt_category.setForeground(new java.awt.Color(204, 204, 204));
+        txt_category.setText("Kategorie");
+        btn_editSelectedCategory.setVisible(false);
+        updateCategoryModel();
+    }//GEN-LAST:event_btn_editSelectedCategoryActionPerformed
+
+    private void cbo_category2showQuestionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_category2showQuestionsActionPerformed
+        updateQuestionModel();
+    }//GEN-LAST:event_cbo_category2showQuestionsActionPerformed
+
+    private void btn_questionsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_btn_questionsItemStateChanged
+        updateQuestionModel();
+    }//GEN-LAST:event_btn_questionsItemStateChanged
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_addCategory;
+    private javax.swing.JButton btn_cancelCategory;
     private javax.swing.JButton btn_categories;
     private javax.swing.JButton btn_deleteAnswer;
     private javax.swing.JButton btn_deleteCategory;
     private javax.swing.JButton btn_editAnswer;
     private javax.swing.JButton btn_editCategory;
+    private javax.swing.JButton btn_editSelectedCategory;
     private javax.swing.JButton btn_newAnswer;
     private javax.swing.JButton btn_newCategory;
     private javax.swing.JButton btn_options;
     private javax.swing.JButton btn_questions;
-    private javax.swing.JButton btn_quit;
     private javax.swing.JButton btn_readyAnswer;
-    private javax.swing.JButton btn_readyCategory;
     private javax.swing.JButton btn_readyOptions;
     private javax.swing.JButton btn_readyQuestion;
     private javax.swing.JButton btn_start;
     private javax.swing.JComboBox cbo_category;
+    private javax.swing.JComboBox cbo_category2showQuestions;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -1475,10 +1624,13 @@ public class View extends JFrame {
     private javax.swing.JPanel pnl_aAnswer;
     private javax.swing.JPanel pnl_answerList;
     private javax.swing.JPanel pnl_bAnswer;
+    private javax.swing.JPanel pnl_buttonChooser;
     private javax.swing.JPanel pnl_cAnswer;
     private javax.swing.JPanel pnl_categoryList;
     private javax.swing.JPanel pnl_content;
+    private javax.swing.JPanel pnl_createCategory;
     private javax.swing.JPanel pnl_dAnswer;
+    private javax.swing.JPanel pnl_editCategory;
     private javax.swing.JPanel pnl_leftQuestionEdit;
     private javax.swing.JPanel pnl_options;
     private javax.swing.JPanel pnl_questionEdit;
