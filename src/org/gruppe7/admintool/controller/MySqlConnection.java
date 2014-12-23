@@ -207,6 +207,7 @@ public class MySqlConnection implements DefaultConnection {
             updateQuestion.setString(4, question.getcAnswer());
             updateQuestion.setString(5, question.getdAnswer());
             updateQuestion.setInt(6, question.getCategory_id());
+            updateQuestion.setInt(7, question.getId());
             updateQuestion.executeUpdate();
         } catch (SQLException ex) {
             log.warning(ex.getMessage());
@@ -242,11 +243,11 @@ public class MySqlConnection implements DefaultConnection {
                 while (result.next()) {
                     question = new Question();
                     question.setId(result.getInt("id"));
-                    question.setContent("frage");
-                    question.setaAnswer("aAntwort");
-                    question.setbAnswer("bAntwort");
-                    question.setcAnswer("cAntwort");
-                    question.setdAnswer("dAntwort");
+                    question.setContent(result.getString("frage"));
+                    question.setaAnswer(result.getString("aAntwort"));
+                    question.setbAnswer(result.getString("bAntwort"));
+                    question.setcAnswer(result.getString("cAntwort"));
+                    question.setdAnswer(result.getString("dAntwort"));
                     question.setCategory_id(result.getInt("kategorie_id"));
                     questionList.add(question);
                 }

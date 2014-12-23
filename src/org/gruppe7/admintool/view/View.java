@@ -23,7 +23,8 @@ import org.gruppe7.admintool.model.Question;
  */
 public class View extends JFrame {
 
-    private Category globalCategory = new Category();
+    private Category globalCategory = null;
+    private Question globalQuestion = new Question();
     private static final Logger log = Logger.getLogger(View.class.getCanonicalName());
     private DefaultConnection connection = null;
 
@@ -190,7 +191,7 @@ public class View extends JFrame {
 
         lbl_Copyright.setFont(new java.awt.Font("Calibri Light", 0, 11)); // NOI18N
         lbl_Copyright.setForeground(new java.awt.Color(153, 153, 153));
-        lbl_Copyright.setText("© DataBase/Connection: Markus Wochnick | Design: Paul Lange | Logic: Alex Klopfer & Marcel Kastner");
+        lbl_Copyright.setText("© Model: Markus Wochnick | Design: Paul Lange | Controller: Alex Klopfer & Marcel Kastner");
 
         jLabel1.setFont(new java.awt.Font("Calibri Light", 0, 11)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(153, 153, 153));
@@ -202,7 +203,7 @@ public class View extends JFrame {
             pnl_startLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_startLayout.createSequentialGroup()
                 .addComponent(lbl_Copyright)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 472, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 528, Short.MAX_VALUE)
                 .addComponent(jLabel1))
         );
         pnl_startLayout.setVerticalGroup(
@@ -465,6 +466,11 @@ public class View extends JFrame {
             public Object getElementAt(int i) { return strings[i]; }
         });
         lst_questions.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        lst_questions.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lst_questionsValueChanged(evt);
+            }
+        });
         jScrollPane2.setViewportView(lst_questions);
 
         padding_topQuestions.setBackground(new java.awt.Color(255, 255, 255));
@@ -626,21 +632,21 @@ public class View extends JFrame {
         pnl_answerList.setLayout(pnl_answerListLayout);
         pnl_answerListLayout.setHorizontalGroup(
             pnl_answerListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnl_aAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
-            .addComponent(pnl_bAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
-            .addComponent(pnl_cAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
-            .addComponent(pnl_dAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
+            .addComponent(pnl_aAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
+            .addComponent(pnl_bAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
+            .addComponent(pnl_cAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
+            .addComponent(pnl_dAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
         );
         pnl_answerListLayout.setVerticalGroup(
             pnl_answerListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_answerListLayout.createSequentialGroup()
-                .addComponent(pnl_aAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnl_aAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnl_bAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+                .addComponent(pnl_bAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnl_cAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+                .addComponent(pnl_cAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnl_dAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+                .addComponent(pnl_dAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -715,7 +721,7 @@ public class View extends JFrame {
         pnl_questionList.setLayout(pnl_questionListLayout);
         pnl_questionListLayout.setHorizontalGroup(
             pnl_questionListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(padding_topQuestions, javax.swing.GroupLayout.DEFAULT_SIZE, 941, Short.MAX_VALUE)
+            .addComponent(padding_topQuestions, javax.swing.GroupLayout.DEFAULT_SIZE, 985, Short.MAX_VALUE)
             .addGroup(pnl_questionListLayout.createSequentialGroup()
                 .addGroup(pnl_questionListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(cbo_category2showQuestions, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1193,6 +1199,22 @@ public class View extends JFrame {
         }
     }
 
+    public void enableEditingQuestion() {
+        CardLayout cl = (CardLayout) (pnl_content.getLayout());
+        cl.first(pnl_content);
+        cl.next(pnl_content);
+        cl.next(pnl_content);
+        cl.next(pnl_content);
+        lbl_navigation.setText("Frage bearbeiten");
+        txt_content.setForeground(Color.black);
+        txt_aAnswer.setForeground(Color.black);
+        txt_bAnswer.setForeground(Color.black);
+        txt_cAnswer.setForeground(Color.black);
+        txt_dAnswer.setForeground(Color.black);
+        setInActiveAllButtons();
+        setActive(btn_questions);
+    }
+
     public void setActive(javax.swing.JButton btn) {
         btn.setBackground(new java.awt.Color(102, 204, 255));
     }
@@ -1232,8 +1254,11 @@ public class View extends JFrame {
             cboModel.addElement(category);
         }
         cbo_category2showQuestions.setModel(cboModel);
-        globalCategory = (Category) cbo_category2showQuestions.getSelectedItem();
-        System.out.println(globalCategory);
+        if (globalCategory == null) {
+            globalCategory = (Category) cbo_category2showQuestions.getSelectedItem();
+        }
+        //cbo_category2showQuestions.setSelectedItem(globalCategory);
+        System.out.format("Update", globalCategory.getId());
         System.out.println(globalCategory.getId());
         List<Question> questions = connection.getQuestionsByCategoryId(globalCategory.getId());
         DefaultListModel lstModel = new DefaultListModel();
@@ -1357,7 +1382,12 @@ public class View extends JFrame {
     }//GEN-LAST:event_pwd_dbPasswordFocusLost
 
     private void btn_deleteAnswerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteAnswerActionPerformed
-        // TODO add your handling code here:
+        Object value = lst_questions.getSelectedValue();
+        if (value != null) {
+            Question question = (Question) value;
+            connection.deleteQuestion(question);
+            updateQuestionModel();
+        }
     }//GEN-LAST:event_btn_deleteAnswerActionPerformed
 
     private void btn_newAnswerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_newAnswerActionPerformed
@@ -1455,23 +1485,53 @@ public class View extends JFrame {
     }//GEN-LAST:event_txt_dAnswerActionPerformed
 
     private void btn_readyQuestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_readyQuestionActionPerformed
-        globalCategory = (Category) cbo_category.getSelectedItem();
-        Question question = new Question();
-        question.setContent(txt_content.getText());
-        question.setaAnswer(txt_aAnswer.getText());
-        question.setbAnswer(txt_bAnswer.getText());
-        question.setcAnswer(txt_cAnswer.getText());
-        question.setdAnswer(txt_dAnswer.getText());
-        question.setCategory_id(globalCategory.getId());
-        connection.createQuestion(question);
-        CardLayout cl = (CardLayout) (pnl_content.getLayout());
-        cl.first(pnl_content);
-        cl.next(pnl_content);
-        cl.next(pnl_content);
-        lbl_navigation.setText("Fragen");
-        setInActiveAllButtons();
-        setActive(btn_questions);
-        updateQuestionModel();
+        if (globalQuestion.getId().equals(connection.findQuestionById(globalQuestion.getId()).getId())) {
+            globalQuestion.setId(globalQuestion.getId());
+            globalQuestion.setContent(txt_content.getText());
+            globalQuestion.setaAnswer(txt_aAnswer.getText());
+            globalQuestion.setbAnswer(txt_bAnswer.getText());
+            globalQuestion.setcAnswer(txt_cAnswer.getText());
+            globalQuestion.setdAnswer(txt_dAnswer.getText());
+            Object value = cbo_category.getSelectedItem();
+            if (value != null) {
+                globalCategory = (Category) value;
+            }
+            globalQuestion.setCategory_id(globalCategory.getId());
+            connection.updateQuestion(globalQuestion);
+            CardLayout cl = (CardLayout) (pnl_content.getLayout());
+            cl.first(pnl_content);
+            cl.next(pnl_content);
+            cl.next(pnl_content);
+            lbl_navigation.setText("Fragen");
+            setInActiveAllButtons();
+            setActive(btn_questions);
+            updateQuestionModel();
+//            txt_category.setVisible(false);
+//            txt_category.setForeground(new java.awt.Color(204, 204, 204));
+//            txt_category.setText("Kategorie");
+//            btn_editSelectedCategory.setVisible(false);
+//            updateCategoryModel();
+            System.out.format("Bereits vorhanden %d", globalQuestion.getId());
+        } else {
+            globalCategory = (Category) cbo_category.getSelectedItem();
+            Question question = new Question();
+            question.setContent(txt_content.getText());
+            question.setaAnswer(txt_aAnswer.getText());
+            question.setbAnswer(txt_bAnswer.getText());
+            question.setcAnswer(txt_cAnswer.getText());
+            question.setdAnswer(txt_dAnswer.getText());
+            question.setCategory_id(globalCategory.getId());
+            connection.createQuestion(question);
+            CardLayout cl = (CardLayout) (pnl_content.getLayout());
+            cl.first(pnl_content);
+            cl.next(pnl_content);
+            cl.next(pnl_content);
+            lbl_navigation.setText("Fragen");
+            setInActiveAllButtons();
+            setActive(btn_questions);
+            updateQuestionModel();
+            System.out.println("Neue Frage");
+        }
     }//GEN-LAST:event_btn_readyQuestionActionPerformed
 
     private void txt_contentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_contentActionPerformed
@@ -1540,15 +1600,23 @@ public class View extends JFrame {
     }//GEN-LAST:event_btn_editCategoryActionPerformed
 
     private void btn_editAnswerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editAnswerActionPerformed
-        //ToDo Load Frage in entsprechende Felder
-        CardLayout cl = (CardLayout) (pnl_content.getLayout());
-        cl.first(pnl_content);
-        cl.next(pnl_content);
-        cl.next(pnl_content);
-        cl.next(pnl_content);
-        lbl_navigation.setText("Frage bearbeiten");
-        setInActiveAllButtons();
-        setActive(btn_questions);
+        Object value = lst_questions.getSelectedValue();
+        if (value != null) {
+            globalQuestion = (Question) value;
+            txt_content.setText(globalQuestion.getContent());
+            txt_aAnswer.setText(globalQuestion.getaAnswer());
+            txt_bAnswer.setText(globalQuestion.getbAnswer());
+            txt_cAnswer.setText(globalQuestion.getcAnswer());
+            txt_dAnswer.setText(globalQuestion.getdAnswer());
+            List<Category> categories = connection.getCategories();
+            DefaultComboBoxModel cboModel = new DefaultComboBoxModel();
+            for (Category category : categories) {
+                cboModel.addElement(category);
+            }
+            cbo_category.setModel(cboModel);
+            cbo_category.setSelectedItem(globalCategory);
+            enableEditingQuestion();
+        }
     }//GEN-LAST:event_btn_editAnswerActionPerformed
 
     private void lst_categoriesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lst_categoriesValueChanged
@@ -1567,12 +1635,28 @@ public class View extends JFrame {
     }//GEN-LAST:event_btn_editSelectedCategoryActionPerformed
 
     private void cbo_category2showQuestionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_category2showQuestionsActionPerformed
+        Object value = cbo_category2showQuestions.getSelectedItem();
+        if (value != null) {
+            globalCategory = (Category) value;
+            System.out.format("ActionPerformed %d", globalCategory.getId());
+        }
         updateQuestionModel();
     }//GEN-LAST:event_cbo_category2showQuestionsActionPerformed
 
     private void btn_questionsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_btn_questionsItemStateChanged
         updateQuestionModel();
     }//GEN-LAST:event_btn_questionsItemStateChanged
+
+    private void lst_questionsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lst_questionsValueChanged
+        Object value = lst_questions.getSelectedValue();
+        if (value != null) {
+            globalQuestion = (Question) value;
+            lbl_aAnswer.setText(globalQuestion.getaAnswer());
+            lbl_bAnswer.setText(globalQuestion.getbAnswer());
+            lbl_cAnswer.setText(globalQuestion.getcAnswer());
+            lbl_dAnswer.setText(globalQuestion.getdAnswer());
+        }
+    }//GEN-LAST:event_lst_questionsValueChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
