@@ -1399,6 +1399,7 @@ public class View extends JFrame {
         lbl_navigation.setText("Neue Frage");
         setInActiveAllButtons();
         setActive(btn_questions);
+        globalQuestion = null;
         updateCategoryInQuestionModel();
     }//GEN-LAST:event_btn_newAnswerActionPerformed
 
@@ -1485,7 +1486,8 @@ public class View extends JFrame {
     }//GEN-LAST:event_txt_dAnswerActionPerformed
 
     private void btn_readyQuestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_readyQuestionActionPerformed
-        if (globalQuestion.getId().equals(connection.findQuestionById(globalQuestion.getId()).getId())) {
+        if (globalQuestion != null) {
+            // Frage bearbeiten
             globalQuestion.setId(globalQuestion.getId());
             globalQuestion.setContent(txt_content.getText());
             globalQuestion.setaAnswer(txt_aAnswer.getText());
@@ -1513,6 +1515,7 @@ public class View extends JFrame {
 //            updateCategoryModel();
             System.out.format("Bereits vorhanden %d", globalQuestion.getId());
         } else {
+            // Neue Frage
             globalCategory = (Category) cbo_category.getSelectedItem();
             Question question = new Question();
             question.setContent(txt_content.getText());
