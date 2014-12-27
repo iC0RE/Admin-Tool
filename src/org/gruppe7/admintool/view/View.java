@@ -425,6 +425,8 @@ public class View extends JFrame {
                     .addComponent(btn_newCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
+        btn_cancelCategory.setVisible(false);
+
         javax.swing.GroupLayout pnl_categoryListLayout = new javax.swing.GroupLayout(pnl_categoryList);
         pnl_categoryList.setLayout(pnl_categoryListLayout);
         pnl_categoryListLayout.setHorizontalGroup(
@@ -1177,6 +1179,7 @@ public class View extends JFrame {
         pnl_buttonChooser.setVisible(true);
         btn_editCategory.setEnabled(false);
         btn_deleteCategory.setEnabled(false);
+        btn_cancelCategory.setVisible(true);
         if (txt_category.getText().equals("Kategorie")) {
             btn_addCategory.setEnabled(false);
         }
@@ -1185,6 +1188,7 @@ public class View extends JFrame {
     private void disableAddingCategory() {
         txt_category.setVisible(false);
         pnl_buttonChooser.setVisible(false);
+        btn_cancelCategory.setVisible(false);
     }
 
     private void enableEditingCategory() {
@@ -1194,9 +1198,16 @@ public class View extends JFrame {
         txt_category.setForeground(Color.black);
         txt_category.setVisible(true);
         pnl_buttonChooser.setVisible(true);
+        btn_cancelCategory.setVisible(true);
         if (txt_category.getText().equals("Kategorie")) {
             btn_editSelectedCategory.setEnabled(false);
         }
+    }
+    
+    public void disableEditingCategory(){
+        txt_category.setVisible(false);
+        pnl_buttonChooser.setVisible(false);
+        btn_cancelCategory.setVisible(false);
     }
 
     public void enableEditingQuestion() {
@@ -1634,6 +1645,7 @@ public class View extends JFrame {
         txt_category.setForeground(new java.awt.Color(204, 204, 204));
         txt_category.setText("Kategorie");
         btn_editSelectedCategory.setVisible(false);
+        disableEditingCategory();
         updateCategoryModel();
     }//GEN-LAST:event_btn_editSelectedCategoryActionPerformed
 

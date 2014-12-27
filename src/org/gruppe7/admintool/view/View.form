@@ -469,6 +469,9 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_cancelCategoryActionPerformed"/>
                       </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="btn_cancelCategory.setVisible(false);"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JButton" name="btn_deleteCategory">
                       <Properties>
