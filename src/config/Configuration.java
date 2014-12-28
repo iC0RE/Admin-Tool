@@ -7,6 +7,7 @@ package config;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -54,12 +55,28 @@ public class Configuration {
 
     }
 
+    //TEST FÜR ÄNDERUNG DER KONFIGURATION
+//    public static void newConfiguration(String host, String port, String name, String user, String password) {
+//        InputStream input = Configuration.class.getResourceAsStream("application.properties");
+//        properties = new Properties();
+//        properties.setProperty("database.host", host);
+//        properties.setProperty("database.port", port);
+//        properties.setProperty("database.name", name);
+//        properties.setProperty("database.user", user);
+//        properties.setProperty("database.password", password);
+//        try {
+//            properties.load(input);
+//        } catch (IOException ex) {
+//            Logger.getLogger(Configuration.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
+
     public static String getValue(Field field) {
         if (field == null) {
             throw new IllegalArgumentException("Es wurde kein Feld angegeben.");
         }
         final String searchKey = field.getSearchKey();
-        
+
         return properties.getProperty(searchKey);
     }
 }

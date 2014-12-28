@@ -5,6 +5,7 @@
  */
 package org.gruppe7.admintool.view;
 
+import config.Configuration;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.sql.SQLException;
@@ -57,7 +58,9 @@ public class View extends JFrame {
         pnl_content = new javax.swing.JPanel();
         pnl_start = new javax.swing.JPanel();
         lbl_Copyright = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         pnl_categoryList = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         lst_categories = new javax.swing.JList();
@@ -192,28 +195,38 @@ public class View extends JFrame {
 
         lbl_Copyright.setFont(new java.awt.Font("Calibri Light", 0, 11)); // NOI18N
         lbl_Copyright.setForeground(new java.awt.Color(153, 153, 153));
-        lbl_Copyright.setText("© Model: Markus Wochnick | Design: Paul Lange | Controller: Alex Klopfer & Marcel Kastner");
+        lbl_Copyright.setText("© 2014 Gruppe 7 | FS22");
 
-        jLabel1.setFont(new java.awt.Font("Calibri Light", 0, 11)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel1.setText("v1.0");
+        jLabel2.setFont(new java.awt.Font("Calibri", 0, 36)); // NOI18N
+        jLabel2.setText("Informationen zum Projekt");
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        jTextArea1.setText("Dieses Projekt entstand im Rahmen des AS-Unterrichts im 3. Ausbilungsjahr der FS22.\n\nDas Projektteam besteht aus folgenden Mitgliedern:\n\nMarkus Wochnik - Leiter der Datenhaltung, Modellierung und Dokumentation\nPaul Lange - Leiter des Designs und der Funktionalität\nAlex Klopfer - Leiter der Verbreitung schlechter Laune und Internetverweigerer\nMarcel Kastner - Leiter seiner eigenen Welt\n\nZiel dieses Projekts ist die Implementierung eines Admin-Tools zur Administration\nder Fragen einer Quiz-Anwendung.");
+        jTextArea1.setRows(5);
+        jTextArea1.setFocusable(false);
+        jScrollPane4.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout pnl_startLayout = new javax.swing.GroupLayout(pnl_start);
         pnl_start.setLayout(pnl_startLayout);
         pnl_startLayout.setHorizontalGroup(
             pnl_startLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_startLayout.createSequentialGroup()
-                .addComponent(lbl_Copyright)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 528, Short.MAX_VALUE)
-                .addComponent(jLabel1))
+                .addGroup(pnl_startLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_Copyright)
+                    .addComponent(jLabel2))
+                .addGap(0, 589, Short.MAX_VALUE))
+            .addComponent(jScrollPane4)
         );
         pnl_startLayout.setVerticalGroup(
             pnl_startLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_startLayout.createSequentialGroup()
-                .addGap(0, 499, Short.MAX_VALUE)
-                .addGroup(pnl_startLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_Copyright)
-                    .addComponent(jLabel1)))
+                .addGap(71, 71, 71)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(lbl_Copyright))
         );
 
         pnl_content.add(pnl_start, "card2");
@@ -1070,6 +1083,7 @@ public class View extends JFrame {
         btn_readyOptions.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
         btn_readyOptions.setText("Fertig");
         btn_readyOptions.setFocusable(false);
+        btn_readyOptions.setPreferredSize(new java.awt.Dimension(120, 35));
         btn_readyOptions.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_readyOptionsActionPerformed(evt);
@@ -1130,7 +1144,7 @@ public class View extends JFrame {
                     .addComponent(txt_dbPort)
                     .addComponent(txt_dbName, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
                     .addComponent(txt_dbUser)
-                    .addComponent(btn_readyOptions, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_readyOptions, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pwd_dbPassword))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(padding_right2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1154,8 +1168,8 @@ public class View extends JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(pwd_dbPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btn_readyOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(147, Short.MAX_VALUE))
+                        .addComponent(btn_readyOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(151, Short.MAX_VALUE))
                     .addComponent(padding_left1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(padding_right2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
@@ -1430,7 +1444,7 @@ public class View extends JFrame {
     }//GEN-LAST:event_txt_dbUserFocusLost
 
     private void btn_readyOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_readyOptionsActionPerformed
-        // TODO add your handling code here:
+        //Configuration.newConfiguration(txt_dbHost.getText(), txt_dbPort.getText(), txt_dbName.getText(), txt_dbUser.getText(), pwd_dbPassword.getSelectedText());
     }//GEN-LAST:event_btn_readyOptionsActionPerformed
 
     private void pwd_dbPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pwd_dbPasswordFocusGained
@@ -1721,11 +1735,13 @@ public class View extends JFrame {
     private javax.swing.JButton btn_start;
     private javax.swing.JComboBox cbo_category;
     private javax.swing.JComboBox cbo_category2showQuestions;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lbl_Copyright;
     private javax.swing.JLabel lbl_aAnswer;
     private javax.swing.JLabel lbl_bAnswer;
