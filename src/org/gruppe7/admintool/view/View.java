@@ -75,7 +75,9 @@ public class View extends JFrame {
         btn_addCategory = new javax.swing.JButton();
         pnl_editCategory = new javax.swing.JPanel();
         btn_editSelectedCategory = new javax.swing.JButton();
+        pnl_placeholderCategory = new javax.swing.JPanel();
         pnl_questionList = new javax.swing.JPanel();
+        pnl_placeholderQuestion = new javax.swing.JPanel();
         cbo_category2showQuestions = new javax.swing.JComboBox();
         jScrollPane2 = new javax.swing.JScrollPane();
         lst_questions = new javax.swing.JList();
@@ -94,10 +96,10 @@ public class View extends JFrame {
         lbl_cAnswer = new javax.swing.JLabel();
         pnl_dAnswer = new javax.swing.JPanel();
         lbl_dAnswer = new javax.swing.JLabel();
-        btn_editAnswer = new javax.swing.JButton();
-        btn_deleteAnswer = new javax.swing.JButton();
-        btn_readyAnswer = new javax.swing.JButton();
-        btn_newAnswer = new javax.swing.JButton();
+        btn_editQuestion = new javax.swing.JButton();
+        btn_deleteQuestion = new javax.swing.JButton();
+        btn_cancelQuestion = new javax.swing.JButton();
+        btn_newQuestion = new javax.swing.JButton();
         pnl_questionEdit = new javax.swing.JPanel();
         pnl_leftQuestionEdit = new javax.swing.JPanel();
         cbo_category = new javax.swing.JComboBox();
@@ -121,7 +123,6 @@ public class View extends JFrame {
         padding_left1 = new javax.swing.JPanel();
         padding_right2 = new javax.swing.JPanel();
         pwd_dbPassword = new javax.swing.JPasswordField();
-        lbl_navigation = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("qTool");
@@ -209,7 +210,7 @@ public class View extends JFrame {
         pnl_startLayout.setVerticalGroup(
             pnl_startLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_startLayout.createSequentialGroup()
-                .addGap(0, 493, Short.MAX_VALUE)
+                .addGap(0, 499, Short.MAX_VALUE)
                 .addGroup(pnl_startLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_Copyright)
                     .addComponent(jLabel1)))
@@ -246,14 +247,13 @@ public class View extends JFrame {
             .addGroup(padding_topLeftCategoryLayout.createSequentialGroup()
                 .addGap(112, 112, 112)
                 .addComponent(lbl_headlineQuestions1)
-                .addContainerGap(136, Short.MAX_VALUE))
+                .addContainerGap(113, Short.MAX_VALUE))
         );
         padding_topLeftCategoryLayout.setVerticalGroup(
             padding_topLeftCategoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(padding_topLeftCategoryLayout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(lbl_headlineQuestions1)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addGap(0, 33, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout padding_topLayout = new javax.swing.GroupLayout(padding_top);
@@ -266,17 +266,17 @@ public class View extends JFrame {
         );
         padding_topLayout.setVerticalGroup(
             padding_topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(padding_topLayout.createSequentialGroup()
-                .addComponent(padding_topLeftCategory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(padding_topLeftCategory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         padding_right.setBackground(new java.awt.Color(255, 255, 255));
+        padding_right.setOpaque(false);
 
         btn_newCategory.setBackground(new java.awt.Color(255, 255, 255));
         btn_newCategory.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
         btn_newCategory.setText("Neu");
         btn_newCategory.setFocusable(false);
+        btn_newCategory.setPreferredSize(new java.awt.Dimension(75, 35));
         btn_newCategory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_newCategoryActionPerformed(evt);
@@ -288,6 +288,9 @@ public class View extends JFrame {
         btn_editCategory.setText("Bearbeiten");
         btn_editCategory.setEnabled(false);
         btn_editCategory.setFocusable(false);
+        btn_editCategory.setMaximumSize(new java.awt.Dimension(120, 33));
+        btn_editCategory.setMinimumSize(new java.awt.Dimension(120, 33));
+        btn_editCategory.setPreferredSize(new java.awt.Dimension(130, 35));
         btn_editCategory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_editCategoryActionPerformed(evt);
@@ -298,7 +301,9 @@ public class View extends JFrame {
         btn_cancelCategory.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
         btn_cancelCategory.setText("Abbrechen");
         btn_cancelCategory.setFocusable(false);
-        btn_cancelCategory.setPreferredSize(new java.awt.Dimension(73, 39));
+        btn_cancelCategory.setMaximumSize(new java.awt.Dimension(130, 33));
+        btn_cancelCategory.setMinimumSize(new java.awt.Dimension(130, 33));
+        btn_cancelCategory.setPreferredSize(new java.awt.Dimension(130, 35));
         btn_cancelCategory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_cancelCategoryActionPerformed(evt);
@@ -310,6 +315,7 @@ public class View extends JFrame {
         btn_deleteCategory.setText("Löschen");
         btn_deleteCategory.setEnabled(false);
         btn_deleteCategory.setFocusable(false);
+        btn_deleteCategory.setPreferredSize(new java.awt.Dimension(110, 35));
         btn_deleteCategory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_deleteCategoryActionPerformed(evt);
@@ -343,6 +349,7 @@ public class View extends JFrame {
         btn_addCategory.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
         btn_addCategory.setText("Hinzufügen");
         btn_addCategory.setFocusable(false);
+        btn_addCategory.setPreferredSize(new java.awt.Dimension(130, 35));
         btn_addCategory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_addCategoryActionPerformed(evt);
@@ -354,14 +361,14 @@ public class View extends JFrame {
         pnl_createCategoryLayout.setHorizontalGroup(
             pnl_createCategoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_createCategoryLayout.createSequentialGroup()
-                .addGap(0, 364, Short.MAX_VALUE)
-                .addComponent(btn_addCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 399, Short.MAX_VALUE)
+                .addComponent(btn_addCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnl_createCategoryLayout.setVerticalGroup(
             pnl_createCategoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_createCategoryLayout.createSequentialGroup()
-                .addComponent(btn_addCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 61, Short.MAX_VALUE))
+                .addComponent(btn_addCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 65, Short.MAX_VALUE))
         );
 
         pnl_buttonChooser.add(pnl_createCategory, "card2");
@@ -372,6 +379,9 @@ public class View extends JFrame {
         btn_editSelectedCategory.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
         btn_editSelectedCategory.setText("Ändern");
         btn_editSelectedCategory.setFocusable(false);
+        btn_editSelectedCategory.setMaximumSize(new java.awt.Dimension(130, 35));
+        btn_editSelectedCategory.setMinimumSize(new java.awt.Dimension(130, 35));
+        btn_editSelectedCategory.setPreferredSize(new java.awt.Dimension(130, 35));
         btn_editSelectedCategory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_editSelectedCategoryActionPerformed(evt);
@@ -383,14 +393,14 @@ public class View extends JFrame {
         pnl_editCategoryLayout.setHorizontalGroup(
             pnl_editCategoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_editCategoryLayout.createSequentialGroup()
-                .addGap(0, 364, Short.MAX_VALUE)
-                .addComponent(btn_editSelectedCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 399, Short.MAX_VALUE)
+                .addComponent(btn_editSelectedCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnl_editCategoryLayout.setVerticalGroup(
             pnl_editCategoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_editCategoryLayout.createSequentialGroup()
-                .addComponent(btn_editSelectedCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 61, Short.MAX_VALUE))
+                .addComponent(btn_editSelectedCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 65, Short.MAX_VALUE))
         );
 
         pnl_buttonChooser.add(pnl_editCategory, "card3");
@@ -401,13 +411,13 @@ public class View extends JFrame {
         padding_rightLayout.setHorizontalGroup(
             padding_rightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(padding_rightLayout.createSequentialGroup()
-                .addComponent(btn_newCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_newCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_editCategory)
+                .addComponent(btn_editCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_deleteCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_deleteCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_cancelCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btn_cancelCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(txt_category)
             .addComponent(pnl_buttonChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -417,15 +427,28 @@ public class View extends JFrame {
                 .addComponent(txt_category, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnl_buttonChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
                 .addGroup(padding_rightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_cancelCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_deleteCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_editCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_newCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btn_cancelCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_deleteCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_editCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_newCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         btn_cancelCategory.setVisible(false);
+
+        pnl_placeholderCategory.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout pnl_placeholderCategoryLayout = new javax.swing.GroupLayout(pnl_placeholderCategory);
+        pnl_placeholderCategory.setLayout(pnl_placeholderCategoryLayout);
+        pnl_placeholderCategoryLayout.setHorizontalGroup(
+            pnl_placeholderCategoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        pnl_placeholderCategoryLayout.setVerticalGroup(
+            pnl_placeholderCategoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout pnl_categoryListLayout = new javax.swing.GroupLayout(pnl_categoryList);
         pnl_categoryList.setLayout(pnl_categoryListLayout);
@@ -436,6 +459,7 @@ public class View extends JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(padding_right, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(padding_top, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnl_placeholderCategory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnl_categoryListLayout.setVerticalGroup(
             pnl_categoryListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -443,15 +467,19 @@ public class View extends JFrame {
                 .addContainerGap()
                 .addComponent(padding_top, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnl_placeholderCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnl_categoryListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(padding_right, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(jScrollPane1)
+                    .addComponent(padding_right, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pnl_content.add(pnl_categoryList, "card3");
 
         pnl_questionList.setBackground(new java.awt.Color(255, 255, 255));
+
+        pnl_placeholderQuestion.setBackground(new java.awt.Color(255, 255, 255));
+        pnl_placeholderQuestion.setPreferredSize(new java.awt.Dimension(450, 40));
 
         cbo_category2showQuestions.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
         cbo_category2showQuestions.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -460,6 +488,21 @@ public class View extends JFrame {
                 cbo_category2showQuestionsActionPerformed(evt);
             }
         });
+
+        javax.swing.GroupLayout pnl_placeholderQuestionLayout = new javax.swing.GroupLayout(pnl_placeholderQuestion);
+        pnl_placeholderQuestion.setLayout(pnl_placeholderQuestionLayout);
+        pnl_placeholderQuestionLayout.setHorizontalGroup(
+            pnl_placeholderQuestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_placeholderQuestionLayout.createSequentialGroup()
+                .addComponent(cbo_category2showQuestions, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        pnl_placeholderQuestionLayout.setVerticalGroup(
+            pnl_placeholderQuestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_placeholderQuestionLayout.createSequentialGroup()
+                .addGap(0, 10, Short.MAX_VALUE)
+                .addComponent(cbo_category2showQuestions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         lst_questions.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
         lst_questions.setModel(new javax.swing.AbstractListModel() {
@@ -488,16 +531,15 @@ public class View extends JFrame {
         padding_topLeftLayout.setHorizontalGroup(
             padding_topLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(padding_topLeftLayout.createSequentialGroup()
-                .addGap(187, 187, 187)
+                .addGap(176, 176, 176)
                 .addComponent(lbl_headlineQuestions)
-                .addContainerGap(198, Short.MAX_VALUE))
+                .addContainerGap(197, Short.MAX_VALUE))
         );
         padding_topLeftLayout.setVerticalGroup(
             padding_topLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(padding_topLeftLayout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(lbl_headlineQuestions)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         padding_topRight.setBackground(new java.awt.Color(255, 255, 255));
@@ -512,14 +554,13 @@ public class View extends JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, padding_topRightLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lbl_headlineAnswers)
-                .addGap(182, 182, 182))
+                .addGap(183, 183, 183))
         );
         padding_topRightLayout.setVerticalGroup(
             padding_topRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(padding_topRightLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbl_headlineAnswers)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(lbl_headlineAnswers, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 33, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout padding_topQuestionsLayout = new javax.swing.GroupLayout(padding_topQuestions);
@@ -560,7 +601,7 @@ public class View extends JFrame {
             pnl_aAnswerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_aAnswerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbl_aAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                .addComponent(lbl_aAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -604,7 +645,7 @@ public class View extends JFrame {
             pnl_cAnswerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_cAnswerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbl_cAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
+                .addComponent(lbl_cAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -626,7 +667,7 @@ public class View extends JFrame {
             pnl_dAnswerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_dAnswerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbl_dAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
+                .addComponent(lbl_dAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -642,54 +683,59 @@ public class View extends JFrame {
         pnl_answerListLayout.setVerticalGroup(
             pnl_answerListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_answerListLayout.createSequentialGroup()
-                .addComponent(pnl_aAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
+                .addComponent(pnl_aAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnl_bAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+                .addComponent(pnl_bAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnl_cAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+                .addComponent(pnl_cAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnl_dAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnl_dAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        btn_editAnswer.setBackground(new java.awt.Color(255, 255, 255));
-        btn_editAnswer.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
-        btn_editAnswer.setText("Bearbeiten");
-        btn_editAnswer.setFocusable(false);
-        btn_editAnswer.addActionListener(new java.awt.event.ActionListener() {
+        btn_editQuestion.setBackground(new java.awt.Color(255, 255, 255));
+        btn_editQuestion.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        btn_editQuestion.setText("Bearbeiten");
+        btn_editQuestion.setEnabled(false);
+        btn_editQuestion.setFocusable(false);
+        btn_editQuestion.setPreferredSize(new java.awt.Dimension(130, 35));
+        btn_editQuestion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_editAnswerActionPerformed(evt);
+                btn_editQuestionActionPerformed(evt);
             }
         });
 
-        btn_deleteAnswer.setBackground(new java.awt.Color(255, 255, 255));
-        btn_deleteAnswer.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
-        btn_deleteAnswer.setText("Löschen");
-        btn_deleteAnswer.setFocusable(false);
-        btn_deleteAnswer.addActionListener(new java.awt.event.ActionListener() {
+        btn_deleteQuestion.setBackground(new java.awt.Color(255, 255, 255));
+        btn_deleteQuestion.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        btn_deleteQuestion.setText("Löschen");
+        btn_deleteQuestion.setEnabled(false);
+        btn_deleteQuestion.setFocusable(false);
+        btn_deleteQuestion.setPreferredSize(new java.awt.Dimension(110, 35));
+        btn_deleteQuestion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_deleteAnswerActionPerformed(evt);
+                btn_deleteQuestionActionPerformed(evt);
             }
         });
 
-        btn_readyAnswer.setBackground(new java.awt.Color(255, 255, 255));
-        btn_readyAnswer.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
-        btn_readyAnswer.setText("Fertig");
-        btn_readyAnswer.setFocusable(false);
-        btn_readyAnswer.setPreferredSize(new java.awt.Dimension(73, 39));
-        btn_readyAnswer.addActionListener(new java.awt.event.ActionListener() {
+        btn_cancelQuestion.setBackground(new java.awt.Color(255, 255, 255));
+        btn_cancelQuestion.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        btn_cancelQuestion.setText("Abbrechen");
+        btn_cancelQuestion.setFocusable(false);
+        btn_cancelQuestion.setPreferredSize(new java.awt.Dimension(130, 35));
+        btn_cancelQuestion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_readyAnswerActionPerformed(evt);
+                btn_cancelQuestionActionPerformed(evt);
             }
         });
 
-        btn_newAnswer.setBackground(new java.awt.Color(255, 255, 255));
-        btn_newAnswer.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
-        btn_newAnswer.setText("Neu");
-        btn_newAnswer.setFocusable(false);
-        btn_newAnswer.addActionListener(new java.awt.event.ActionListener() {
+        btn_newQuestion.setBackground(new java.awt.Color(255, 255, 255));
+        btn_newQuestion.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        btn_newQuestion.setText("Neu");
+        btn_newQuestion.setFocusable(false);
+        btn_newQuestion.setPreferredSize(new java.awt.Dimension(75, 35));
+        btn_newQuestion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_newAnswerActionPerformed(evt);
+                btn_newQuestionActionPerformed(evt);
             }
         });
 
@@ -698,13 +744,13 @@ public class View extends JFrame {
         padding_right1Layout.setHorizontalGroup(
             padding_right1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(padding_right1Layout.createSequentialGroup()
-                .addComponent(btn_newAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_newQuestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_editAnswer)
+                .addComponent(btn_editQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_deleteAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
-                .addComponent(btn_readyAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btn_deleteQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addComponent(btn_cancelQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(pnl_answerList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         padding_right1Layout.setVerticalGroup(
@@ -713,11 +759,13 @@ public class View extends JFrame {
                 .addComponent(pnl_answerList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(padding_right1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_readyAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_deleteAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_editAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_newAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btn_cancelQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_deleteQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_editQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_newQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
+
+        btn_cancelQuestion.setVisible(false);
 
         javax.swing.GroupLayout pnl_questionListLayout = new javax.swing.GroupLayout(pnl_questionList);
         pnl_questionList.setLayout(pnl_questionListLayout);
@@ -725,24 +773,22 @@ public class View extends JFrame {
             pnl_questionListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(padding_topQuestions, javax.swing.GroupLayout.DEFAULT_SIZE, 985, Short.MAX_VALUE)
             .addGroup(pnl_questionListLayout.createSequentialGroup()
-                .addGroup(pnl_questionListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(cbo_category2showQuestions, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(padding_right1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(pnl_placeholderQuestion, javax.swing.GroupLayout.DEFAULT_SIZE, 985, Short.MAX_VALUE)
         );
         pnl_questionListLayout.setVerticalGroup(
             pnl_questionListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_questionListLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(padding_topQuestions, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
-                .addComponent(cbo_category2showQuestions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(padding_topQuestions, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnl_placeholderQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnl_questionListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(padding_right1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)))
         );
 
         pnl_content.add(pnl_questionList, "card4");
@@ -857,7 +903,7 @@ public class View extends JFrame {
                 .addContainerGap()
                 .addGroup(pnl_leftQuestionEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txt_content)
-                    .addComponent(txt_aAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
+                    .addComponent(txt_aAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
                     .addComponent(txt_bAnswer)
                     .addComponent(txt_cAnswer)
                     .addComponent(txt_dAnswer)
@@ -882,7 +928,7 @@ public class View extends JFrame {
                 .addComponent(txt_dAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btn_readyQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pnl_rightQuestionEdit.setBackground(new java.awt.Color(255, 255, 255));
@@ -961,9 +1007,11 @@ public class View extends JFrame {
                 .addComponent(padding_topQuestionEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnl_questionEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnl_leftQuestionEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnl_rightQuestionEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(pnl_questionEditLayout.createSequentialGroup()
+                        .addComponent(pnl_rightQuestionEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 16, Short.MAX_VALUE))
+                    .addComponent(pnl_leftQuestionEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pnl_content.add(pnl_questionEdit, "card7");
@@ -1114,10 +1162,6 @@ public class View extends JFrame {
 
         pnl_content.add(pnl_options, "card5");
 
-        lbl_navigation.setFont(new java.awt.Font("Calibri Light", 0, 26)); // NOI18N
-        lbl_navigation.setForeground(new java.awt.Color(51, 153, 255));
-        lbl_navigation.setText("Übersicht");
-
         javax.swing.GroupLayout pnl_templateLayout = new javax.swing.GroupLayout(pnl_template);
         pnl_template.setLayout(pnl_templateLayout);
         pnl_templateLayout.setHorizontalGroup(
@@ -1127,15 +1171,13 @@ public class View extends JFrame {
                 .addGroup(pnl_templateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnl_content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnl_templateLayout.createSequentialGroup()
-                        .addComponent(btn_start, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_start, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_categories, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_categories, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_questions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lbl_navigation)
+                        .addComponent(btn_questions, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_options, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btn_options, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         pnl_templateLayout.setVerticalGroup(
@@ -1143,12 +1185,10 @@ public class View extends JFrame {
             .addGroup(pnl_templateLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnl_templateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(pnl_templateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(pnl_templateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btn_start, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_categories, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_questions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(lbl_navigation, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(pnl_templateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btn_start, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_categories, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_questions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btn_options, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnl_content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1185,12 +1225,6 @@ public class View extends JFrame {
         }
     }
 
-    private void disableAddingCategory() {
-        txt_category.setVisible(false);
-        pnl_buttonChooser.setVisible(false);
-        btn_cancelCategory.setVisible(false);
-    }
-
     private void enableEditingCategory() {
         CardLayout cl = (CardLayout) (pnl_buttonChooser.getLayout());
         cl.first(pnl_buttonChooser);
@@ -1204,19 +1238,30 @@ public class View extends JFrame {
         }
     }
     
-    public void disableEditingCategory(){
+    private void enableListCategory(){
         txt_category.setVisible(false);
         pnl_buttonChooser.setVisible(false);
         btn_cancelCategory.setVisible(false);
     }
 
-    public void enableEditingQuestion() {
+    private void enableAddingQuestion(){
         CardLayout cl = (CardLayout) (pnl_content.getLayout());
         cl.first(pnl_content);
         cl.next(pnl_content);
         cl.next(pnl_content);
         cl.next(pnl_content);
-        lbl_navigation.setText("Frage bearbeiten");
+        setInActiveAllButtons();
+        setActive(btn_questions);
+        globalQuestion = null;
+        updateCategoryInQuestionModel();
+    }
+    
+    private void enableEditingQuestion() {
+        CardLayout cl = (CardLayout) (pnl_content.getLayout());
+        cl.first(pnl_content);
+        cl.next(pnl_content);
+        cl.next(pnl_content);
+        cl.next(pnl_content);
         txt_content.setForeground(Color.black);
         txt_aAnswer.setForeground(Color.black);
         txt_bAnswer.setForeground(Color.black);
@@ -1225,12 +1270,22 @@ public class View extends JFrame {
         setInActiveAllButtons();
         setActive(btn_questions);
     }
+    
+    private void enableListQuestion(){
+        CardLayout cl = (CardLayout) (pnl_content.getLayout());
+        cl.first(pnl_content);
+        cl.next(pnl_content);
+        cl.next(pnl_content);
+        setInActiveAllButtons();
+        setActive(btn_questions);
+        updateQuestionModel();
+    }
 
-    public void setActive(javax.swing.JButton btn) {
+    private void setActive(javax.swing.JButton btn) {
         btn.setBackground(new java.awt.Color(102, 204, 255));
     }
 
-    public void setInActiveAllButtons() {
+    private void setInActiveAllButtons() {
         btn_start.setBackground(new java.awt.Color(255, 255, 255));
         btn_categories.setBackground(new java.awt.Color(255, 255, 255));
         btn_questions.setBackground(new java.awt.Color(255, 255, 255));
@@ -1242,7 +1297,6 @@ public class View extends JFrame {
         CardLayout cl = (CardLayout) (pnl_content.getLayout());
         cl.first(pnl_content);
         cl.next(pnl_content);
-        lbl_navigation.setText("Kategorien");
         setInActiveAllButtons();
         setActive(btn_categories);
         updateCategoryModel();
@@ -1277,6 +1331,11 @@ public class View extends JFrame {
             lstModel.addElement(question);
         }
         lst_questions.setModel(lstModel);
+        pnl_aAnswer.setVisible(false);
+        pnl_bAnswer.setVisible(false);
+        pnl_cAnswer.setVisible(false);
+        pnl_dAnswer.setVisible(false);
+        padding_topRight.setVisible(false);
     }
 
     private void updateCategoryInQuestionModel() {
@@ -1289,14 +1348,7 @@ public class View extends JFrame {
     }
 
     private void btn_questionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_questionsActionPerformed
-        CardLayout cl = (CardLayout) (pnl_content.getLayout());
-        cl.first(pnl_content);
-        cl.next(pnl_content);
-        cl.next(pnl_content);
-        lbl_navigation.setText("Fragen");
-        setInActiveAllButtons();
-        setActive(btn_questions);
-        updateQuestionModel();
+        enableListQuestion();
     }//GEN-LAST:event_btn_questionsActionPerformed
 
     private void btn_optionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_optionsActionPerformed
@@ -1306,7 +1358,6 @@ public class View extends JFrame {
         cl.next(pnl_content);
         cl.next(pnl_content);
         cl.next(pnl_content);
-        lbl_navigation.setText("Einstellungen");
         setInActiveAllButtons();
         setActive(btn_options);
     }//GEN-LAST:event_btn_optionsActionPerformed
@@ -1314,14 +1365,13 @@ public class View extends JFrame {
     private void btn_startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_startActionPerformed
         CardLayout cl = (CardLayout) (pnl_content.getLayout());
         cl.first(pnl_content);
-        lbl_navigation.setText("Übersicht");
         setInActiveAllButtons();
         setActive(btn_start);
     }//GEN-LAST:event_btn_startActionPerformed
 
-    private void btn_readyAnswerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_readyAnswerActionPerformed
+    private void btn_cancelQuestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelQuestionActionPerformed
 
-    }//GEN-LAST:event_btn_readyAnswerActionPerformed
+    }//GEN-LAST:event_btn_cancelQuestionActionPerformed
 
     private void txt_dbHostFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_dbHostFocusGained
         if (txt_dbHost.getText().equals("Host")) {
@@ -1392,27 +1442,18 @@ public class View extends JFrame {
 
     }//GEN-LAST:event_pwd_dbPasswordFocusLost
 
-    private void btn_deleteAnswerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteAnswerActionPerformed
+    private void btn_deleteQuestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteQuestionActionPerformed
         Object value = lst_questions.getSelectedValue();
         if (value != null) {
             Question question = (Question) value;
             connection.deleteQuestion(question);
             updateQuestionModel();
         }
-    }//GEN-LAST:event_btn_deleteAnswerActionPerformed
+    }//GEN-LAST:event_btn_deleteQuestionActionPerformed
 
-    private void btn_newAnswerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_newAnswerActionPerformed
-        CardLayout cl = (CardLayout) (pnl_content.getLayout());
-        cl.first(pnl_content);
-        cl.next(pnl_content);
-        cl.next(pnl_content);
-        cl.next(pnl_content);
-        lbl_navigation.setText("Neue Frage");
-        setInActiveAllButtons();
-        setActive(btn_questions);
-        globalQuestion = null;
-        updateCategoryInQuestionModel();
-    }//GEN-LAST:event_btn_newAnswerActionPerformed
+    private void btn_newQuestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_newQuestionActionPerformed
+        enableAddingQuestion();
+    }//GEN-LAST:event_btn_newQuestionActionPerformed
 
     private void txt_contentFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_contentFocusGained
         if (txt_content.getText().equals("Frage")) {
@@ -1511,19 +1552,7 @@ public class View extends JFrame {
             }
             globalQuestion.setCategory_id(globalCategory.getId());
             connection.updateQuestion(globalQuestion);
-            CardLayout cl = (CardLayout) (pnl_content.getLayout());
-            cl.first(pnl_content);
-            cl.next(pnl_content);
-            cl.next(pnl_content);
-            lbl_navigation.setText("Fragen");
-            setInActiveAllButtons();
-            setActive(btn_questions);
-            updateQuestionModel();
-//            txt_category.setVisible(false);
-//            txt_category.setForeground(new java.awt.Color(204, 204, 204));
-//            txt_category.setText("Kategorie");
-//            btn_editSelectedCategory.setVisible(false);
-//            updateCategoryModel();
+            enableListQuestion();
             System.out.format("Bereits vorhanden %d", globalQuestion.getId());
         } else {
             // Neue Frage
@@ -1536,14 +1565,7 @@ public class View extends JFrame {
             question.setdAnswer(txt_dAnswer.getText());
             question.setCategory_id(globalCategory.getId());
             connection.createQuestion(question);
-            CardLayout cl = (CardLayout) (pnl_content.getLayout());
-            cl.first(pnl_content);
-            cl.next(pnl_content);
-            cl.next(pnl_content);
-            lbl_navigation.setText("Fragen");
-            setInActiveAllButtons();
-            setActive(btn_questions);
-            updateQuestionModel();
+            enableListQuestion();
             System.out.println("Neue Frage");
         }
     }//GEN-LAST:event_btn_readyQuestionActionPerformed
@@ -1564,8 +1586,7 @@ public class View extends JFrame {
     }//GEN-LAST:event_btn_newCategoryActionPerformed
 
     private void btn_cancelCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelCategoryActionPerformed
-        txt_category.setVisible(false);
-        pnl_buttonChooser.setVisible(false);
+        enableListCategory();
     }//GEN-LAST:event_btn_cancelCategoryActionPerformed
 
     private void btn_deleteCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteCategoryActionPerformed
@@ -1601,7 +1622,7 @@ public class View extends JFrame {
         category.setTitle(txt_category.getText());
         connection.createCategory(category);
         updateCategoryModel();
-        disableAddingCategory();
+        enableListCategory();
     }//GEN-LAST:event_btn_addCategoryActionPerformed
 
     private void btn_editCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editCategoryActionPerformed
@@ -1613,7 +1634,7 @@ public class View extends JFrame {
         }
     }//GEN-LAST:event_btn_editCategoryActionPerformed
 
-    private void btn_editAnswerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editAnswerActionPerformed
+    private void btn_editQuestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editQuestionActionPerformed
         Object value = lst_questions.getSelectedValue();
         if (value != null) {
             globalQuestion = (Question) value;
@@ -1631,7 +1652,7 @@ public class View extends JFrame {
             cbo_category.setSelectedItem(globalCategory);
             enableEditingQuestion();
         }
-    }//GEN-LAST:event_btn_editAnswerActionPerformed
+    }//GEN-LAST:event_btn_editQuestionActionPerformed
 
     private void lst_categoriesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lst_categoriesValueChanged
         btn_editCategory.setEnabled(true);
@@ -1645,7 +1666,7 @@ public class View extends JFrame {
         txt_category.setForeground(new java.awt.Color(204, 204, 204));
         txt_category.setText("Kategorie");
         btn_editSelectedCategory.setVisible(false);
-        disableEditingCategory();
+        enableListCategory();
         updateCategoryModel();
     }//GEN-LAST:event_btn_editSelectedCategoryActionPerformed
 
@@ -1666,10 +1687,17 @@ public class View extends JFrame {
         Object value = lst_questions.getSelectedValue();
         if (value != null) {
             globalQuestion = (Question) value;
+            pnl_aAnswer.setVisible(true);
+            pnl_bAnswer.setVisible(true);
+            pnl_cAnswer.setVisible(true);
+            pnl_dAnswer.setVisible(true);
+            padding_topRight.setVisible(true);
             lbl_aAnswer.setText(globalQuestion.getaAnswer());
             lbl_bAnswer.setText(globalQuestion.getbAnswer());
             lbl_cAnswer.setText(globalQuestion.getcAnswer());
             lbl_dAnswer.setText(globalQuestion.getdAnswer());
+            btn_editQuestion.setEnabled(true);
+            btn_deleteQuestion.setEnabled(true);
         }
     }//GEN-LAST:event_lst_questionsValueChanged
 
@@ -1677,17 +1705,17 @@ public class View extends JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_addCategory;
     private javax.swing.JButton btn_cancelCategory;
+    private javax.swing.JButton btn_cancelQuestion;
     private javax.swing.JButton btn_categories;
-    private javax.swing.JButton btn_deleteAnswer;
     private javax.swing.JButton btn_deleteCategory;
-    private javax.swing.JButton btn_editAnswer;
+    private javax.swing.JButton btn_deleteQuestion;
     private javax.swing.JButton btn_editCategory;
+    private javax.swing.JButton btn_editQuestion;
     private javax.swing.JButton btn_editSelectedCategory;
-    private javax.swing.JButton btn_newAnswer;
     private javax.swing.JButton btn_newCategory;
+    private javax.swing.JButton btn_newQuestion;
     private javax.swing.JButton btn_options;
     private javax.swing.JButton btn_questions;
-    private javax.swing.JButton btn_readyAnswer;
     private javax.swing.JButton btn_readyOptions;
     private javax.swing.JButton btn_readyQuestion;
     private javax.swing.JButton btn_start;
@@ -1707,7 +1735,6 @@ public class View extends JFrame {
     private javax.swing.JLabel lbl_headlineDatabaseConnecation;
     private javax.swing.JLabel lbl_headlineQuestions;
     private javax.swing.JLabel lbl_headlineQuestions1;
-    private javax.swing.JLabel lbl_navigation;
     private javax.swing.JList lst_categories;
     private javax.swing.JList lst_questions;
     private javax.swing.JPanel padding_left1;
@@ -1732,6 +1759,8 @@ public class View extends JFrame {
     private javax.swing.JPanel pnl_editCategory;
     private javax.swing.JPanel pnl_leftQuestionEdit;
     private javax.swing.JPanel pnl_options;
+    private javax.swing.JPanel pnl_placeholderCategory;
+    private javax.swing.JPanel pnl_placeholderQuestion;
     private javax.swing.JPanel pnl_questionEdit;
     private javax.swing.JPanel pnl_questionList;
     private javax.swing.JPanel pnl_rightQuestionEdit;

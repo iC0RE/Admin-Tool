@@ -49,15 +49,13 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="pnl_content" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <Component id="btn_start" min="-2" max="-2" attributes="0"/>
+                          <Component id="btn_start" min="-2" pref="130" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btn_categories" min="-2" max="-2" attributes="0"/>
+                          <Component id="btn_categories" min="-2" pref="130" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btn_questions" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="lbl_navigation" min="-2" max="-2" attributes="0"/>
+                          <Component id="btn_questions" min="-2" pref="130" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="btn_options" min="-2" pref="130" max="-2" attributes="0"/>
+                          <Component id="btn_options" min="-2" pref="150" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -69,13 +67,10 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="btn_start" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btn_categories" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btn_questions" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="lbl_navigation" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btn_start" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btn_categories" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btn_questions" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="btn_options" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -213,7 +208,7 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="493" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="499" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lbl_Copyright" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -268,6 +263,7 @@
                           <Component id="padding_right" max="32767" attributes="0"/>
                       </Group>
                       <Component id="padding_top" alignment="0" max="32767" attributes="0"/>
+                      <Component id="pnl_placeholderCategory" alignment="0" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -276,11 +272,12 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="padding_top" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="padding_right" max="32767" attributes="0"/>
-                              <Component id="jScrollPane1" pref="379" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="pnl_placeholderCategory" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jScrollPane1" max="32767" attributes="0"/>
+                              <Component id="padding_right" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -332,10 +329,7 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="padding_topLeftCategory" max="32767" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="padding_topLeftCategory" alignment="0" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -353,16 +347,15 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
                                   <Component id="lbl_headlineQuestions1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="136" max="32767" attributes="0"/>
+                                  <EmptySpace pref="113" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
                                   <Component id="lbl_headlineQuestions1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="48" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="33" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -385,19 +378,20 @@
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
+                    <Property name="opaque" type="boolean" value="false"/>
                   </Properties>
 
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="btn_newCategory" min="-2" pref="69" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="btn_newCategory" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btn_editCategory" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btn_deleteCategory" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="btn_deleteCategory" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btn_cancelCategory" min="-2" pref="120" max="-2" attributes="0"/>
+                              <Component id="btn_cancelCategory" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="txt_category" alignment="0" max="32767" attributes="0"/>
                           <Component id="pnl_buttonChooser" alignment="0" max="32767" attributes="0"/>
@@ -409,12 +403,12 @@
                               <Component id="txt_category" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="pnl_buttonChooser" min="-2" pref="100" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="215" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="btn_cancelCategory" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
-                                  <Component id="btn_deleteCategory" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
-                                  <Component id="btn_editCategory" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
-                                  <Component id="btn_newCategory" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                                  <Component id="btn_cancelCategory" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btn_deleteCategory" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btn_editCategory" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btn_newCategory" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -431,6 +425,9 @@
                         </Property>
                         <Property name="text" type="java.lang.String" value="Neu"/>
                         <Property name="focusable" type="boolean" value="false"/>
+                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[75, 35]"/>
+                        </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_newCategoryActionPerformed"/>
@@ -447,6 +444,15 @@
                         <Property name="text" type="java.lang.String" value="Bearbeiten"/>
                         <Property name="enabled" type="boolean" value="false"/>
                         <Property name="focusable" type="boolean" value="false"/>
+                        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[120, 33]"/>
+                        </Property>
+                        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[120, 33]"/>
+                        </Property>
+                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[130, 35]"/>
+                        </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_editCategoryActionPerformed"/>
@@ -462,8 +468,14 @@
                         </Property>
                         <Property name="text" type="java.lang.String" value="Abbrechen"/>
                         <Property name="focusable" type="boolean" value="false"/>
+                        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[130, 33]"/>
+                        </Property>
+                        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[130, 33]"/>
+                        </Property>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[73, 39]"/>
+                          <Dimension value="[130, 35]"/>
                         </Property>
                       </Properties>
                       <Events>
@@ -484,6 +496,9 @@
                         <Property name="text" type="java.lang.String" value="L&#xf6;schen"/>
                         <Property name="enabled" type="boolean" value="false"/>
                         <Property name="focusable" type="boolean" value="false"/>
+                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[110, 35]"/>
+                        </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_deleteCategoryActionPerformed"/>
@@ -533,16 +548,16 @@
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace min="0" pref="364" max="32767" attributes="0"/>
-                                      <Component id="btn_addCategory" min="-2" pref="121" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="399" max="32767" attributes="0"/>
+                                      <Component id="btn_addCategory" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
                             <DimensionLayout dim="1">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="btn_addCategory" min="-2" pref="39" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="61" max="32767" attributes="0"/>
+                                      <Component id="btn_addCategory" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="65" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -558,6 +573,9 @@
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Hinzuf&#xfc;gen"/>
                                 <Property name="focusable" type="boolean" value="false"/>
+                                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                                  <Dimension value="[130, 35]"/>
+                                </Property>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_addCategoryActionPerformed"/>
@@ -584,16 +602,16 @@
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace min="0" pref="364" max="32767" attributes="0"/>
-                                      <Component id="btn_editSelectedCategory" min="-2" pref="121" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="399" max="32767" attributes="0"/>
+                                      <Component id="btn_editSelectedCategory" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
                             <DimensionLayout dim="1">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="btn_editSelectedCategory" min="-2" pref="39" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="61" max="32767" attributes="0"/>
+                                      <Component id="btn_editSelectedCategory" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="65" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -609,6 +627,15 @@
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="&#xc4;ndern"/>
                                 <Property name="focusable" type="boolean" value="false"/>
+                                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                                  <Dimension value="[130, 35]"/>
+                                </Property>
+                                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                                  <Dimension value="[130, 35]"/>
+                                </Property>
+                                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                                  <Dimension value="[130, 35]"/>
+                                </Property>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_editSelectedCategoryActionPerformed"/>
@@ -619,6 +646,26 @@
                       </SubComponents>
                     </Container>
                   </SubComponents>
+                </Container>
+                <Container class="javax.swing.JPanel" name="pnl_placeholderCategory">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                    </Property>
+                  </Properties>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <EmptySpace min="0" pref="40" max="32767" attributes="0"/>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
                 </Container>
               </SubComponents>
             </Container>
@@ -637,53 +684,81 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="padding_topQuestions" alignment="0" pref="985" max="32767" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="cbo_category2showQuestions" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jScrollPane2" alignment="0" pref="450" max="32767" attributes="0"/>
-                          </Group>
+                      <Component id="padding_topQuestions" pref="985" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="jScrollPane2" min="-2" pref="450" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="padding_right1" max="32767" attributes="0"/>
                       </Group>
+                      <Component id="pnl_placeholderQuestion" alignment="0" pref="985" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="padding_topQuestions" min="-2" pref="52" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                          <Component id="cbo_category2showQuestions" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="padding_topQuestions" min="-2" pref="65" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="pnl_placeholderQuestion" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="padding_right1" max="32767" attributes="0"/>
-                              <Component id="jScrollPane2" pref="370" max="32767" attributes="0"/>
+                              <Component id="jScrollPane2" pref="386" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JComboBox" name="cbo_category2showQuestions">
+                <Container class="javax.swing.JPanel" name="pnl_placeholderQuestion">
                   <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Calibri Light" size="18" style="0"/>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="4">
-                        <StringItem index="0" value="Item 1"/>
-                        <StringItem index="1" value="Item 2"/>
-                        <StringItem index="2" value="Item 3"/>
-                        <StringItem index="3" value="Item 4"/>
-                      </StringArray>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[450, 40]"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbo_category2showQuestionsActionPerformed"/>
-                  </Events>
-                </Component>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="cbo_category2showQuestions" min="-2" pref="450" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="0" pref="10" max="32767" attributes="0"/>
+                              <Component id="cbo_category2showQuestions" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Component class="javax.swing.JComboBox" name="cbo_category2showQuestions">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Calibri Light" size="18" style="0"/>
+                        </Property>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="4">
+                            <StringItem index="0" value="Item 1"/>
+                            <StringItem index="1" value="Item 2"/>
+                            <StringItem index="2" value="Item 3"/>
+                            <StringItem index="3" value="Item 4"/>
+                          </StringArray>
+                        </Property>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbo_category2showQuestionsActionPerformed"/>
+                      </Events>
+                    </Component>
+                  </SubComponents>
+                </Container>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane2">
                   <AuxValues>
                     <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -737,7 +812,7 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="padding_topRight" max="32767" attributes="0"/>
-                          <Component id="padding_topLeft" max="32767" attributes="0"/>
+                          <Component id="padding_topLeft" alignment="0" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -753,18 +828,17 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="187" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="176" max="-2" attributes="0"/>
                                   <Component id="lbl_headlineQuestions" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="198" max="32767" attributes="0"/>
+                                  <EmptySpace pref="197" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
                                   <Component id="lbl_headlineQuestions" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -793,16 +867,15 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="lbl_headlineAnswers" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="182" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="183" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="lbl_headlineAnswers" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="lbl_headlineAnswers" min="-2" pref="32" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="33" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -831,13 +904,13 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="btn_newAnswer" min="-2" pref="69" max="-2" attributes="0"/>
+                              <Component id="btn_newQuestion" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btn_editAnswer" min="-2" max="-2" attributes="0"/>
+                              <Component id="btn_editQuestion" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btn_deleteAnswer" min="-2" pref="100" max="-2" attributes="0"/>
-                              <EmptySpace pref="112" max="32767" attributes="0"/>
-                              <Component id="btn_readyAnswer" min="-2" pref="81" max="-2" attributes="0"/>
+                              <Component id="btn_deleteQuestion" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="72" max="32767" attributes="0"/>
+                              <Component id="btn_cancelQuestion" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="pnl_answerList" max="32767" attributes="0"/>
                       </Group>
@@ -848,10 +921,10 @@
                               <Component id="pnl_answerList" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="btn_readyAnswer" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
-                                  <Component id="btn_deleteAnswer" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
-                                  <Component id="btn_editAnswer" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
-                                  <Component id="btn_newAnswer" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                                  <Component id="btn_cancelQuestion" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btn_deleteQuestion" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btn_editQuestion" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btn_newQuestion" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -877,13 +950,13 @@
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="pnl_aAnswer" pref="79" max="32767" attributes="0"/>
+                                  <Component id="pnl_aAnswer" pref="82" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="pnl_bAnswer" pref="77" max="32767" attributes="0"/>
+                                  <Component id="pnl_bAnswer" pref="81" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="pnl_cAnswer" pref="77" max="32767" attributes="0"/>
+                                  <Component id="pnl_cAnswer" pref="81" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="pnl_dAnswer" max="32767" attributes="0"/>
+                                  <Component id="pnl_dAnswer" pref="80" max="32767" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -914,7 +987,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="lbl_aAnswer" pref="56" max="32767" attributes="0"/>
+                                      <Component id="lbl_aAnswer" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -994,7 +1067,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="lbl_cAnswer" pref="54" max="32767" attributes="0"/>
+                                      <Component id="lbl_cAnswer" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1034,7 +1107,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="lbl_dAnswer" pref="55" max="32767" attributes="0"/>
+                                      <Component id="lbl_dAnswer" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1052,7 +1125,7 @@
                         </Container>
                       </SubComponents>
                     </Container>
-                    <Component class="javax.swing.JButton" name="btn_editAnswer">
+                    <Component class="javax.swing.JButton" name="btn_editQuestion">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1061,13 +1134,17 @@
                           <Font name="Calibri Light" size="18" style="0"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Bearbeiten"/>
+                        <Property name="enabled" type="boolean" value="false"/>
                         <Property name="focusable" type="boolean" value="false"/>
+                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[130, 35]"/>
+                        </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_editAnswerActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_editQuestionActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btn_deleteAnswer">
+                    <Component class="javax.swing.JButton" name="btn_deleteQuestion">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1076,13 +1153,17 @@
                           <Font name="Calibri Light" size="18" style="0"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="L&#xf6;schen"/>
+                        <Property name="enabled" type="boolean" value="false"/>
                         <Property name="focusable" type="boolean" value="false"/>
+                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[110, 35]"/>
+                        </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_deleteAnswerActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_deleteQuestionActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btn_readyAnswer">
+                    <Component class="javax.swing.JButton" name="btn_cancelQuestion">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1090,17 +1171,20 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Calibri Light" size="18" style="0"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Fertig"/>
+                        <Property name="text" type="java.lang.String" value="Abbrechen"/>
                         <Property name="focusable" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[73, 39]"/>
+                          <Dimension value="[130, 35]"/>
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_readyAnswerActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_cancelQuestionActionPerformed"/>
                       </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="btn_cancelQuestion.setVisible(false);"/>
+                      </AuxValues>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btn_newAnswer">
+                    <Component class="javax.swing.JButton" name="btn_newQuestion">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1110,9 +1194,12 @@
                         </Property>
                         <Property name="text" type="java.lang.String" value="Neu"/>
                         <Property name="focusable" type="boolean" value="false"/>
+                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[75, 35]"/>
+                        </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_newAnswerActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_newQuestionActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>
@@ -1149,10 +1236,13 @@
                           <Component id="padding_topQuestionEdit" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="pnl_leftQuestionEdit" min="-2" max="-2" attributes="0"/>
-                              <Component id="pnl_rightQuestionEdit" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="pnl_rightQuestionEdit" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="16" max="32767" attributes="0"/>
+                              </Group>
+                              <Component id="pnl_leftQuestionEdit" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1172,7 +1262,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="txt_content" max="32767" attributes="0"/>
-                                  <Component id="txt_aAnswer" alignment="0" pref="575" max="32767" attributes="0"/>
+                                  <Component id="txt_aAnswer" alignment="0" pref="619" max="32767" attributes="0"/>
                                   <Component id="txt_bAnswer" alignment="0" max="32767" attributes="0"/>
                                   <Component id="txt_cAnswer" alignment="0" max="32767" attributes="0"/>
                                   <Component id="txt_dAnswer" alignment="0" max="32767" attributes="0"/>
@@ -1201,7 +1291,7 @@
                               <Component id="txt_dAnswer" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btn_readyQuestion" min="-2" pref="39" max="-2" attributes="0"/>
-                              <EmptySpace pref="49" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1619,17 +1709,6 @@
             </Container>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="lbl_navigation">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Calibri Light" size="26" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="99" red="33" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="&#xdc;bersicht"/>
-          </Properties>
-        </Component>
       </SubComponents>
     </Container>
   </SubComponents>
