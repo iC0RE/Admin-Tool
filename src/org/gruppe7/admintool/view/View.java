@@ -1246,6 +1246,7 @@ public class View extends JFrame {
         txt_category.setForeground(Color.black);
         txt_category.setVisible(true);
         pnl_buttonChooser.setVisible(true);
+        btn_editSelectedCategory.setVisible(true);
         btn_cancelCategory.setVisible(true);
         if (txt_category.getText().equals("Kategorie")) {
             btn_editSelectedCategory.setEnabled(false);
@@ -1253,9 +1254,17 @@ public class View extends JFrame {
     }
     
     private void enableListCategory(){
+        CardLayout cl = (CardLayout) (pnl_content.getLayout());
+        cl.first(pnl_content);
+        cl.next(pnl_content);
+        setInActiveAllButtons();
+        setActive(btn_categories);
+        updateCategoryModel();
         txt_category.setVisible(false);
         pnl_buttonChooser.setVisible(false);
         btn_cancelCategory.setVisible(false);
+        btn_editCategory.setEnabled(false);
+        btn_deleteCategory.setEnabled(false);
     }
 
     private void enableAddingQuestion(){
@@ -1308,13 +1317,7 @@ public class View extends JFrame {
 
 
     private void btn_categoriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_categoriesActionPerformed
-        CardLayout cl = (CardLayout) (pnl_content.getLayout());
-        cl.first(pnl_content);
-        cl.next(pnl_content);
-        setInActiveAllButtons();
-        setActive(btn_categories);
-        updateCategoryModel();
-
+        enableListCategory();
     }//GEN-LAST:event_btn_categoriesActionPerformed
 
     private void updateCategoryModel() {
@@ -1680,8 +1683,8 @@ public class View extends JFrame {
         txt_category.setForeground(new java.awt.Color(204, 204, 204));
         txt_category.setText("Kategorie");
         btn_editSelectedCategory.setVisible(false);
-        enableListCategory();
         updateCategoryModel();
+        enableListCategory();
     }//GEN-LAST:event_btn_editSelectedCategoryActionPerformed
 
     private void cbo_category2showQuestionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_category2showQuestionsActionPerformed
