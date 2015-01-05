@@ -202,7 +202,7 @@ public class View extends JFrame {
 
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jTextArea1.setText("Dieses Projekt entstand im Rahmen des AS-Unterrichts im 3. Ausbilungsjahr der FS22.\n\nDas Projektteam besteht aus folgenden Mitgliedern:\n\nMarkus Wochnik - Leiter der Datenhaltung, Modellierung und Dokumentation\nPaul Lange - Leiter des Designs und der Funktionalität\nAlex Klopfer - Leiter der Verbreitung schlechter Laune und Internetverweigerer\nMarcel Kastner - Leiter seiner eigenen Welt\n\nZiel dieses Projekts ist die Implementierung eines Admin-Tools zur Administration\nder Fragen einer Quiz-Anwendung.");
+        jTextArea1.setText("Dieses Projekt entstand im Rahmen des AS-Unterrichts im 3. Ausbilungsjahr der FS22.\n\nDas Projektteam besteht aus folgenden Mitgliedern:\n\nMarkus Wochnik - Leiter der Datenhaltung und Modellierung\nPaul Lange - Leiter des Designs und der Funktionalität\nAlex Klopfer - Leiter des Teams (Verantwortlicher für Controller)\nMarcel Kastner - Leiter der Qualitätssicherung\n\nZiel dieses Projekts ist die Implementierung eines Admin-Tools zur Administration\nder Fragen einer Quiz-Anwendung.");
         jTextArea1.setRows(5);
         jTextArea1.setFocusable(false);
         jScrollPane4.setViewportView(jTextArea1);
@@ -513,7 +513,7 @@ public class View extends JFrame {
         pnl_placeholderQuestionLayout.setVerticalGroup(
             pnl_placeholderQuestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_placeholderQuestionLayout.createSequentialGroup()
-                .addGap(0, 10, Short.MAX_VALUE)
+                .addGap(0, 11, Short.MAX_VALUE)
                 .addComponent(cbo_category2showQuestions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -1276,6 +1276,16 @@ public class View extends JFrame {
         setInActiveAllButtons();
         setActive(btn_questions);
         globalQuestion = null;
+        txt_content.setForeground(new java.awt.Color(204, 204, 204));
+        txt_content.setText("Frage");
+        txt_aAnswer.setForeground(new java.awt.Color(204, 204, 204));
+        txt_aAnswer.setText("Antwort a (Richtige Antwort!)");
+        txt_bAnswer.setForeground(new java.awt.Color(204, 204, 204));
+        txt_bAnswer.setText("Antwort b (Falsche Antwort!)");
+        txt_cAnswer.setForeground(new java.awt.Color(204, 204, 204));
+        txt_cAnswer.setText("Antwort c (Falsche Antwort!)");
+        txt_dAnswer.setForeground(new java.awt.Color(204, 204, 204));
+        txt_dAnswer.setText("Antwort d (Falsche Antwort!)");
         updateCategoryInQuestionModel();
     }
     
@@ -1301,7 +1311,7 @@ public class View extends JFrame {
         cl.next(pnl_content);
         setInActiveAllButtons();
         setActive(btn_questions);
-        updateQuestionModel();
+        updateQuestionModel(0);
     }
 
     private void setActive(javax.swing.JButton btn) {
@@ -1329,19 +1339,19 @@ public class View extends JFrame {
         lst_categories.setModel(model);
     }
 
-    private void updateQuestionModel() {
+    private void updateQuestionModel(int index) {
         List<Category> categories = connection.getCategories();
         DefaultComboBoxModel cboModel = new DefaultComboBoxModel();
         for (Category category : categories) {
             cboModel.addElement(category);
         }
         cbo_category2showQuestions.setModel(cboModel);
+        cbo_category2showQuestions.setSelectedIndex(index);
         if (globalCategory == null) {
+            cbo_category2showQuestions.setSelectedIndex(0);
             globalCategory = (Category) cbo_category2showQuestions.getSelectedItem();
         }
         //cbo_category2showQuestions.setSelectedItem(globalCategory);
-        System.out.format("Update", globalCategory.getId());
-        System.out.println(globalCategory.getId());
         List<Question> questions = connection.getQuestionsByCategoryId(globalCategory.getId());
         DefaultListModel lstModel = new DefaultListModel();
         for (Question question : questions) {
@@ -1377,7 +1387,16 @@ public class View extends JFrame {
         cl.next(pnl_content);
         setInActiveAllButtons();
         setActive(btn_options);
+        loadConfiguration();
     }//GEN-LAST:event_btn_optionsActionPerformed
+
+    private void loadConfiguration() {
+        txt_dbHost.setText(Configuration.getValue(Configuration.Field.Host));
+        txt_dbPort.setText(Configuration.getValue(Configuration.Field.Port));
+        txt_dbName.setText(Configuration.getValue(Configuration.Field.Name));
+        txt_dbUser.setText(Configuration.getValue(Configuration.Field.User));
+        pwd_dbPassword.setText(Configuration.getValue(Configuration.Field.Password));
+    }
 
     private void btn_startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_startActionPerformed
         CardLayout cl = (CardLayout) (pnl_content.getLayout());
@@ -1447,7 +1466,20 @@ public class View extends JFrame {
     }//GEN-LAST:event_txt_dbUserFocusLost
 
     private void btn_readyOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_readyOptionsActionPerformed
-        //Configuration.newConfiguration(txt_dbHost.getText(), txt_dbPort.getText(), txt_dbName.getText(), txt_dbUser.getText(), pwd_dbPassword.getSelectedText());
+        String value;
+        value = txt_dbHost.getText();
+        Configuration.setValue(Configuration.Field.Host, value);
+        value = txt_dbPort.getText();
+        Configuration.setValue(Configuration.Field.Port, value);
+        value = txt_dbName.getText();
+        Configuration.setValue(Configuration.Field.Name, value);
+        value = txt_dbUser.getText();
+        Configuration.setValue(Configuration.Field.User, value);
+        value = new String(pwd_dbPassword.getPassword());
+        Configuration.setValue(Configuration.Field.Password, value);
+        Configuration.storeProperties();
+        loadConfiguration();
+        connection.negotiate();
     }//GEN-LAST:event_btn_readyOptionsActionPerformed
 
     private void pwd_dbPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pwd_dbPasswordFocusGained
@@ -1464,7 +1496,7 @@ public class View extends JFrame {
         if (value != null) {
             Question question = (Question) value;
             connection.deleteQuestion(question);
-            updateQuestionModel();
+            updateQuestionModel(0);
         }
     }//GEN-LAST:event_btn_deleteQuestionActionPerformed
 
@@ -1689,15 +1721,16 @@ public class View extends JFrame {
 
     private void cbo_category2showQuestionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_category2showQuestionsActionPerformed
         Object value = cbo_category2showQuestions.getSelectedItem();
+        int index = cbo_category2showQuestions.getSelectedIndex();
         if (value != null) {
             globalCategory = (Category) value;
             System.out.format("ActionPerformed %d", globalCategory.getId());
         }
-        updateQuestionModel();
+        updateQuestionModel(index);
     }//GEN-LAST:event_cbo_category2showQuestionsActionPerformed
 
     private void btn_questionsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_btn_questionsItemStateChanged
-        updateQuestionModel();
+        updateQuestionModel(0);
     }//GEN-LAST:event_btn_questionsItemStateChanged
 
     private void lst_questionsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lst_questionsValueChanged

@@ -15,6 +15,8 @@ import org.gruppe7.admintool.model.Question;
  */
 public interface DefaultConnection extends AutoCloseable{
     
+    public void negotiate();
+    
     public Category createCategory(Category category); 
     
     public Category findCategoryById(int id);

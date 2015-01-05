@@ -5,11 +5,12 @@
  */
 package config;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Properties;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -18,6 +19,7 @@ import java.util.logging.Logger;
  */
 public class Configuration {
 
+    private static final String DefaultConfigurationFileName = "config.ini";
     private static Properties properties;
     private static final Logger log = Logger.getLogger(Configuration.class.getCanonicalName());
 
@@ -44,32 +46,48 @@ public class Configuration {
 
     //Vor Instanziierung ausgeführt - noch vor dem Laden durch den Class-Loader
     static {
-        InputStream input = Configuration.class.getResourceAsStream("application.properties");
         properties = new Properties();
-        try {
-            properties.load(input);
-        } catch (IOException ex) {
-            System.err.printf("Konfiguration konnte nicht geladen werden: %s", ex.getMessage());
-            System.exit(2);
+        if (loadProperties()) {
+        } else {
+            loadDefaultProperties();
         }
-
     }
 
-    //TEST FÜR ÄNDERUNG DER KONFIGURATION
-//    public static void newConfiguration(String host, String port, String name, String user, String password) {
-//        InputStream input = Configuration.class.getResourceAsStream("application.properties");
-//        properties = new Properties();
-//        properties.setProperty("database.host", host);
-//        properties.setProperty("database.port", port);
-//        properties.setProperty("database.name", name);
-//        properties.setProperty("database.user", user);
-//        properties.setProperty("database.password", password);
-//        try {
-//            properties.load(input);
-//        } catch (IOException ex) {
-//            Logger.getLogger(Configuration.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
+    public static boolean loadProperties() {
+        boolean loadResult = true;
+        try (InputStream input = new FileInputStream(DefaultConfigurationFileName)) {
+            properties.load(input);
+        } catch (IOException ex) {
+            log.info("Konfigurationsdatei konnte nicht geladen werden.");
+            loadResult = false;
+        }
+
+        return loadResult;
+    }
+
+    public static void storeProperties() {
+        try (OutputStream stream = new FileOutputStream(DefaultConfigurationFileName)) {
+            properties.store(stream, null);
+        } catch (IOException ex) {
+            log.severe("Konfigurationsdatei konnte nicht gespeichert werden.");
+        }
+    }
+
+    private static void loadDefaultProperties() {
+        try (InputStream input = Configuration.class.getResourceAsStream("application.properties")) {
+            properties.load(input);
+        } catch (IOException ex) {
+            System.err.printf("Standard-Konfiguration konnte nicht geladen werden: %s", ex.getMessage());
+            System.exit(2);
+        }
+    }
+
+    public static void setValue(Field field, String value) {
+        if (field == null) {
+            throw new IllegalArgumentException("Es wurde kein Feld angegeben.");
+        }
+        properties.put(field.getSearchKey(), value);
+    }
 
     public static String getValue(Field field) {
         if (field == null) {
